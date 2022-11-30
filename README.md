@@ -1,0 +1,2 @@
+# Intelligent _Video_Surveillance_System IVSS
+ Recent advances in the field of object detection have made it possible to develop practical video surveillance systems with object detection functionalities that are accurate and fast enough for commercial uses. By using the Intelligent Video Surveillance System, we can easily detect what is happening at a particular place and save any abnormal action as images or video clips to help the observer .
