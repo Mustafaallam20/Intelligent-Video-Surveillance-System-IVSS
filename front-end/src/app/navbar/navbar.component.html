@@ -1,4 +1,86 @@
-<nav class="d-flex p-2 align-items-center " >
+
+<nav class="d-flex fixed-top justify-content-between align-items-center p-2 ">
+
+  <!--Logo and List on left-->
+  <div class="d-flex">
+
+    <h3 class="mb-0"><a class="colr" href="#">IVSS</a></h3>
+
+    <ul class="list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around">
+      <li>
+        <a routerLink="/home" class="mx-2 colr">Home</a>           <!--*ngIf="isLogin"-->
+      </li>
+      <li>
+        <a routerLink="/view" class="mx-2 colr">View</a>         <!--*ngIf="isLogin"-->
+      </li>
+      <li>
+        <a routerLink="/history" class="mx-2 colr">History</a>     <!--*ngIf="isLogin"-->
+      </li>
+    </ul>
+  </div>
+
+  <!--Social media and list on right-->
+  <div class="d-flex">
+
+    <div class="social media colr">
+      <i class="fab mx-2 fa-facebook"></i>
+      <i class="fab mx-2 fa-instagram"></i>
+      <i class="fab mx-2 fa-twitter"></i>
+      <i class="fab mx-2 fa-youtube"></i>
+      <i class="fab mx-2 fa-spotify"></i>
+    </div>
+
+    <ul class="list-unstyled mb-0 d-flex justify-content-around ">
+      <li class="mx-2">
+        <a class="colr" routerLink="/login">Login</a>           <!--*ngIf="!isLogin"-->
+      </li>
+      <li class="mx-2">
+        <a class="colr" routerLink="/signup">Signup</a>     <!--*ngIf="!isLogin"-->
+      </li>
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link p-0 dropdown-toggle" routerLink="/settings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Settings
+        </a>
+        <ul class="dropdown-menu bg-dark">
+          <li><a class="dropdown-item" routerLink="settings/password">Password</a></li>
+          <li><a class="dropdown-item" routerLink="settings/log">Log</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" routerLink="#">Something else here</a></li>
+        </ul>
+      </li> -->
+      <li class="mx-2">
+        <a class="colr"  routerLink="/login">LogOut</a>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="d-flex p-2 align-items-center " >
   <h3 class="mb-0"><a href = "#">IVSS</a></h3>
 
   <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">
@@ -39,4 +121,4 @@
     </li>
 
   </ul>
-</nav>
+</nav> -->
