@@ -5,6 +5,8 @@ import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { User } from '../models/user';
 import {AuthService} from '../services/auth.service';
 import { Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private toastService: ToastService , private authService : AuthService, private _Router: Router) { }
+  constructor(private toastService: ToastService , private authService : AuthService, private router:Router ,private httpClient: HttpClient) { }
   isSubmitted = false;
   loginForm : FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.required,Validators.email]),
@@ -25,13 +27,25 @@ export class LoginComponent implements OnInit {
     this.isSubmitted = true;
     if (this.loginForm.valid)
     {
+      console.log(this.email);
 
-      var user:User ={
-        first_name:'', last_name:'', email:this.email,password:this.password
+      var user:User ={first_name:'', last_name:'', email:this.email.value,password:this.password.value}
+      //const user=loginForm.value;
+      this.authService.login(user).subscribe((response: any) => {
+        console.log("response"+response);
 
-      }
-      this.authService.login(user);
-      this._Router.navigate(['/home']);
+        if(response != null ){
+
+
+           this.router.navigate(['/', 'home']);
+        }
+        else{
+          this.toastService.error("Error Occured");
+
+        }
+
+
+      });
     }
     else{
       this.toastService.error("Please add All Fields");
