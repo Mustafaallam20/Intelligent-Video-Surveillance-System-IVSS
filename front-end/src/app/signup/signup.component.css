@@ -1,0 +1,90 @@
+.top-buffer-1{
+  padding-top: 20px;
+}
+
+.button{
+  padding-top: 40px;
+}
+
+
+.bottom-buffer-0{
+  margin-top: 0px;
+}
+
+
+
+.signup-input{
+  background-color: rgb(245, 245, 245);
+  padding-left:30px;
+}
+
+.label{
+color: black;
+
+}
+
+
+.md-toast.error {
+  background-color: red;
+}
+
+.md-toast.success {
+  background-color: green;
+}
+
+.icon {
+/* float: right; */
+color: rgb(132, 138, 138);
+position:relative;
+left:10px;
+bottom:30px;
+
+}
+
+.password-icon{
+float: right;
+right:10px;
+bottom: 28px;
+position: relative;
+cursor:pointer;
+/* color: rgb(132, 138, 138); */
+}
+
+.form-control.is-invalid {
+background-image: none;
+}
+.form-control.is-valid{
+background-image: none;
+}
+.col-md-5 {
+  flex: 0 0 auto;
+  width: 54.666667%;
+
+
+}
+.card-body{
+
+  height: 54.666667%;
+
+
+}
+
+p {
+  display:flex;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  color:black;
+}
+.font-color{
+  color:black;
+}
+.welcome{
+  color:#1a326c;
+
+}
+.h4, h4 {
+
+  margin-top: 20px;
+}

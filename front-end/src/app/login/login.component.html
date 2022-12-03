@@ -1,1 +1,53 @@
-<p>login works!</p>
+
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+      <div class=" col-md-5">
+          <div class="card shadow">
+              <div class="card-body">
+
+                  <div class="text-center">
+
+                      <img style="width:600px;height:200px;" src="assets/images/video-icon.png">
+                      <br>
+                      <h4 class="font-color">Welcome to IVSS System</h4>
+                  </div>
+
+
+ <form (ngSubmit)="loginSubmit(loginForm)" [formGroup]="loginForm">
+
+
+
+<div class="form-group top-buffer-1">
+  <div class="font-color" *ngIf=" email.errors?.['required'] && (isSubmitted || email.touched) "> Email is empty. </div>
+  <div class="font-color" *ngIf=" email.errors?.['email'] && (isSubmitted || email.touched) "> Email is not valid. </div>
+   <input
+   [ngClass]="{'is-invalid':  email.errors && (isSubmitted || email.touched),'is-valid': email.touched && ! email.errors}"
+   type="email" placeholder="Email"   formControlName="email" class="form-control login-input" id="email">
+   <span class="fa fa-envelope icon "  ></span>
+  </div>
+
+  <div class="form-group top-buffer-1">
+    <div class="font-color" *ngIf=" password.errors?.['required'] && (isSubmitted || password.touched) "> Password is empty. </div>
+    <div class="font-color" *ngIf=" password.errors?.['minlength'] && (isSubmitted || password.touched) "> Password is Too Short </div>
+   <input
+   [ngClass]="{'is-invalid':  password.errors && (isSubmitted || password.touched),'is-valid': password.touched && ! password.errors}"
+   type="password" placeholder="Password"  formControlName="password" class="form-control login-input" id="password">
+   <span class="fa fa-lock icon"></span>
+  </div>
+<div class="form-group button">
+
+  <button class="btn btn-primary form-control">
+      Log in
+  </button>
+  <div >
+    <p style="justify-content: center;">You don't have an account ?   <a routerLink="/signup" style="color:blue">Sign up</a></p>
+  </div>
+</div>
+ </form>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

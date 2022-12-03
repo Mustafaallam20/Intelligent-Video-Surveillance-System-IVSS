@@ -4,7 +4,13 @@
 
 body
 {
-  background-color: #131750;
-  color: #fff;
+  background-color:  #203d68;
+  color: #000;
   font-family: 'Montserrat Alternates' !important;
+}
+
+a,a:hover{
+
+  color: #000;
+  text-decoration: none;
 }
