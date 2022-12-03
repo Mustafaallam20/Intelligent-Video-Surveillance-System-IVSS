@@ -4,6 +4,7 @@ import {ToastService} from '../services/toast.service'
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { User } from '../models/user';
 import {AuthService} from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private toastService: ToastService , private authService : AuthService) { }
+  constructor(private toastService: ToastService , private authService : AuthService, private _Router: Router) { }
   isSubmitted = false;
   loginForm : FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.required,Validators.email]),
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
 
       }
       this.authService.login(user);
+      this._Router.navigate(['/home']);
     }
     else{
       this.toastService.error("Please add All Fields");
