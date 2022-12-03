@@ -4,7 +4,8 @@ import {ToastService} from '../services/toast.service'
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { User } from '../models/user';
 import {AuthService} from '../services/auth.service';
-ToastService
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -12,7 +13,7 @@ ToastService
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private toastService :ToastService ,private formBuilder:FormBuilder , private authService:AuthService) { }
+  constructor(private toastService :ToastService ,private formBuilder:FormBuilder , private authService:AuthService, private _Router: Router) { }
   isSubmitted = false;
 
   registerForm : FormGroup = new FormGroup({
@@ -34,11 +35,13 @@ export class SignupComponent implements OnInit {
       this.authService.signUp(user);
       console.log(user.email);
       this.toastService.success("success");
+      this._Router.navigate(['/login']);
     }
     else{
       this.toastService.error("error");
 
     }
+
 
   }
 
