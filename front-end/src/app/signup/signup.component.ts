@@ -4,6 +4,7 @@ import {ToastService} from '../services/toast.service'
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { User } from '../models/user';
 import {AuthService} from '../services/auth.service';
+import { Router } from '@angular/router';
 ToastService
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ ToastService
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private toastService :ToastService ,private formBuilder:FormBuilder , private authService:AuthService) { }
+  constructor(private toastService :ToastService ,private formBuilder:FormBuilder , private authService:AuthService,private router:Router ) { }
   isSubmitted = false;
 
   registerForm : FormGroup = new FormGroup({
@@ -28,12 +29,24 @@ export class SignupComponent implements OnInit {
     if(this.registerForm.valid)
     {
       var user:User ={
-        first_name:this.first, last_name:this.last,email:this.email,password:this.password
+        first_name:this.first.value, last_name:this.last.value,email:this.email.value,password:this.password.value
 
       }
-      this.authService.signUp(user);
-      console.log(user.email);
-      this.toastService.success("success");
+      this.authService.signup(user).subscribe((response: any) => {
+        console.log("response"+response);
+
+        if(response != null ){
+
+
+           this.router.navigate(['/', 'login']);
+        }
+        else{
+          this.toastService.error("Error Occured");
+
+        }
+
+
+      });
     }
     else{
       this.toastService.error("error");

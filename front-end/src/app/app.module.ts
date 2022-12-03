@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     SignupComponent,
     NavbarComponent,
     ViewComponent,
-    HistoryComponent
+    HistoryComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ToastModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule
 
 
   ],
