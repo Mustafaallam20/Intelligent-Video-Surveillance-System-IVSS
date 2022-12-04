@@ -1,0 +1,31 @@
+
+.color
+{
+  color: rgb(251, 249, 250);
+}
+
+.col-md-5 {
+  flex: 0 0 auto;
+  width: 54.666667%;
+
+}
+
+h1 {
+  margin-top: 160px;
+  font-size: 50px;
+}
+
+.Upload
+{
+  position: absolute;
+  left: 38%;
+  top: 50%;
+}
+
+.view
+{
+  position: absolute;
+  left: 47%;
+  top: 62%;
+}
+

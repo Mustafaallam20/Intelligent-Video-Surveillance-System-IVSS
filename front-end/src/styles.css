@@ -4,7 +4,8 @@
 
 body
 {
-  background-color:  #203d68;
+  background-image: url(../src/assets/images/mbr-1920x1281.jpg);
+  background-size: cover;
   color: #000;
   font-family: 'Montserrat Alternates' !important;
 }
