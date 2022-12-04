@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private authService:AuthService, private router:Router) {
 
-    if (!this.authService.checkAuth()) {
+    if (this.authService.checkAuth()) {
 
       console.log("dgttfbngfnf");
       this.router.navigate(['/', 'login']);

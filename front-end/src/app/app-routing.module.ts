@@ -8,12 +8,20 @@ import { SignupComponent } from './signup/signup.component';
 import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
+
   {path:'' , redirectTo:'home', pathMatch: 'full'},
   {path:'login', component:LoginComponent},
   {path: 'signup',component:SignupComponent},
-  {path:'home' , canActivate:[AuthGuard], component:HomeComponent},
-  {path:'view' , canActivate:[AuthGuard], component:ViewComponent},
-  {path:'history' , canActivate:[AuthGuard], component:HistoryComponent},
+  {path:'home' , component:HomeComponent},
+  {path:'view' , component:ViewComponent},
+  {path:'history' , component:HistoryComponent},
+
+  // {path:'' , redirectTo:'home', pathMatch: 'full'},
+  // {path:'login', component:LoginComponent},
+  // {path: 'signup',component:SignupComponent},
+  // {path:'home' , canActivate:[AuthGuard], component:HomeComponent},
+  // {path:'view' , canActivate:[AuthGuard], component:ViewComponent},
+  // {path:'history' , canActivate:[AuthGuard], component:HistoryComponent},
 ];
 
 @NgModule({
