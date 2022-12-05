@@ -12,26 +12,14 @@
             <th>Options</th>
         </thead>
         <tbody>
-            <tr>
-                <td>12/5/2022</td>
-                <td><a href="" class="text-white fw-bold linkvid">videolink</a></td>
-                <td class="fw-bold">Car Crash</td>
-                <td class="fw-bold">Viewed</td>
+            <tr *ngFor="let data of vidHistory;">
+
+                <td>{{data.date}}</td>
+                <td><a href="" class="text-white fw-bold linkvid">{{data.link}}</a></td>
+                <td class="fw-bold">{{data.type}}</td>
+                <td class="fw-bold">{{data.status}}</td>
                 <td class="fw-bold"><button class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>12/5/2022</td>
-                <td><a href="" class="text-white fw-bold linkvid">videolink</a></td>
-                <td class="fw-bold">Car Crash</td>
-                <td class="fw-bold">Viewed</td>
-                <td class="fw-bold"><button class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>12/5/2022</td>
-                <td><a href="" class="text-white fw-bold linkvid">videolink</a></td>
-                <td class="fw-bold">Car Crash</td>
-                <td class="fw-bold">Viewed</td>
-                <td class="fw-bold"><button class="btn btn-danger">Delete</button></td>
+                
             </tr>
         </tbody>
     </table>
