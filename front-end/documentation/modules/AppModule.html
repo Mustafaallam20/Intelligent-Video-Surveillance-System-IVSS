@@ -276,20 +276,19 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
-
 import { AppRoutingModule } from &#x27;./app-routing.module&#x27;;
 import { AppComponent } from &#x27;./app.component&#x27;;
-import { HomeComponent } from &#x27;./home/home.component&#x27;;
-import { LoginComponent } from &#x27;./login/login.component&#x27;;
-import { SignupComponent } from &#x27;./signup/signup.component&#x27;;
-import { NavbarComponent } from &#x27;./navbar/navbar.component&#x27;;
-import { ViewComponent } from &#x27;./view/view.component&#x27;;
-import { HistoryComponent } from &#x27;./history/history.component&#x27;;
+import { LoginComponent } from &#x27;./components/auth/login/login.component&#x27;;
+import { SignupComponent } from &#x27;./components/auth/signup/signup.component&#x27;;
+import { NavbarComponent } from &#x27;./components/shared/navbar/navbar.component&#x27;;
+import { ViewComponent } from &#x27;./components/view/view.component&#x27;;
 import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 import { MessageService } from &#x27;primeng/api&#x27;;
 import { ToastModule } from &#x27;primeng/toast&#x27;;
 import {BrowserAnimationsModule} from &#x27;@angular/platform-browser/animations&#x27;;
 import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
+import { HomeComponent } from &#x27;./components/home/home.component&#x27;;
+import { HistoryComponent } from &#x27;./components/history/history.component&#x27;;
 @NgModule({
   declarations: [
     AppComponent,
@@ -298,7 +297,7 @@ import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
     SignupComponent,
     NavbarComponent,
     ViewComponent,
-    HistoryComponent,
+    HistoryComponent
 
   ],
   imports: [

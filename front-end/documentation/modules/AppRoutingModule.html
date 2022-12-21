@@ -75,11 +75,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { AuthGuard } from &#x27;./auth.guard&#x27;;
-import { HistoryComponent } from &#x27;./history/history.component&#x27;;
-import { HomeComponent } from &#x27;./home/home.component&#x27;;
-import { LoginComponent } from &#x27;./login/login.component&#x27;;
-import { SignupComponent } from &#x27;./signup/signup.component&#x27;;
-import { ViewComponent } from &#x27;./view/view.component&#x27;;
+import { LoginComponent } from &#x27;./components/auth/login/login.component&#x27;;
+import { SignupComponent } from &#x27;./components/auth/signup/signup.component&#x27;;
+import { HistoryComponent } from &#x27;./components/history/history.component&#x27;;
+import { HomeComponent } from &#x27;./components/home/home.component&#x27;;
+import { ViewComponent } from &#x27;./components/view/view.component&#x27;;
 
 const routes: Routes &#x3D; [
 
@@ -95,7 +95,7 @@ const routes: Routes &#x3D; [
   // {path: &#x27;signup&#x27;,component:SignupComponent},
   // {path:&#x27;home&#x27; , canActivate:[AuthGuard], component:HomeComponent},
   // {path:&#x27;view&#x27; , canActivate:[AuthGuard], component:ViewComponent},
-  // {path:&#x27;history&#x27; , canActivate:[AuthGuard], component:HistoryComponent},
+   //{path:&#x27;history&#x27; , canActivate:[AuthGuard], component:HistoryComponent},
 ];
 
 @NgModule({

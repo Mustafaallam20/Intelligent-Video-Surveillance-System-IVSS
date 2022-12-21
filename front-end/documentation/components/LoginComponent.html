@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/login/login.component.ts</code>
+    <code>src/app/components/auth/login/login.component.ts</code>
 </p>
 
 
@@ -192,12 +192,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(toastService: <a href="../injectables/ToastService.html" target="_self">ToastService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, httpClient: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+<code>constructor(toastService: <a href="../injectables/ToastService.html" target="_self">ToastService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/login/login.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/auth/login/login.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -250,18 +250,6 @@
                                                     </td>
                                                     
                                                 </tr>
-                                                <tr>
-                                                        <td>httpClient</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -300,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/login/login.component.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/components/auth/login/login.component.ts:24</a></div>
                 </td>
             </tr>
 
@@ -370,7 +358,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/login/login.component.ts:57</a></div>
+                            class="link-to-prism">src/app/components/auth/login/login.component.ts:57</a></div>
                 </td>
             </tr>
 
@@ -410,7 +398,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/login/login.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/auth/login/login.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -444,7 +432,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/login/login.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/auth/login/login.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -473,7 +461,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/login/login.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/auth/login/login.component.ts:60</a></div>
                                 </td>
                             </tr>
 
@@ -495,7 +483,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/login/login.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/auth/login/login.component.ts:63</a></div>
                                 </td>
                             </tr>
 
@@ -508,13 +496,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { FormGroup , FormControl } from &#x27;@angular/forms&#x27;;
-import {ToastService} from &#x27;../services/toast.service&#x27;
+import {ToastService} from &#x27;../../../services/toast.service&#x27;
 import { FormBuilder, Validators, NgForm } from &#x27;@angular/forms&#x27;;
-import { User } from &#x27;../models/user&#x27;;
-import {AuthService} from &#x27;../services/auth.service&#x27;;
+import { User } from &#x27;../../../models/user&#x27;;
+import {AuthService} from &#x27;../../../services/auth.service&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { HomeComponent } from &#x27;../home/home.component&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
+
 
 @Component({
   selector: &#x27;app-login&#x27;,
@@ -523,7 +510,7 @@ import { HttpClient } from &#x27;@angular/common/http&#x27;;
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private toastService: ToastService , private authService : AuthService, private router:Router ,private httpClient: HttpClient) { }
+  constructor(private toastService: ToastService , private authService : AuthService, private router:Router ) { }
   isSubmitted &#x3D; false;
   loginForm : FormGroup &#x3D; new FormGroup({
     email: new FormControl(null,[Validators.required,Validators.email]),
@@ -544,7 +531,8 @@ export class LoginComponent implements OnInit {
 
         if(response !&#x3D; null ){
 
-          localStorage.setItem(&#x27;userToken&#x27; , JSON.stringify(response.token));
+          //localStorage.setItem(&#x27;userToken&#x27; ,  response.token);
+          this.authService.setAuth(response.token);
           this.authService.setUserData();
 
            this.router.navigate([&#x27;/&#x27;, &#x27;home&#x27;]);

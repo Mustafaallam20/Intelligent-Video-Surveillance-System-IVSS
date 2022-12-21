@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/history/history.component.ts</code>
+    <code>src/app/components/history/history.component.ts</code>
 </p>
 
 
@@ -174,7 +174,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/history/history.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/history/history.component.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -241,8 +241,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/history/history.component.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/components/history/history.component.ts:18</a></div>
                 </td>
             </tr>
 
@@ -288,7 +288,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/history/history.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/history/history.component.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -302,8 +302,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Video } from &#x27;../video&#x27;;
-import { VideoserviceService } from &#x27;../videoservice.service&#x27;;
+import { Video } from &#x27;src/app/models/video&#x27;;
+import { VideoserviceService } from &#x27;src/app/services/videoservice.service&#x27;;
+
 
 @Component({
   selector: &#x27;app-history&#x27;,
@@ -313,7 +314,7 @@ import { VideoserviceService } from &#x27;../videoservice.service&#x27;;
 export class HistoryComponent implements OnInit {
   vidHistory:Video[]&#x3D;[];
 
-  constructor(_videoService:VideoserviceService) { 
+  constructor(_videoService:VideoserviceService) {
     this.vidHistory &#x3D; _videoService.history;
   }
 
