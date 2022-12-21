@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup , FormControl } from '@angular/forms';
-import {ToastService} from '../services/toast.service'
+import {ToastService} from '../../../services/toast.service'
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
-import { User } from '../models/user';
-import {AuthService} from '../services/auth.service';
+import { User } from '../../../models/user';
+import {AuthService} from '../../../services/auth.service';
 import { Router } from '@angular/router';
-ToastService
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -14,6 +14,8 @@ ToastService
 export class SignupComponent implements OnInit {
 
   constructor(private toastService :ToastService ,private formBuilder:FormBuilder , private authService:AuthService,private router:Router ) { }
+
+
   isSubmitted = false;
 
   registerForm : FormGroup = new FormGroup({
@@ -29,7 +31,7 @@ export class SignupComponent implements OnInit {
     if(this.registerForm.valid)
     {
       var user:User ={
-        first_name:this.first.value, last_name:this.last.value,email:this.email.value,password:this.password.value
+        first_name:this.firstName.value, last_name:this.lastName.value,email:this.email.value,password:this.password.value
 
       }
       this.authService.signup(user).subscribe((response: any) => {
@@ -55,10 +57,10 @@ export class SignupComponent implements OnInit {
 
   }
 
-  get first(): any {
+  get firstName(): any {
     return this.registerForm.get('first_name');
   }
-  get last(): any {
+  get lastName(): any {
     return this.registerForm.get('last_name');
   }
   get email(): any {

@@ -16,18 +16,20 @@
   <form (ngSubmit)="submitRegister(registerForm)" [formGroup]="registerForm">
 
     <div class="form-group top-buffer-1">
-        <div class="font-color" *ngIf=" first.errors?.['required'] && (isSubmitted || first.touched) "> First Name is empty. </div>
+        <div class="font-color" *ngIf=" firstName.errors?.['required'] && (isSubmitted || firstName.touched) "> First Name is empty. </div>
       <input
-      [ngClass]="{'is-invalid':  first.errors && (isSubmitted || first.touched),'is-valid': first.touched && ! first.errors}"
+      [ngClass]="{'is-invalid':  firstName.errors && (isSubmitted || firstName.touched),'is-valid': firstName.touched && ! firstName.errors}"
       type="text" placeholder="First Name" formControlName="first_name" class="form-control signup-input" id="first_name">
 
       <span class="fa fa-user icon"></span>
     </div>
 
+
+
     <div class="form-group top-buffer-1">
-      <div class="font-color" *ngIf=" last.errors?.['required'] && (isSubmitted || last.touched) "> Last Name is empty. </div>
+      <div class="font-color" *ngIf=" lastName.errors?.['required'] && (isSubmitted || lastName.touched) "> Last Name is empty. </div>
       <input
-      [ngClass]="{'is-invalid':  last.errors && (isSubmitted || last.touched),'is-valid': last.touched && ! last.errors}"
+      [ngClass]="{'is-invalid':  lastName.errors && (isSubmitted || lastName.touched),'is-valid': lastName.touched && ! lastName.errors}"
       type="text" placeholder="Last Name" formControlName="last_name" class="form-control signup-input" id="last_name">
 
       <span class="fa fa-user icon"></span>
@@ -44,6 +46,9 @@
       <span class="fa fa-envelope icon" aria-hidden="true" ></span>
     </div>
 
+
+
+    
     <div class="form-group top-buffer-1">
         <div class="font-color" *ngIf=" password.errors?.['required'] && (isSubmitted || password.touched) "> Password is empty. </div>
         <div class="font-color" *ngIf=" password.errors?.['minlength'] && (isSubmitted || password.touched) "> Password is Too Short </div>

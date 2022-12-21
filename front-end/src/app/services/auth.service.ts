@@ -62,9 +62,9 @@ public checkAuth ():boolean
   return localStorage.getItem("token")!=null;
 }
 
-public setAuth ()
+public setAuth ( token: any)
 {
-   localStorage.setItem("token ","tokenFormBackEnd")
+   localStorage.setItem("token ", token);
 }
 
 
