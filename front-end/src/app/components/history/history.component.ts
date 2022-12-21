@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Video } from '../video';
-import { VideoserviceService } from '../videoservice.service';
+import { Video } from 'src/app/models/video';
+import { VideoserviceService } from 'src/app/services/videoservice.service';
+
 
 @Component({
   selector: 'app-history',
@@ -10,7 +11,7 @@ import { VideoserviceService } from '../videoservice.service';
 export class HistoryComponent implements OnInit {
   vidHistory:Video[]=[];
 
-  constructor(_videoService:VideoserviceService) { 
+  constructor(_videoService:VideoserviceService) {
     this.vidHistory = _videoService.history;
   }
 

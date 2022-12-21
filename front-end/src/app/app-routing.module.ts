@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
-import { HistoryComponent } from './history/history.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ViewComponent } from './view/view.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { HistoryComponent } from './components/history/history.component';
+import { HomeComponent } from './components/home/home.component';
+import { ViewComponent } from './components/view/view.component';
 
 const routes: Routes = [
 
@@ -21,7 +21,7 @@ const routes: Routes = [
   // {path: 'signup',component:SignupComponent},
   // {path:'home' , canActivate:[AuthGuard], component:HomeComponent},
   // {path:'view' , canActivate:[AuthGuard], component:ViewComponent},
-  // {path:'history' , canActivate:[AuthGuard], component:HistoryComponent},
+   //{path:'history' , canActivate:[AuthGuard], component:HistoryComponent},
 ];
 
 @NgModule({
