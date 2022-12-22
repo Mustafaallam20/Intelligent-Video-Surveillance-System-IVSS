@@ -2,25 +2,28 @@
 
 <h1 class="text-center fw-bold text-white">History Page</h1>
 
-<div class="container mt-5 pt-1 bg-black table">
-    <table class="text-center text-white mx-auto w-100 table">
-        <thead>
-            <th>Date</th>
-            <th>Link</th>
-            <th>Detection type</th>
-            <th>Status</th>
-            <th>Options</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of vidHistory;">
-
-                <td>{{data.date}}</td>
-                <td><a href="" class="text-white fw-bold linkvid">{{data.link}}</a></td>
-                <td class="fw-bold">{{data.type}}</td>
-                <td class="fw-bold">{{data.status}}</td>
-                <td class="fw-bold"><button class="btn btn-danger">Delete</button></td>
-                
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table
+  class="text-center text-white mx-auto w-100 table table-dark"
+>
+  <thead class="py-4">
+    <th>Detection type</th>
+    <th>Status</th>
+    <th>Date</th>
+    <th colspan="2">Options</th>
+  </thead>
+  <tbody class="align-middle">
+    <tr *ngFor="let data of vidHistory" id="{{data.id}}">
+      <td class="fw-bold">{{ data.type }}</td>
+      <div *ngIf="data.isNew; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock><td class="fw-bold bg-warning hover-table-warning">New</td></ng-template>
+        <ng-template #elseBlock><td class="fw-bold">Viewed</td></ng-template>
+      <td>{{ data.date }}</td>
+      <td class="fw-bold">
+        <button class="btn btn-primary" (click)="view($event)">Watch</button>
+      </td>
+      <td class="fw-bold">
+        <button class="btn btn-danger" (click)="delete($event)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

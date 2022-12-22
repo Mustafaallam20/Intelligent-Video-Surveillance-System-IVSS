@@ -1,6 +1,6 @@
 export interface Video {
+    id:string;
     date:string;
-    link:string;
-    status:string;
+    isNew:boolean;
     type:string;
 }
