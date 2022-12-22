@@ -13,15 +13,7 @@ export class NavbarComponent implements OnInit {
     
   }
 
-  SignUp()
-  {
-    this.authService.logOut();
-  }
-  LogIn()
-  {
-    this.authService.logOut();
-  }
-  LogOut()
+  logOut()
   {
     this.authService.logOut();
   }

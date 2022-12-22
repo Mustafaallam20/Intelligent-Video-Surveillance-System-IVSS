@@ -56,11 +56,11 @@
       <li class="mx-2">
         <div *ngIf="isLogedIn; then thenBlock; else elseBlock"></div>
         <ng-template #thenBlock>
-         <a class="colr" (click)="LogOut()" routerLink="/">Log Out</a>
+         <a class="colr" (click)="logOut()" routerLink="/">Log Out</a>
         </ng-template>
         <ng-template #elseBlock>
-          <a class="colr mx-2" (click)="LogIn()" routerLink="/">Log In</a>
-          <a class="colr mx-2" (click)="SignUp()" routerLink="/">Sign Up</a>
+          <a class="colr mx-2" routerLink="/login">Log In</a>
+          <a class="colr mx-2" routerLink="/signup">Sign Up</a>
         </ng-template>
       </li>
     </ul>
