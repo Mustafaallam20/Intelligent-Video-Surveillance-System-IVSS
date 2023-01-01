@@ -645,86 +645,140 @@ export class SignupComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">
-&lt;div class&#x3D;&quot;container h-100&quot;&gt;
-  &lt;div class&#x3D;&quot;row h-100 justify-content-center align-items-center&quot;&gt;
-      &lt;div class&#x3D;&quot; col-md-5&quot;&gt;
-          &lt;div class&#x3D;&quot;card shadow&quot;&gt;
-              &lt;div class&#x3D;&quot;card-body&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;vh-100&quot;&gt;
+  &lt;app-navbar&gt;&lt;/app-navbar&gt;
+  &lt;div class&#x3D;&quot;container h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;row h-100 justify-content-center align-content-center&quot;&gt;
+      &lt;div class&#x3D;&quot;col-lg-7&quot;&gt;
+        &lt;div class&#x3D;&quot;card shadow&quot;&gt;
+          &lt;div class&#x3D;&quot;card-body&quot;&gt;
+            &lt;div class&#x3D;&quot;text-center&quot;&gt;
+              &lt;h4 class&#x3D;&quot;font-color fw-bolder&quot;&gt;Welcome to IVSS System&lt;/h4&gt;
+            &lt;/div&gt;
 
-                  &lt;div class&#x3D;&quot;text-center&quot;&gt;
-
-                      &lt;img style&#x3D;&quot;width:600px;height:200px;&quot; src&#x3D;&quot;assets/images/video-icon.png&quot;&gt;
-
-                      &lt;h4 class&#x3D;&quot;font-color welcome &quot;&gt;Welcome to IVSS System&lt;/h4&gt;
-                  &lt;/div&gt;
-
-
-  &lt;form (ngSubmit)&#x3D;&quot;submitRegister(registerForm)&quot; [formGroup]&#x3D;&quot;registerForm&quot;&gt;
-
-    &lt;div class&#x3D;&quot;form-group top-buffer-1&quot;&gt;
-        &lt;div class&#x3D;&quot;font-color&quot; *ngIf&#x3D;&quot; firstName.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || firstName.touched) &quot;&gt; First Name is empty. &lt;/div&gt;
-      &lt;input
-      [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;:  firstName.errors &amp;&amp; (isSubmitted || firstName.touched),&#x27;is-valid&#x27;: firstName.touched &amp;&amp; ! firstName.errors}&quot;
-      type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;First Name&quot; formControlName&#x3D;&quot;first_name&quot; class&#x3D;&quot;form-control signup-input&quot; id&#x3D;&quot;first_name&quot;&gt;
-
-      &lt;span class&#x3D;&quot;fa fa-user icon&quot;&gt;&lt;/span&gt;
-    &lt;/div&gt;
-
-
-
-    &lt;div class&#x3D;&quot;form-group top-buffer-1&quot;&gt;
-      &lt;div class&#x3D;&quot;font-color&quot; *ngIf&#x3D;&quot; lastName.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || lastName.touched) &quot;&gt; Last Name is empty. &lt;/div&gt;
-      &lt;input
-      [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;:  lastName.errors &amp;&amp; (isSubmitted || lastName.touched),&#x27;is-valid&#x27;: lastName.touched &amp;&amp; ! lastName.errors}&quot;
-      type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Last Name&quot; formControlName&#x3D;&quot;last_name&quot; class&#x3D;&quot;form-control signup-input&quot; id&#x3D;&quot;last_name&quot;&gt;
-
-      &lt;span class&#x3D;&quot;fa fa-user icon&quot;&gt;&lt;/span&gt;
-    &lt;/div&gt;
-
-
-    &lt;div class&#x3D;&quot;form-group top-buffer-1&quot;&gt;
-      &lt;div class&#x3D;&quot;font-color&quot; *ngIf&#x3D;&quot; email.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || email.touched) &quot;&gt; Email is empty. &lt;/div&gt;
-      &lt;div class&#x3D;&quot;font-color&quot; *ngIf&#x3D;&quot; email.errors?.[&#x27;email&#x27;] &amp;&amp; (isSubmitted || email.touched) &quot;&gt; Email is not valid. &lt;/div&gt;
-      &lt;input
-      [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;:  email.errors &amp;&amp; (isSubmitted || email.touched),&#x27;is-valid&#x27;: email.touched &amp;&amp; ! email.errors}&quot;
-      type&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email&quot;   formControlName&#x3D;&quot;email&quot; class&#x3D;&quot;form-control signup-input&quot; id&#x3D;&quot;email&quot;&gt;
-
-      &lt;span class&#x3D;&quot;fa fa-envelope icon&quot; aria-hidden&#x3D;&quot;true&quot; &gt;&lt;/span&gt;
-    &lt;/div&gt;
-
-
-
-    
-    &lt;div class&#x3D;&quot;form-group top-buffer-1&quot;&gt;
-        &lt;div class&#x3D;&quot;font-color&quot; *ngIf&#x3D;&quot; password.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || password.touched) &quot;&gt; Password is empty. &lt;/div&gt;
-        &lt;div class&#x3D;&quot;font-color&quot; *ngIf&#x3D;&quot; password.errors?.[&#x27;minlength&#x27;] &amp;&amp; (isSubmitted || password.touched) &quot;&gt; Password is Too Short &lt;/div&gt;
-      &lt;input
-      [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;:  password.errors &amp;&amp; (isSubmitted || password.touched),&#x27;is-valid&#x27;: password.touched &amp;&amp; ! password.errors}&quot;
-      type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot;  formControlName&#x3D;&quot;password&quot; class&#x3D;&quot;form-control signup-input&quot; id&#x3D;&quot;password&quot;&gt;
-
-      &lt;span class&#x3D;&quot;fa fa-lock icon&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;div class&#x3D;&quot;form-group button&quot;&gt;
-
-      &lt;button class&#x3D;&quot;btn btn-primary form-control&quot;&gt;
-          SignUp
-      &lt;/button&gt;
-
-      &lt;div &gt;
-        &lt;p style&#x3D;&quot;justify-content: center;&quot;&gt;You already have an account ?   &lt;a  routerLink&#x3D;&quot;/login&quot;style&#x3D;&quot;color:blue&quot;&gt;  Log in&lt;/a&gt;&lt;/p&gt;
-      &lt;/div&gt;
-
-    &lt;/div&gt;
-
-  &lt;/form&gt;
-
+          &lt;form
+            (ngSubmit)&#x3D;&quot;submitRegister(registerForm)&quot;
+            [formGroup]&#x3D;&quot;registerForm&quot;
+          &gt;
+            &lt;div class&#x3D;&quot;form-group &quot;&gt;
+              &lt;div
+                class&#x3D;&quot;font-color&quot;
+                *ngIf&#x3D;&quot; firstName.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || firstName.touched) &quot;
+              &gt;
+                First Name is empty.
               &lt;/div&gt;
+              &lt;input
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;:
+                    firstName.errors &amp;&amp; (isSubmitted || firstName.touched),
+                  &#x27;is-valid&#x27;: firstName.touched &amp;&amp; !firstName.errors
+                }&quot;
+                type&#x3D;&quot;text&quot;
+                placeholder&#x3D;&quot;First Name&quot;
+                formControlName&#x3D;&quot;first_name&quot;
+                class&#x3D;&quot;form-control signup-input&quot;
+                id&#x3D;&quot;first_name&quot;
+              /&gt;
+
+              &lt;span class&#x3D;&quot;fa fa-user icon&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;form-group &quot;&gt;
+              &lt;div
+                class&#x3D;&quot;font-color&quot;
+                *ngIf&#x3D;&quot; lastName.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || lastName.touched) &quot;
+              &gt;
+                Last Name is empty.
+              &lt;/div&gt;
+              &lt;input
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;:
+                    lastName.errors &amp;&amp; (isSubmitted || lastName.touched),
+                  &#x27;is-valid&#x27;: lastName.touched &amp;&amp; !lastName.errors
+                }&quot;
+                type&#x3D;&quot;text&quot;
+                placeholder&#x3D;&quot;Last Name&quot;
+                formControlName&#x3D;&quot;last_name&quot;
+                class&#x3D;&quot;form-control signup-input&quot;
+                id&#x3D;&quot;last_name&quot;
+              /&gt;
+
+              &lt;span class&#x3D;&quot;fa fa-user icon&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;form-group &quot;&gt;
+              &lt;div
+                class&#x3D;&quot;font-color&quot;
+                *ngIf&#x3D;&quot; email.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || email.touched) &quot;
+              &gt;
+                Email is empty.
+              &lt;/div&gt;
+              &lt;div
+                class&#x3D;&quot;font-color&quot;
+                *ngIf&#x3D;&quot; email.errors?.[&#x27;email&#x27;] &amp;&amp; (isSubmitted || email.touched) &quot;
+              &gt;
+                Email is not valid.
+              &lt;/div&gt;
+              &lt;input
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: email.errors &amp;&amp; (isSubmitted || email.touched),
+                  &#x27;is-valid&#x27;: email.touched &amp;&amp; !email.errors
+                }&quot;
+                type&#x3D;&quot;email&quot;
+                placeholder&#x3D;&quot;Email&quot;
+                formControlName&#x3D;&quot;email&quot;
+                class&#x3D;&quot;form-control signup-input&quot;
+                id&#x3D;&quot;email&quot;
+              /&gt;
+
+              &lt;span class&#x3D;&quot;fa fa-envelope icon&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;form-group &quot;&gt;
+              &lt;div
+                class&#x3D;&quot;font-color&quot;
+                *ngIf&#x3D;&quot; password.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || password.touched) &quot;
+              &gt;
+                Password is empty.
+              &lt;/div&gt;
+              &lt;div
+                class&#x3D;&quot;font-color&quot;
+                *ngIf&#x3D;&quot; password.errors?.[&#x27;minlength&#x27;] &amp;&amp; (isSubmitted || password.touched) &quot;
+              &gt;
+                Password is Too Short
+              &lt;/div&gt;
+              &lt;input
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;:
+                    password.errors &amp;&amp; (isSubmitted || password.touched),
+                  &#x27;is-valid&#x27;: password.touched &amp;&amp; !password.errors
+                }&quot;
+                type&#x3D;&quot;password&quot;
+                placeholder&#x3D;&quot;Password&quot;
+                formControlName&#x3D;&quot;password&quot;
+                class&#x3D;&quot;form-control signup-input&quot;
+                id&#x3D;&quot;password&quot;
+              /&gt;
+
+              &lt;span class&#x3D;&quot;fa fa-lock icon&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;form-group button&quot;&gt;
+              &lt;button class&#x3D;&quot;btn btn-primary form-control&quot;&gt;SignUp&lt;/button&gt;
+
+              &lt;div&gt;
+                &lt;p style&#x3D;&quot;justify-content: center&quot;&gt;
+                  You already have an account ?
+                  &lt;a routerLink&#x3D;&quot;/login&quot; style&#x3D;&quot;color: blue&quot;&gt; Log in&lt;/a&gt;
+                &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
           &lt;/div&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
 </code></pre>
     </div>
 
@@ -850,7 +904,7 @@ p {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container h-100">  <div class="row h-100 justify-content-center align-items-center">      <div class=" col-md-5">          <div class="card shadow">              <div class="card-body">                  <div class="text-center">                      <img style="width:600px;height:200px;" src="assets/images/video-icon.png">                      <h4 class="font-color welcome ">Welcome to IVSS System</h4>                  </div>  <form (ngSubmit)="submitRegister(registerForm)" [formGroup]="registerForm">    <div class="form-group top-buffer-1">        <div class="font-color" *ngIf=" firstName.errors?.[\'required\'] && (isSubmitted || firstName.touched) "> First Name is empty. </div>      <input      [ngClass]="{\'is-invalid\':  firstName.errors && (isSubmitted || firstName.touched),\'is-valid\': firstName.touched && ! firstName.errors}"      type="text" placeholder="First Name" formControlName="first_name" class="form-control signup-input" id="first_name">      <span class="fa fa-user icon"></span>    </div>    <div class="form-group top-buffer-1">      <div class="font-color" *ngIf=" lastName.errors?.[\'required\'] && (isSubmitted || lastName.touched) "> Last Name is empty. </div>      <input      [ngClass]="{\'is-invalid\':  lastName.errors && (isSubmitted || lastName.touched),\'is-valid\': lastName.touched && ! lastName.errors}"      type="text" placeholder="Last Name" formControlName="last_name" class="form-control signup-input" id="last_name">      <span class="fa fa-user icon"></span>    </div>    <div class="form-group top-buffer-1">      <div class="font-color" *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) "> Email is empty. </div>      <div class="font-color" *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) "> Email is not valid. </div>      <input      [ngClass]="{\'is-invalid\':  email.errors && (isSubmitted || email.touched),\'is-valid\': email.touched && ! email.errors}"      type="email" placeholder="Email"   formControlName="email" class="form-control signup-input" id="email">      <span class="fa fa-envelope icon" aria-hidden="true" ></span>    </div>        <div class="form-group top-buffer-1">        <div class="font-color" *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) "> Password is empty. </div>        <div class="font-color" *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) "> Password is Too Short </div>      <input      [ngClass]="{\'is-invalid\':  password.errors && (isSubmitted || password.touched),\'is-valid\': password.touched && ! password.errors}"      type="password" placeholder="Password"  formControlName="password" class="form-control signup-input" id="password">      <span class="fa fa-lock icon"></span>      </div>    <div class="form-group button">      <button class="btn btn-primary form-control">          SignUp      </button>      <div >        <p style="justify-content: center;">You already have an account ?   <a  routerLink="/login"style="color:blue">  Log in</a></p>      </div>    </div>  </form>              </div>          </div>      </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="vh-100">  <app-navbar></app-navbar>  <div class="container h-100">    <div class="row h-100 justify-content-center align-content-center">      <div class="col-lg-7">        <div class="card shadow">          <div class="card-body">            <div class="text-center">              <h4 class="font-color fw-bolder">Welcome to IVSS System</h4>            </div>          <form            (ngSubmit)="submitRegister(registerForm)"            [formGroup]="registerForm"          >            <div class="form-group ">              <div                class="font-color"                *ngIf=" firstName.errors?.[\'required\'] && (isSubmitted || firstName.touched) "              >                First Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                    firstName.errors && (isSubmitted || firstName.touched),                  \'is-valid\': firstName.touched && !firstName.errors                }"                type="text"                placeholder="First Name"                formControlName="first_name"                class="form-control signup-input"                id="first_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" lastName.errors?.[\'required\'] && (isSubmitted || lastName.touched) "              >                Last Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                    lastName.errors && (isSubmitted || lastName.touched),                  \'is-valid\': lastName.touched && !lastName.errors                }"                type="text"                placeholder="Last Name"                formControlName="last_name"                class="form-control signup-input"                id="last_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) "              >                Email is empty.              </div>              <div                class="font-color"                *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) "              >                Email is not valid.              </div>              <input                [ngClass]="{                  \'is-invalid\': email.errors && (isSubmitted || email.touched),                  \'is-valid\': email.touched && !email.errors                }"                type="email"                placeholder="Email"                formControlName="email"                class="form-control signup-input"                id="email"              />              <span class="fa fa-envelope icon" aria-hidden="true"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) "              >                Password is empty.              </div>              <div                class="font-color"                *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) "              >                Password is Too Short              </div>              <input                [ngClass]="{                  \'is-invalid\':                    password.errors && (isSubmitted || password.touched),                  \'is-valid\': password.touched && !password.errors                }"                type="password"                placeholder="Password"                formControlName="password"                class="form-control signup-input"                id="password"              />              <span class="fa fa-lock icon"></span>            </div>            <div class="form-group button">              <button class="btn btn-primary form-control">SignUp</button>              <div>                <p style="justify-content: center">                  You already have an account ?                  <a routerLink="/login" style="color: blue"> Log in</a>                </p>              </div>              </div>            </form>          </div>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignupComponent'};

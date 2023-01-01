@@ -104,7 +104,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/videoservice.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/videoservice.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -137,7 +137,11 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[{date:&quot;15/5/2022&quot;, link:&quot;videolink&quot;, status:&#x27;viewed&#x27;,type:&quot;Car Crash&quot;}]</code>
+                        <i>Default value : </i><code>[
+      {date:&quot;27/9/2022&quot;, id:&quot;video_1&quot;, isNew:true,type:&quot;Car Crash&quot;},
+      {date:&quot;15/5/2022&quot;, id:&quot;video_2&quot;, isNew:true,type:&quot;Car Crash&quot;},
+      {date:&quot;13/5/2021&quot;, id:&quot;video_3&quot;, isNew:false,type:&quot;Car Crash&quot;}
+  ]</code>
                     </td>
                 </tr>
                     <tr>
@@ -163,7 +167,11 @@ import { Video } from &#x27;../models/video&#x27;;
 })
 export class VideoserviceService {
 
-  history:Video[]&#x3D;[{date:&quot;15/5/2022&quot;, link:&quot;videolink&quot;, status:&#x27;viewed&#x27;,type:&quot;Car Crash&quot;}];
+  history:Video[]&#x3D;[
+      {date:&quot;27/9/2022&quot;, id:&quot;video_1&quot;, isNew:true,type:&quot;Car Crash&quot;},
+      {date:&quot;15/5/2022&quot;, id:&quot;video_2&quot;, isNew:true,type:&quot;Car Crash&quot;},
+      {date:&quot;13/5/2021&quot;, id:&quot;video_3&quot;, isNew:false,type:&quot;Car Crash&quot;}
+  ];
 
   constructor() { }
 }

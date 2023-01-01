@@ -125,6 +125,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isLogedIn" >isLogedIn</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -135,7 +149,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#callLogOut" >callLogOut</a>
+                                <a href="#logOut" >logOut</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
@@ -214,24 +228,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="callLogOut"></a>
+                    <a name="logOut"></a>
                     <span class="name">
-                        <span ><b>callLogOut</b></span>
-                        <a href="#callLogOut"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>logOut</b></span>
+                        <a href="#logOut"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>callLogOut()</code>
+<code>logOut()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/components/shared/navbar/navbar.component.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/app/components/shared/navbar/navbar.component.ts:16</a></div>
                 </td>
             </tr>
 
@@ -285,6 +299,37 @@
         </tbody>
     </table>
 </section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLogedIn"></a>
+                    <span class="name">
+                        <span ><b>isLogedIn</b></span>
+                        <a href="#isLogedIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/shared/navbar/navbar.component.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
@@ -300,11 +345,12 @@ import {AuthService} from &#x27;../../../services/auth.service&#x27;;
 export class NavbarComponent implements OnInit {
 
   constructor(private authService : AuthService) { }
-
+  isLogedIn &#x3D; false;
   ngOnInit(): void {
+    
   }
 
-  callLogOut()
+  logOut()
   {
     this.authService.logOut();
   }
@@ -313,40 +359,58 @@ export class NavbarComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">
-&lt;nav class&#x3D;&quot;d-flex fixed-top justify-content-between align-items-center p-2 &quot;&gt;
-
+        <pre class="line-numbers"><code class="language-html">&lt;nav
+  class&#x3D;&quot;d-flex fixed-top justify-content-between align-items-center p-2 bg-dark opacity-60&quot;
+&gt;
   &lt;!--Logo and List on left--&gt;
-  &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+  &lt;div class&#x3D;&quot;d-flex mx-3&quot;&gt;
+    &lt;h3 class&#x3D;&quot;mb-0&quot;&gt;&lt;a class&#x3D;&quot;colr bold fw-bold&quot; href&#x3D;&quot;#&quot;&gt;IVSS&lt;/a&gt;&lt;/h3&gt;
 
-    &lt;h3 class&#x3D;&quot;mb-0&quot;&gt;&lt;a class&#x3D;&quot;colr&quot; href&#x3D;&quot;#&quot;&gt;IVSS&lt;/a&gt;&lt;/h3&gt;
-
-    &lt;ul class&#x3D;&quot;list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around&quot;&gt;
+    &lt;ul
+      class&#x3D;&quot;list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around&quot;
+    &gt;
       &lt;li&gt;
-        &lt;a routerLink&#x3D;&quot;/home&quot; routerLinkActive&#x3D;&quot;myactive&quot; class&#x3D;&quot;mx-2 colr&quot;&gt;Home&lt;/a&gt;           &lt;!--*ngIf&#x3D;&quot;isLogin&quot;--&gt;
+        &lt;a routerLink&#x3D;&quot;/home&quot; routerLinkActive&#x3D;&quot;myactive&quot; class&#x3D;&quot;mx-2 colr&quot;
+          &gt;Home&lt;/a
+        &gt;
+        &lt;!--*ngIf&#x3D;&quot;isLogin&quot;--&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;a routerLink&#x3D;&quot;/view&quot; routerLinkActive&#x3D;&quot;myactive&quot; class&#x3D;&quot;mx-2 colr&quot;&gt;View&lt;/a&gt;         &lt;!--*ngIf&#x3D;&quot;isLogin&quot;--&gt;
+        &lt;a routerLink&#x3D;&quot;/view&quot; routerLinkActive&#x3D;&quot;myactive&quot; class&#x3D;&quot;mx-2 colr&quot;
+          &gt;View&lt;/a
+        &gt;
+        &lt;!--*ngIf&#x3D;&quot;isLogin&quot;--&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;a routerLink&#x3D;&quot;/history&quot; routerLinkActive&#x3D;&quot;myactive&quot; class&#x3D;&quot;mx-2 colr&quot;&gt;History&lt;/a&gt;     &lt;!--*ngIf&#x3D;&quot;isLogin&quot;--&gt;
+        &lt;a routerLink&#x3D;&quot;/history&quot; routerLinkActive&#x3D;&quot;myactive&quot; class&#x3D;&quot;mx-2 colr&quot;
+          &gt;History&lt;/a
+        &gt;
+        &lt;!--*ngIf&#x3D;&quot;isLogin&quot;--&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
 
   &lt;!--Social media and list on right--&gt;
-  &lt;div class&#x3D;&quot;d-flex&quot;&gt;
-
+  &lt;div class&#x3D;&quot;d-flex mx-3&quot;&gt;
     &lt;div class&#x3D;&quot;social media colr&quot;&gt;
+      &lt;a
+        class&#x3D;&quot;colr mx-2&quot;
+        href&#x3D;&quot;http://127.0.0.1:8080/index.html&quot;
+        &gt;
+         Docs&lt;i class&#x3D;&quot;fa-duotone fa-books&quot;&gt;&lt;/i&gt;
+      &lt;/a&gt;
+      &lt;a
+        class&#x3D;&quot;colr mx-2&quot;
+        href&#x3D;&quot;https://github.com/Mustafaallam20/Intelligent-Video-Surveillance-System-IVSS&quot;
+        &gt;
+         &lt;i class&#x3D;&quot;fab mx-2 fa-github&quot;&gt;&lt;/i&gt;
+      &lt;/a&gt;
+     
 
-      &lt;a class&#x3D;&quot;colr&quot; href&#x3D;&quot;https://github.com/Mustafaallam20/Intelligent-Video-Surveillance-System-IVSS&quot; &gt;&lt;i class&#x3D;&quot;fab mx-2 fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-      
-      &lt;i class&#x3D;&quot;fab mx-2 fa-duontown fa-file&quot;&gt;&lt;/i&gt;
-
+      &lt;!-- &lt;i class&#x3D;&quot;fab mx-2 fa-duontown fa-file&quot;&gt;&lt;/i&gt; --&gt;
     &lt;/div&gt;
 
-    &lt;ul class&#x3D;&quot;list-unstyled mb-0 d-flex justify-content-around &quot;&gt;
-
+    &lt;ul class&#x3D;&quot;list-unstyled mb-0 d-flex justify-content-around&quot;&gt;
       &lt;!-- &lt;li class&#x3D;&quot;nav-item dropdown&quot;&gt;
         &lt;a class&#x3D;&quot;nav-link p-0 dropdown-toggle&quot; routerLink&#x3D;&quot;/settings&quot; role&#x3D;&quot;button&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; aria-expanded&#x3D;&quot;false&quot;&gt;
           Settings
@@ -359,36 +423,18 @@ export class NavbarComponent implements OnInit {
         &lt;/ul&gt;
       &lt;/li&gt; --&gt;
       &lt;li class&#x3D;&quot;mx-2&quot;&gt;
-        &lt;a class&#x3D;&quot;colr&quot; (click)&#x3D;&quot;callLogOut()&quot; routerLink&#x3D;&quot;/&quot;&gt;LogOut&lt;/a&gt;
+        &lt;div *ngIf&#x3D;&quot;isLogedIn; then thenBlock; else elseBlock&quot;&gt;&lt;/div&gt;
+        &lt;ng-template #thenBlock&gt;
+         &lt;a class&#x3D;&quot;colr&quot; (click)&#x3D;&quot;logOut()&quot; routerLink&#x3D;&quot;/&quot;&gt;Log Out&lt;/a&gt;
+        &lt;/ng-template&gt;
+        &lt;ng-template #elseBlock&gt;
+          &lt;a class&#x3D;&quot;colr mx-2&quot; routerLink&#x3D;&quot;/login&quot;&gt;Log In&lt;/a&gt;
+          &lt;a class&#x3D;&quot;colr mx-2&quot; routerLink&#x3D;&quot;/signup&quot;&gt;Sign Up&lt;/a&gt;
+        &lt;/ng-template&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
-
   &lt;/div&gt;
-
 &lt;/nav&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 &lt;!-- &lt;nav class&#x3D;&quot;d-flex p-2 align-items-center &quot; &gt;
   &lt;h3 class&#x3D;&quot;mb-0&quot;&gt;&lt;a href &#x3D; &quot;#&quot;&gt;IVSS&lt;/a&gt;&lt;/h3&gt;
@@ -478,7 +524,7 @@ export class NavbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="d-flex fixed-top justify-content-between align-items-center p-2 ">  <!--Logo and List on left-->  <div class="d-flex">    <h3 class="mb-0"><a class="colr" href="#">IVSS</a></h3>    <ul class="list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around">      <li>        <a routerLink="/home" routerLinkActive="myactive" class="mx-2 colr">Home</a>           <!--*ngIf="isLogin"-->      </li>      <li>        <a routerLink="/view" routerLinkActive="myactive" class="mx-2 colr">View</a>         <!--*ngIf="isLogin"-->      </li>      <li>        <a routerLink="/history" routerLinkActive="myactive" class="mx-2 colr">History</a>     <!--*ngIf="isLogin"-->      </li>    </ul>  </div>  <!--Social media and list on right-->  <div class="d-flex">    <div class="social media colr">      <a class="colr" href="https://github.com/Mustafaallam20/Intelligent-Video-Surveillance-System-IVSS" ><i class="fab mx-2 fa-github"></i></a>            <i class="fab mx-2 fa-duontown fa-file"></i>    </div>    <ul class="list-unstyled mb-0 d-flex justify-content-around ">      <!-- <li class="nav-item dropdown">        <a class="nav-link p-0 dropdown-toggle" routerLink="/settings" role="button" data-bs-toggle="dropdown" aria-expanded="false">          Settings        </a>        <ul class="dropdown-menu bg-dark">          <li><a class="dropdown-item" routerLink="settings/password">Password</a></li>          <li><a class="dropdown-item" routerLink="settings/log">Log</a></li>          <li><hr class="dropdown-divider"></li>          <li><a class="dropdown-item" routerLink="#">Something else here</a></li>        </ul>      </li> -->      <li class="mx-2">        <a class="colr" (click)="callLogOut()" routerLink="/">LogOut</a>      </li>    </ul>  </div></nav><!-- <nav class="d-flex p-2 align-items-center " >  <h3 class="mb-0"><a href = "#">IVSS</a></h3>  <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">    <li>      <a routerLink="/home">Home</a>    </li>    <li>      <a routerLink="/history ">Home</a>    </li>    <li>      <a routerLink="/view">Home</a>    </li>    <li>      <a routerLink="/login">Home</a>    </li>  </ul><div class="social-media">  <i class="fab fa-github mx-2"></i></div>  <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">    <li>      <a routerLink="/home">Login</a>    </li>    <li>      <a routerLink="/history ">Signup</a>    </li>    <li>      <a routerLink="/history ">Logout</a>    </li>  </ul></nav> --></div>'
+        var COMPONENT_TEMPLATE = '<div><nav  class="d-flex fixed-top justify-content-between align-items-center p-2 bg-dark opacity-60">  <!--Logo and List on left-->  <div class="d-flex mx-3">    <h3 class="mb-0"><a class="colr bold fw-bold" href="#">IVSS</a></h3>    <ul      class="list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around"    >      <li>        <a routerLink="/home" routerLinkActive="myactive" class="mx-2 colr"          >Home</a        >        <!--*ngIf="isLogin"-->      </li>      <li>        <a routerLink="/view" routerLinkActive="myactive" class="mx-2 colr"          >View</a        >        <!--*ngIf="isLogin"-->      </li>      <li>        <a routerLink="/history" routerLinkActive="myactive" class="mx-2 colr"          >History</a        >        <!--*ngIf="isLogin"-->      </li>    </ul>  </div>  <!--Social media and list on right-->  <div class="d-flex mx-3">    <div class="social media colr">      <a        class="colr mx-2"        href="http://127.0.0.1:8080/index.html"        >         Docs<i class="fa-duotone fa-books"></i>      </a>      <a        class="colr mx-2"        href="https://github.com/Mustafaallam20/Intelligent-Video-Surveillance-System-IVSS"        >         <i class="fab mx-2 fa-github"></i>      </a>           <!-- <i class="fab mx-2 fa-duontown fa-file"></i> -->    </div>    <ul class="list-unstyled mb-0 d-flex justify-content-around">      <!-- <li class="nav-item dropdown">        <a class="nav-link p-0 dropdown-toggle" routerLink="/settings" role="button" data-bs-toggle="dropdown" aria-expanded="false">          Settings        </a>        <ul class="dropdown-menu bg-dark">          <li><a class="dropdown-item" routerLink="settings/password">Password</a></li>          <li><a class="dropdown-item" routerLink="settings/log">Log</a></li>          <li><hr class="dropdown-divider"></li>          <li><a class="dropdown-item" routerLink="#">Something else here</a></li>        </ul>      </li> -->      <li class="mx-2">        <div *ngIf="isLogedIn; then thenBlock; else elseBlock"></div>        <ng-template #thenBlock>         <a class="colr" (click)="logOut()" routerLink="/">Log Out</a>        </ng-template>        <ng-template #elseBlock>          <a class="colr mx-2" routerLink="/login">Log In</a>          <a class="colr mx-2" routerLink="/signup">Sign Up</a>        </ng-template>      </li>    </ul>  </div></nav><!-- <nav class="d-flex p-2 align-items-center " >  <h3 class="mb-0"><a href = "#">IVSS</a></h3>  <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">    <li>      <a routerLink="/home">Home</a>    </li>    <li>      <a routerLink="/history ">Home</a>    </li>    <li>      <a routerLink="/view">Home</a>    </li>    <li>      <a routerLink="/login">Home</a>    </li>  </ul><div class="social-media">  <i class="fab fa-github mx-2"></i></div>  <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">    <li>      <a routerLink="/home">Login</a>    </li>    <li>      <a routerLink="/history ">Signup</a>    </li>    <li>      <a routerLink="/history ">Logout</a>    </li>  </ul></nav> --></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NavbarComponent'};

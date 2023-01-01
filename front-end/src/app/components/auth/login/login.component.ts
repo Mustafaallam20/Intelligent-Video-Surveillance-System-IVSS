@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
     }
     else{
       this.toastService.error("Please add All Fields");
+      console.log("hey");
     }
 
   }
