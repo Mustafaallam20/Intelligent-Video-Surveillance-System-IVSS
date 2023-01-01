@@ -20,8 +20,8 @@ export class SignupComponent implements OnInit {
 
   registerForm : FormGroup = new FormGroup({
 
-    first_name: new FormControl(null, [Validators.required]),
-    last_name: new FormControl(null,Validators.required),
+    first_name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
+    last_name: new FormControl(null,[Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
   })
