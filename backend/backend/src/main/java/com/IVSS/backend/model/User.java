@@ -22,24 +22,24 @@ public class User {
     @Column(name = "`ID`")
     private Long id;
      
-    @Column(name = "EMAIL" , nullable = false, unique = true, length = 45)
+    @Column(name = "`EMAIL`" , nullable = false, unique = true, length = 45)
     private String email;
      
      
-    @Column(name = "NAME", nullable = false, length = 20)
+    @Column(name = "`NAME`", nullable = false, length = 20)
     private String name;
     
     
-    @Column(name = "USERNAME", nullable = false,unique = true, length = 20)
+    @Column(name = "`USERNAME`", nullable = false,unique = true, length = 20)
     private String username;
      
-    @Column(name = "PASSWORD" ,nullable = false, length = 64)
+    @Column(name = "`PASSWORD`" ,nullable = false, length = 64)
     private String password;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_roles",
-        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "`user_roles`",
+        joinColumns = @JoinColumn(name = "`user_id`", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "`role_id`", referencedColumnName = "ID"))
     private Set<Role> roles;
 
 	public Long getId() {
