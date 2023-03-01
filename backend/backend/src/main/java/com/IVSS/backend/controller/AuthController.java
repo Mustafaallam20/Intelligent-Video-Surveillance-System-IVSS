@@ -44,7 +44,7 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
     
     
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
