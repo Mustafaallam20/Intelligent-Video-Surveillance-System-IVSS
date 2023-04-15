@@ -5,6 +5,7 @@ import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { User } from '../../../models/user';
 import {AuthService} from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -30,26 +31,28 @@ export class LoginComponent implements OnInit {
     {
       console.log(this.email);
 
-      var user:User ={first_name:'', last_name:'', email:this.email.value,password:this.password.value}
+      var user:User ={usernameOrEmail:this.email.value,password:this.password.value}
       //const user=loginForm.value;
-      this.authService.login(user).subscribe((response: any) => {
-        console.log("response"+response);
+      console.log(user)
+      this.authService.login(user).subscribe(
+        (result:any) => {
+          console.log(result);
+          if(result.status =="success" ){
 
-        if(response != null ){
+            //localStorage.setItem('userToken' ,  response.token);
+           // this.authService.setAuth(response.token);
+            //.authService.setUserData();
 
-          //localStorage.setItem('userToken' ,  response.token);
-          this.authService.setAuth(response.token);
-          this.authService.setUserData();
+             this.router.navigate(['/', 'home']);
+          }
+          else{
+            this.toastService.error("Error Occured");
 
-           this.router.navigate(['/', 'home']);
+          }
+
         }
-        else{
-          this.toastService.error("Error Occured");
+      );
 
-        }
-
-
-      });
     }
     else{
       this.toastService.error("Please add All Fields");

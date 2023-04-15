@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +27,11 @@ import com.IVSS.backend.*;
 
 import java.util.Collections;
 
+
+
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class AuthController {
 
@@ -45,27 +49,32 @@ public class AuthController {
     
     
     @PostMapping("/login")
-    public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+    public AuthResponse authenticateUser(@RequestBody LoginDto loginDto){
+       try { Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+        SecurityContextHolder.getContext().setAuthentication(authentication);}
+       catch(Exception e )
+       {
+    	   return new AuthResponse("fail",loginDto.getUsernameOrEmail() ,"");
+       }
+       
+        return new AuthResponse("success",loginDto.getUsernameOrEmail() ,"");
     }
     
     
     
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto){
+    public AuthResponse registerUser(@RequestBody SignUpDto signUpDto){
 
         // add check for username exists in a DB
         if(userDAO.existsByUsername(signUpDto.getUsername())){
-            return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+        	 return new AuthResponse("dublicated",null,null);
         }
 
         // add check for email exists in DB
         if(userDAO.existsByEmail(signUpDto.getEmail())){
-            return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
+        	 return new AuthResponse("dublicated",null,null);
         }
 
         // create user object
@@ -77,10 +86,10 @@ public class AuthController {
 
         Role roles = roleDAO.findByName("ROLE_ADMIN").get();
         user.setRoles(Collections.singleton(roles));
-
+      
         userDAO.save(user);
-
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        return new AuthResponse("success",null,null);
+        
 
     }
     

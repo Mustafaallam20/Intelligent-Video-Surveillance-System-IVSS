@@ -20,8 +20,8 @@ export class SignupComponent implements OnInit {
 
   registerForm : FormGroup = new FormGroup({
 
-    first_name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
-    last_name: new FormControl(null,[Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
+    name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
+    username: new FormControl(null,[Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
   })
@@ -30,14 +30,12 @@ export class SignupComponent implements OnInit {
     this.isSubmitted = true;
     if(this.registerForm.valid)
     {
-      var user:User ={
-        first_name:this.firstName.value, last_name:this.lastName.value,email:this.email.value,password:this.password.value
 
-      }
+      var user:User ={name:this.name.value,username:this.email.value, email:this.email.value,password:this.password.value}
       this.authService.signup(user).subscribe((response: any) => {
         console.log("response"+response);
 
-        if(response != null ){
+        if(response.status == "success"){
 
 
            this.router.navigate(['/', 'login']);
@@ -57,11 +55,11 @@ export class SignupComponent implements OnInit {
 
   }
 
-  get firstName(): any {
-    return this.registerForm.get('first_name');
+  get username(): any {
+    return this.registerForm.get('username');
   }
-  get lastName(): any {
-    return this.registerForm.get('last_name');
+  get name(): any {
+    return this.registerForm.get('name');
   }
   get email(): any {
     return this.registerForm.get('email');

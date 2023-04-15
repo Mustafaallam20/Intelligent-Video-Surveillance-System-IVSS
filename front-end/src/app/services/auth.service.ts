@@ -5,13 +5,14 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  {
 
-  constructor(private apiService:ApiService, private _Router: Router)
+  constructor(private httpClient: HttpClient ,private apiService:ApiService, private _Router: Router)
   {
     if (localStorage.getItem('userToken') != null)
     {
@@ -21,23 +22,16 @@ export class AuthService {
 
 
 login(user: User): Observable<any> {
-  console.log("hello Login from aueh service");
-  return this.apiService.post("login",user).pipe(
-    map((result: any) => {
-      console.log(result);
-     /* if (result !=null)
-      {
-        // we want to store token that returned from the login end point
-        this.setAuth();
-      }
-      else{
-        console.log("resulr is null");
 
-      }*/
-      return result;
+      return this.apiService.post("login",user).pipe(
+        map((result: any) => {
+          console.log(result);
 
-    })
-  );
+          return result;
+
+        })
+      );
+
 
 }
 
@@ -77,6 +71,15 @@ signup(user: User): Observable<any> {
       return result;
 
     })
+  );
+
+
+  return this.apiService.post("signup", user).pipe(
+    map(
+      (result) => {
+        return result;
+      }
+    )
   );
 
 }

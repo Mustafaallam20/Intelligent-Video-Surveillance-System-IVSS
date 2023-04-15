@@ -6,13 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = "http://localhost:8081/ivss/api/";
+  private baseUrl = "http://localhost:8081/api/auth/";
   constructor(private httpClient: HttpClient) { }
 
   public post(path: string, body: any = {}, httpHeaders?: [{ key: any, value: any }]): Observable<any> {
-
-    console.log(this.baseUrl + path);
-
     return this.httpClient
       .post(this.baseUrl + path, body)
   }

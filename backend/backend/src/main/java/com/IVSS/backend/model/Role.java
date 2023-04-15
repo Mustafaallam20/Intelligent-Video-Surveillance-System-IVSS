@@ -1,22 +1,32 @@
 package com.IVSS.backend.model;
 
-
-import lombok.Getter;
-import lombok.Setter;
-
 import jakarta.persistence.*;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "`roles`")
 public class Role {
 
-	  @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "`ID`")
-	    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "`ID`")
+	private Long id;
 
-    @Column(name = "`NAME`", nullable = false, length = 20)
-    private String name;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Column(name = "`NAME`", nullable = false, length = 20)
+	private String name;
 }

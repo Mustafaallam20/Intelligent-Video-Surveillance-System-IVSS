@@ -16,19 +16,19 @@
             <div class="form-group ">
               <div
                 class="font-color"
-                *ngIf=" firstName.errors?.['required'] && (isSubmitted || firstName.touched) "
+                *ngIf=" name.errors?.['required'] && (isSubmitted || name.touched) "
               >
                 First Name is empty.
               </div>
               <input
                 [ngClass]="{
                   'is-invalid':
-                    firstName.errors && (isSubmitted || firstName.touched),
-                  'is-valid': firstName.touched && !firstName.errors
+                  email.errors && (isSubmitted || name.touched),
+                  'is-valid': name.touched && !name.errors
                 }"
                 type="text"
                 placeholder="First Name"
-                formControlName="first_name"
+                formControlName="name"
                 class="form-control signup-input"
                 id="first_name"
               />
@@ -39,19 +39,19 @@
             <div class="form-group ">
               <div
                 class="font-color"
-                *ngIf=" lastName.errors?.['required'] && (isSubmitted || lastName.touched) "
+                *ngIf=" username.errors?.['required'] && (isSubmitted || username.touched) "
               >
                 Last Name is empty.
               </div>
               <input
                 [ngClass]="{
                   'is-invalid':
-                    lastName.errors && (isSubmitted || lastName.touched),
-                  'is-valid': lastName.touched && !lastName.errors
+                  username.errors && (isSubmitted || username.touched),
+                  'is-valid': username.touched && !username.errors
                 }"
                 type="text"
                 placeholder="Last Name"
-                formControlName="last_name"
+                formControlName="username"
                 class="form-control signup-input"
                 id="last_name"
               />
