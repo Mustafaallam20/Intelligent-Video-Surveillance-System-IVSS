@@ -20,6 +20,8 @@ public class AuthResponse {
     private String name;
     
     private String status;
+    
+    private String token;
 	
 	public String getStatus() {
 		return status;
@@ -31,10 +33,11 @@ public class AuthResponse {
 	}
 
 
-	public AuthResponse(String status ,String email ,String name){
+	public AuthResponse(String status ,String email ,String name , String token){
 		this.email=email;
 		this.name=name;
 		this.status=status;
+		this.token = token;
 		
 	}
      
@@ -53,6 +56,16 @@ public class AuthResponse {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	

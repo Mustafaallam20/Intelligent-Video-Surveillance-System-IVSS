@@ -23,7 +23,7 @@ export class AuthService  {
 
 login(user: User): Observable<any> {
 
-      return this.apiService.post("login",user).pipe(
+      return this.apiService.post("/api/auth/login",user).pipe(
         map((result: any) => {
           console.log(result);
 
@@ -45,7 +45,7 @@ setUserData(): void
 
 logOut(): void
 {
-  localStorage.removeItem('userToken');
+  localStorage.removeItem('token');
   this.userData.next(null);
   this._Router.navigate(['/login']);
 }
@@ -53,18 +53,26 @@ logOut(): void
 
 public checkAuth ():boolean
 {
-  return localStorage.getItem("token")!=null;
+  return localStorage.getItem("token")==null;
 }
 
 public setAuth ( token: any)
 {
-   localStorage.setItem("token ", token);
+   localStorage.setItem("token", token);
+
+
+}
+
+public getAuth ( )
+{
+   return localStorage.getItem("token");
 }
 
 
 
+
 signup(user: User): Observable<any> {
-  return this.apiService.post("signup",user).pipe(
+  return this.apiService.post("/api/auth/signup",user).pipe(
     map((result: any) => {
       console.log(result);
 
@@ -83,7 +91,19 @@ signup(user: User): Observable<any> {
   );
 
 }
+test(): Observable<any> {
 
+  return this.apiService.post("/api/test/test").pipe(
+    map((result: any) => {
+      console.log(result);
+
+      return result;
+
+    })
+  );
+
+
+}
 }
 
 

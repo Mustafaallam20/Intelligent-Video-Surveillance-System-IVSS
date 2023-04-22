@@ -17,7 +17,7 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   delete(e:any):void {
     this.vidHistory = this.vidHistory.filter((item)=>item.id!=e.target.parentElement.parentElement.id)
     // send to server to delete vid from history

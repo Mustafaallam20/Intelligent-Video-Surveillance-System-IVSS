@@ -27,10 +27,10 @@ import login_signupDTO.LoginDto;
 import login_signupDTO.SignUpDto;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/test")
 @CrossOrigin(origins = "http://localhost:4200")
 
-public class AuthController {
+public class TestController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -47,50 +47,6 @@ public class AuthController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@PostMapping("/login")
-	public AuthResponse authenticateUser(@RequestBody LoginDto loginDto) {
-		final CustomUserDetailsImpl customUserDetailsImpl;
-		final UserDetails m;
-		try {
-			Authentication authentication = authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(loginDto.getUsernameOrEmail(), loginDto.getPassword()));
-			 m=(UserDetails)authentication.getPrincipal();
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-		} catch (Exception e) {
-			return new AuthResponse("fail", loginDto.getUsernameOrEmail(), "", "");
-		}
-		final String jwt = jwtTokenUtil.generateToken(m);
-
-		return new AuthResponse("success", loginDto.getUsernameOrEmail(), "",jwt);
-	}
-
-	@PostMapping("/signup")
-	public AuthResponse registerUser(@RequestBody SignUpDto signUpDto) {
-
-		// add check for username exists in a DB
-		if (userDAO.existsByUsername(signUpDto.getUsername())) {
-			return new AuthResponse("dublicated", null, null, null);
-		}
-
-		// add check for email exists in DB
-		if (userDAO.existsByEmail(signUpDto.getEmail())) {
-			return new AuthResponse("dublicated", null, null, null);
-		}
-
-		// create user object
-		User user = new User();
-		user.setName(signUpDto.getName());
-		user.setUsername(signUpDto.getUsername());
-		user.setEmail(signUpDto.getEmail());
-		user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-
-		Role roles = roleDAO.findByName("ROLE_ADMIN").get();
-		user.setRoles(Collections.singleton(roles));
-
-		userDAO.save(user);
-		return new AuthResponse("success", null, null,null);
-
-	}
 	@PostMapping("/test")
 	public AuthResponse test( ) {
 		try {
@@ -101,5 +57,7 @@ public class AuthController {
 		
 		
 	}
+
+	
 
 }

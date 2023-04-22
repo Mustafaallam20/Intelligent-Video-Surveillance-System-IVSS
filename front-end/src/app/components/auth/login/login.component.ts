@@ -39,9 +39,8 @@ export class LoginComponent implements OnInit {
           console.log(result);
           if(result.status =="success" ){
 
-            //localStorage.setItem('userToken' ,  response.token);
-           // this.authService.setAuth(response.token);
-            //.authService.setUserData();
+            this.authService.setAuth(result.token);
+           // this.authService.setUserData();
 
              this.router.navigate(['/', 'home']);
           }

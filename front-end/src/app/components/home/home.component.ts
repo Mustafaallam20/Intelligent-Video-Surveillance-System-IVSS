@@ -14,13 +14,21 @@ export class HomeComponent implements OnInit {
 
     if (this.authService.checkAuth()) {
 
-      console.log("dgttfbngfnf");
       this.router.navigate(['/', 'login']);
 
     }
   }
 
   ngOnInit(): void {
+
+    this.authService.test().subscribe(
+      (result:any) => {
+        console.log(result);
+      }
+    );
+    console.log(this.authService.getAuth())
   }
+
+
 
 }
