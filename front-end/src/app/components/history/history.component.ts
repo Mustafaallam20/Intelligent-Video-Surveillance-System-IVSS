@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Video } from 'src/app/models/video';
+import { AuthService } from 'src/app/services/auth.service';
 import { VideoserviceService } from 'src/app/services/videoservice.service';
 
 
@@ -11,11 +13,18 @@ import { VideoserviceService } from 'src/app/services/videoservice.service';
 export class HistoryComponent implements OnInit {
   vidHistory:Video[]=[];
 
-  constructor(_videoService:VideoserviceService) {
+  constructor(_videoService:VideoserviceService,private authService:AuthService,private router:Router) {
     this.vidHistory = _videoService.history;
+
+    if (this.authService.checkAuth()) {
+
+      this.router.navigate(['/', 'login']);
+
+    }
   }
 
   ngOnInit(): void {
+
   }
 
   delete(e:any):void {
