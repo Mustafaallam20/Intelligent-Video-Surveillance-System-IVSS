@@ -1,12 +1,14 @@
 <nav
   class="d-flex fixed-top justify-content-between align-items-center p-2 bg-dark opacity-60"
 >
+
+
   <!--Logo and List on left-->
-  <div class="d-flex mx-3">
-    <h3 class="mb-0"><a class="colr bold fw-bold" href="#">IVSS</a></h3>
+  <div><h3 class="mb-0"><a class="colr bold fw-bold" href="#">IVSS</a></h3></div>
+  <div class="d-flex mx-3"*ngIf="isLogedIn">
 
     <ul
-      class="list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around"
+      class="list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around "
     >
       <li>
         <a routerLink="/home" routerLinkActive="myactive" class="mx-2 colr"
@@ -44,7 +46,7 @@
         >
          <i class="fab mx-2 fa-github"></i>
       </a>
-     
+
 
       <!-- <i class="fab mx-2 fa-duontown fa-file"></i> -->
     </div>
@@ -67,8 +69,8 @@
          <a class="colr" (click)="logOut()" routerLink="/">Log Out</a>
         </ng-template>
         <ng-template #elseBlock>
-          <a class="colr mx-2" routerLink="/login">Log In</a>
-          <a class="colr mx-2" routerLink="/signup">Sign Up</a>
+
+
         </ng-template>
       </li>
     </ul>
