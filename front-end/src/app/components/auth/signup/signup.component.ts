@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
   registerForm : FormGroup = new FormGroup({
 
     name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
-    username: new FormControl(null,[Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
+    username: new FormControl(null,[Validators.required, Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
   })
@@ -31,17 +31,17 @@ export class SignupComponent implements OnInit {
     if(this.registerForm.valid)
     {
 
-      var user:User ={name:this.name.value,username:this.email.value, email:this.email.value,password:this.password.value}
+      var user:User ={name:this.name.value,username:this.username.value, email:this.email.value,password:this.password.value}
       this.authService.signup(user).subscribe((response: any) => {
         console.log("response"+response);
 
-        if(response.status == "success"){
+        if(response.status == "Success"){
 
 
            this.router.navigate(['/', 'login']);
         }
         else{
-          this.toastService.error("Error Occured");
+          this.toastService.error(response.status);
 
         }
 

@@ -97,6 +97,14 @@
                                 <a href="#checkAuth" >checkAuth</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getAuth" >getAuth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getUserName" >getUserName</a>
+                            </li>
+                            <li>
                                 <a href="#login" >login</a>
                             </li>
                             <li>
@@ -110,7 +118,14 @@
                                 <a href="#setUserData" >setUserData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#setUserName" >setUserName</a>
+                            </li>
+                            <li>
                                 <a href="#signup" >signup</a>
+                            </li>
+                            <li>
+                                <a href="#test" >test</a>
                             </li>
                         </ul>
                     </td>
@@ -130,12 +145,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, _Router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(httpClient: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, _Router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/auth.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/auth.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -152,6 +167,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>httpClient</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>apiService</td>
                                                   
@@ -212,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/app/services/auth.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/services/auth.service.ts:54</a></div>
                 </td>
             </tr>
 
@@ -223,6 +250,84 @@
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAuth"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>getAuth</b></span>
+                        <a href="#getAuth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAuth()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/services/auth.service.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserName"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>getUserName</b></span>
+                        <a href="#getUserName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserName()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/services/auth.service.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                 </td>
@@ -249,8 +354,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/services/auth.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/services/auth.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -318,8 +423,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/services/auth.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/services/auth.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -357,8 +462,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/services/auth.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/services/auth.service.ts:59</a></div>
                 </td>
             </tr>
 
@@ -426,8 +531,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/app/services/auth.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/services/auth.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -438,6 +543,77 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setUserName"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>setUserName</b></span>
+                        <a href="#setUserName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setUserName(userName: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/services/auth.service.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userName</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -463,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/services/auth.service.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/services/auth.service.ts:87</a></div>
                 </td>
             </tr>
 
@@ -512,6 +688,43 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="test"></a>
+                    <span class="name">
+                        <span ><b>test</b></span>
+                        <a href="#test"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>test()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/services/auth.service.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section>
     
@@ -536,7 +749,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/services/auth.service.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/services/auth.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -556,13 +769,14 @@ import { Observable, BehaviorSubject } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
 import jwtDecode from &#x27;jwt-decode&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
-export class AuthService {
+export class AuthService  {
 
-  constructor(private apiService:ApiService, private _Router: Router)
+  constructor(private httpClient: HttpClient ,private apiService:ApiService, private _Router: Router)
   {
     if (localStorage.getItem(&#x27;userToken&#x27;) !&#x3D; null)
     {
@@ -572,23 +786,16 @@ export class AuthService {
 
 
 login(user: User): Observable&lt;any&gt; {
-  console.log(&quot;hello Login from aueh service&quot;);
-  return this.apiService.post(&quot;login&quot;,user).pipe(
-    map((result: any) &#x3D;&gt; {
-      console.log(result);
-     /* if (result !&#x3D;null)
-      {
-        // we want to store token that returned from the login end point
-        this.setAuth();
-      }
-      else{
-        console.log(&quot;resulr is null&quot;);
 
-      }*/
-      return result;
+      return this.apiService.post(&quot;/api/auth/login&quot;,user).pipe(
+        map((result: any) &#x3D;&gt; {
+          console.log(result);
 
-    })
-  );
+          return result;
+
+        })
+      );
+
 
 }
 
@@ -602,7 +809,7 @@ setUserData(): void
 
 logOut(): void
 {
-  localStorage.removeItem(&#x27;userToken&#x27;);
+  localStorage.removeItem(&#x27;token&#x27;);
   this.userData.next(null);
   this._Router.navigate([&#x27;/login&#x27;]);
 }
@@ -610,18 +817,39 @@ logOut(): void
 
 public checkAuth ():boolean
 {
-  return localStorage.getItem(&quot;token&quot;)!&#x3D;null;
+  return localStorage.getItem(&quot;token&quot;)&#x3D;&#x3D;null;
 }
 
 public setAuth ( token: any)
 {
-   localStorage.setItem(&quot;token &quot;, token);
+   localStorage.setItem(&quot;token&quot;, token);
+
+
+}
+
+public getAuth ( )
+{
+   return localStorage.getItem(&quot;token&quot;);
+}
+
+public setUserName ( userName: any)
+{
+   localStorage.setItem(&quot;userName&quot;, userName);
+
+
+}
+
+public getUserName ( )
+{
+   return localStorage.getItem(&quot;userName&quot;);
 }
 
 
 
+
+
 signup(user: User): Observable&lt;any&gt; {
-  return this.apiService.post(&quot;signup&quot;,user).pipe(
+  return this.apiService.post(&quot;/api/auth/signup&quot;,user).pipe(
     map((result: any) &#x3D;&gt; {
       console.log(result);
 
@@ -630,8 +858,29 @@ signup(user: User): Observable&lt;any&gt; {
     })
   );
 
-}
 
+  return this.apiService.post(&quot;signup&quot;, user).pipe(
+    map(
+      (result) &#x3D;&gt; {
+        return result;
+      }
+    )
+  );
+
+}
+test(): Observable&lt;any&gt; {
+
+  return this.apiService.post(&quot;/api/test/test&quot;).pipe(
+    map((result: any) &#x3D;&gt; {
+      console.log(result);
+
+      return result;
+
+    })
+  );
+
+
+}
 }
 
 

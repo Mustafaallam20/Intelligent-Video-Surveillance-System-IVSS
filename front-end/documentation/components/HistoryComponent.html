@@ -175,12 +175,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(_videoService: <a href="../injectables/VideoserviceService.html" target="_self">VideoserviceService</a>)</code>
+<code>constructor(_videoService: <a href="../injectables/VideoserviceService.html" target="_self">VideoserviceService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/history/history.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/history/history.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -202,6 +202,30 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/VideoserviceService.html" target="_self" >VideoserviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -247,8 +271,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/app/components/history/history.component.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/components/history/history.component.ts:30</a></div>
                 </td>
             </tr>
 
@@ -316,8 +340,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/app/components/history/history.component.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/components/history/history.component.ts:26</a></div>
                 </td>
             </tr>
 
@@ -353,8 +377,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/components/history/history.component.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/components/history/history.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -432,7 +456,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/history/history.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/history/history.component.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -446,7 +470,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 import { Video } from &#x27;src/app/models/video&#x27;;
+import { AuthService } from &#x27;src/app/services/auth.service&#x27;;
 import { VideoserviceService } from &#x27;src/app/services/videoservice.service&#x27;;
 
 
@@ -458,13 +484,20 @@ import { VideoserviceService } from &#x27;src/app/services/videoservice.service&
 export class HistoryComponent implements OnInit {
   vidHistory:Video[]&#x3D;[];
 
-  constructor(_videoService:VideoserviceService) {
+  constructor(_videoService:VideoserviceService,private authService:AuthService,private router:Router) {
     this.vidHistory &#x3D; _videoService.history;
+
+    if (this.authService.checkAuth()) {
+
+      this.router.navigate([&#x27;/&#x27;, &#x27;login&#x27;]);
+
+    }
   }
 
   ngOnInit(): void {
+
   }
-  
+
   delete(e:any):void {
     this.vidHistory &#x3D; this.vidHistory.filter((item)&#x3D;&gt;item.id!&#x3D;e.target.parentElement.parentElement.id)
     // send to server to delete vid from history

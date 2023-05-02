@@ -46,6 +46,7 @@ setUserData(): void
 logOut(): void
 {
   localStorage.removeItem('token');
+  localStorage.removeItem('userName');
   this.userData.next(null);
   this._Router.navigate(['/login']);
 }
@@ -67,6 +68,19 @@ public getAuth ( )
 {
    return localStorage.getItem("token");
 }
+
+public setUserName ( userName: any)
+{
+   localStorage.setItem("userName", userName);
+
+
+}
+
+public getUserName ( )
+{
+   return localStorage.getItem("userName")!;
+}
+
 
 
 

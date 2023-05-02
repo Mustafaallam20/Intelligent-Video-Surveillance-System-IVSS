@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
+  userName?:string ;
+
   constructor(private authService:AuthService, private router:Router) {
 
     if (this.authService.checkAuth()) {
@@ -21,11 +23,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.test().subscribe(
+    this.userName!=this.authService.getUserName();
+    console.log(this.authService.getUserName())
+   /* this.authService.test().subscribe(
       (result:any) => {
         console.log(result);
       }
-    );
+    );*/
     console.log(this.authService.getAuth())
   }
 

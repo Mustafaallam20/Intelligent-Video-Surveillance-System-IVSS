@@ -174,10 +174,10 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#firstName" >firstName</a>
+                                    <a href="#username" >username</a>
                                 </li>
                                 <li>
-                                    <a href="#lastName" >lastName</a>
+                                    <a href="#name" >name</a>
                                 </li>
                                 <li>
                                     <a href="#email" >email</a>
@@ -306,8 +306,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:71</a></div>
                 </td>
             </tr>
 
@@ -444,8 +444,8 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>new FormGroup({
 
-    first_name: new FormControl(null, [Validators.required]),
-    last_name: new FormControl(null,Validators.required),
+    name: new FormControl(null, [Validators.required, Validators.pattern(&#x27;[a-zA-Z ]*&#x27;),Validators.minLength(3)]),
+    username: new FormControl(null,[Validators.required, Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
   })</code>
@@ -470,19 +470,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="firstName"></a>
-                        <span class="name"><b>firstName</b><a href="#firstName"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="username"></a>
+                        <span class="name"><b>username</b><a href="#username"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>firstName()</code></span>
+                        <span class="accessor"><b>get</b><code>username()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:58</a></div>
                                 </td>
                             </tr>
 
@@ -492,19 +492,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="lastName"></a>
-                        <span class="name"><b>lastName</b><a href="#lastName"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="name"></a>
+                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>lastName()</code></span>
+                        <span class="accessor"><b>get</b><code>name()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:61</a></div>
                                 </td>
                             </tr>
 
@@ -526,7 +526,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:64</a></div>
                                 </td>
                             </tr>
 
@@ -548,7 +548,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:67</a></div>
                                 </td>
                             </tr>
 
@@ -581,8 +581,8 @@ export class SignupComponent implements OnInit {
 
   registerForm : FormGroup &#x3D; new FormGroup({
 
-    first_name: new FormControl(null, [Validators.required]),
-    last_name: new FormControl(null,Validators.required),
+    name: new FormControl(null, [Validators.required, Validators.pattern(&#x27;[a-zA-Z ]*&#x27;),Validators.minLength(3)]),
+    username: new FormControl(null,[Validators.required, Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
   })
@@ -591,20 +591,18 @@ export class SignupComponent implements OnInit {
     this.isSubmitted &#x3D; true;
     if(this.registerForm.valid)
     {
-      var user:User &#x3D;{
-        first_name:this.firstName.value, last_name:this.lastName.value,email:this.email.value,password:this.password.value
 
-      }
+      var user:User &#x3D;{name:this.name.value,username:this.username.value, email:this.email.value,password:this.password.value}
       this.authService.signup(user).subscribe((response: any) &#x3D;&gt; {
         console.log(&quot;response&quot;+response);
 
-        if(response !&#x3D; null ){
+        if(response.status &#x3D;&#x3D; &quot;Success&quot;){
 
 
            this.router.navigate([&#x27;/&#x27;, &#x27;login&#x27;]);
         }
         else{
-          this.toastService.error(&quot;Error Occured&quot;);
+          this.toastService.error(response.status);
 
         }
 
@@ -618,11 +616,11 @@ export class SignupComponent implements OnInit {
 
   }
 
-  get firstName(): any {
-    return this.registerForm.get(&#x27;first_name&#x27;);
+  get username(): any {
+    return this.registerForm.get(&#x27;username&#x27;);
   }
-  get lastName(): any {
-    return this.registerForm.get(&#x27;last_name&#x27;);
+  get name(): any {
+    return this.registerForm.get(&#x27;name&#x27;);
   }
   get email(): any {
     return this.registerForm.get(&#x27;email&#x27;);
@@ -663,19 +661,19 @@ export class SignupComponent implements OnInit {
             &lt;div class&#x3D;&quot;form-group &quot;&gt;
               &lt;div
                 class&#x3D;&quot;font-color&quot;
-                *ngIf&#x3D;&quot; firstName.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || firstName.touched) &quot;
+                *ngIf&#x3D;&quot; name.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || name.touched) &quot;
               &gt;
                 First Name is empty.
               &lt;/div&gt;
               &lt;input
                 [ngClass]&#x3D;&quot;{
                   &#x27;is-invalid&#x27;:
-                    firstName.errors &amp;&amp; (isSubmitted || firstName.touched),
-                  &#x27;is-valid&#x27;: firstName.touched &amp;&amp; !firstName.errors
+                  email.errors &amp;&amp; (isSubmitted || name.touched),
+                  &#x27;is-valid&#x27;: name.touched &amp;&amp; !name.errors
                 }&quot;
                 type&#x3D;&quot;text&quot;
-                placeholder&#x3D;&quot;First Name&quot;
-                formControlName&#x3D;&quot;first_name&quot;
+                placeholder&#x3D;&quot;Name&quot;
+                formControlName&#x3D;&quot;name&quot;
                 class&#x3D;&quot;form-control signup-input&quot;
                 id&#x3D;&quot;first_name&quot;
               /&gt;
@@ -686,19 +684,19 @@ export class SignupComponent implements OnInit {
             &lt;div class&#x3D;&quot;form-group &quot;&gt;
               &lt;div
                 class&#x3D;&quot;font-color&quot;
-                *ngIf&#x3D;&quot; lastName.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || lastName.touched) &quot;
+                *ngIf&#x3D;&quot; username.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || username.touched) &quot;
               &gt;
                 Last Name is empty.
               &lt;/div&gt;
               &lt;input
                 [ngClass]&#x3D;&quot;{
                   &#x27;is-invalid&#x27;:
-                    lastName.errors &amp;&amp; (isSubmitted || lastName.touched),
-                  &#x27;is-valid&#x27;: lastName.touched &amp;&amp; !lastName.errors
+                  username.errors &amp;&amp; (isSubmitted || username.touched),
+                  &#x27;is-valid&#x27;: username.touched &amp;&amp; !username.errors
                 }&quot;
                 type&#x3D;&quot;text&quot;
-                placeholder&#x3D;&quot;Last Name&quot;
-                formControlName&#x3D;&quot;last_name&quot;
+                placeholder&#x3D;&quot;Username&quot;
+                formControlName&#x3D;&quot;username&quot;
                 class&#x3D;&quot;form-control signup-input&quot;
                 id&#x3D;&quot;last_name&quot;
               /&gt;
@@ -904,7 +902,7 @@ p {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="vh-100">  <app-navbar></app-navbar>  <div class="container h-100">    <div class="row h-100 justify-content-center align-content-center">      <div class="col-lg-7">        <div class="card shadow">          <div class="card-body">            <div class="text-center">              <h4 class="font-color fw-bolder">Welcome to IVSS System</h4>            </div>          <form            (ngSubmit)="submitRegister(registerForm)"            [formGroup]="registerForm"          >            <div class="form-group ">              <div                class="font-color"                *ngIf=" firstName.errors?.[\'required\'] && (isSubmitted || firstName.touched) "              >                First Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                    firstName.errors && (isSubmitted || firstName.touched),                  \'is-valid\': firstName.touched && !firstName.errors                }"                type="text"                placeholder="First Name"                formControlName="first_name"                class="form-control signup-input"                id="first_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" lastName.errors?.[\'required\'] && (isSubmitted || lastName.touched) "              >                Last Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                    lastName.errors && (isSubmitted || lastName.touched),                  \'is-valid\': lastName.touched && !lastName.errors                }"                type="text"                placeholder="Last Name"                formControlName="last_name"                class="form-control signup-input"                id="last_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) "              >                Email is empty.              </div>              <div                class="font-color"                *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) "              >                Email is not valid.              </div>              <input                [ngClass]="{                  \'is-invalid\': email.errors && (isSubmitted || email.touched),                  \'is-valid\': email.touched && !email.errors                }"                type="email"                placeholder="Email"                formControlName="email"                class="form-control signup-input"                id="email"              />              <span class="fa fa-envelope icon" aria-hidden="true"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) "              >                Password is empty.              </div>              <div                class="font-color"                *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) "              >                Password is Too Short              </div>              <input                [ngClass]="{                  \'is-invalid\':                    password.errors && (isSubmitted || password.touched),                  \'is-valid\': password.touched && !password.errors                }"                type="password"                placeholder="Password"                formControlName="password"                class="form-control signup-input"                id="password"              />              <span class="fa fa-lock icon"></span>            </div>            <div class="form-group button">              <button class="btn btn-primary form-control">SignUp</button>              <div>                <p style="justify-content: center">                  You already have an account ?                  <a routerLink="/login" style="color: blue"> Log in</a>                </p>              </div>              </div>            </form>          </div>        </div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="vh-100">  <app-navbar></app-navbar>  <div class="container h-100">    <div class="row h-100 justify-content-center align-content-center">      <div class="col-lg-7">        <div class="card shadow">          <div class="card-body">            <div class="text-center">              <h4 class="font-color fw-bolder">Welcome to IVSS System</h4>            </div>          <form            (ngSubmit)="submitRegister(registerForm)"            [formGroup]="registerForm"          >            <div class="form-group ">              <div                class="font-color"                *ngIf=" name.errors?.[\'required\'] && (isSubmitted || name.touched) "              >                First Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                  email.errors && (isSubmitted || name.touched),                  \'is-valid\': name.touched && !name.errors                }"                type="text"                placeholder="Name"                formControlName="name"                class="form-control signup-input"                id="first_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" username.errors?.[\'required\'] && (isSubmitted || username.touched) "              >                Last Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                  username.errors && (isSubmitted || username.touched),                  \'is-valid\': username.touched && !username.errors                }"                type="text"                placeholder="Username"                formControlName="username"                class="form-control signup-input"                id="last_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) "              >                Email is empty.              </div>              <div                class="font-color"                *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) "              >                Email is not valid.              </div>              <input                [ngClass]="{                  \'is-invalid\': email.errors && (isSubmitted || email.touched),                  \'is-valid\': email.touched && !email.errors                }"                type="email"                placeholder="Email"                formControlName="email"                class="form-control signup-input"                id="email"              />              <span class="fa fa-envelope icon" aria-hidden="true"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) "              >                Password is empty.              </div>              <div                class="font-color"                *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) "              >                Password is Too Short              </div>              <input                [ngClass]="{                  \'is-invalid\':                    password.errors && (isSubmitted || password.touched),                  \'is-valid\': password.touched && !password.errors                }"                type="password"                placeholder="Password"                formControlName="password"                class="form-control signup-input"                id="password"              />              <span class="fa fa-lock icon"></span>            </div>            <div class="form-group button">              <button class="btn btn-primary form-control">SignUp</button>              <div>                <p style="justify-content: center">                  You already have an account ?                  <a routerLink="/login" style="color: blue"> Log in</a>                </p>              </div>              </div>            </form>          </div>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignupComponent'};

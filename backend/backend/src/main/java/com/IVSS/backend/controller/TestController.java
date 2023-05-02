@@ -43,17 +43,16 @@ public class TestController {
 	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil; 
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/test")
 	public AuthResponse test( ) {
 		try {
-			return new AuthResponse("success", null, null,null);
+			return new AuthResponse(null, null,null,"Sucess", null);
 		} catch (Exception e) {
-			return new AuthResponse("fail", "", "", "");
-		}
+			return new AuthResponse(null, null,null,"Fail", null);
+	}
 		
 		
 	}
