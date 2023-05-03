@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
     name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*'),Validators.minLength(3)]),
     username: new FormControl(null,[Validators.required, Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
-    password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+    password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
   })
 
   submitRegister(registerForm:FormGroup){

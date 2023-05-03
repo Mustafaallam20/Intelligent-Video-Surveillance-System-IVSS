@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   isSubmitted = false;
   loginForm : FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.required,Validators.email]),
-    password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+    password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
   })
 
   loginSubmit(loginForm:FormGroup){
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
              this.router.navigate(['/', 'home']);
           }
           else{
-            this.toastService.error("Error Occured");
+            this.toastService.error("Invalid login");
 
           }
 
