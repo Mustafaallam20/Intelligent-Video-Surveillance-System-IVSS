@@ -12,19 +12,14 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-<<<<<<< Updated upstream
 
   userName?:string ;
 
-  constructor(private authService:AuthService, private router:Router) {
-
-=======
   selectedFile: File | undefined;
   // @ViewChild('fileUploadForm') fileUploaadForm!: NgForm;
   constructor(private authService:AuthService, private router:Router, private fileUploadService: FileUploadService) {
     
     
->>>>>>> Stashed changes
     if (this.authService.checkAuth()) {
       
       this.router.navigate(['/', 'login']);
