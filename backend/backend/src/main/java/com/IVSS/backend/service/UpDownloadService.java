@@ -26,6 +26,8 @@ import java.util.UUID;
 public class UpDownloadService {
     @Value("${updownload_path}")
     private String uploadDirectory;
+    @Value("${deepURL}")
+    private String flaskAppUrl;
 //    @Value("${minio.bucketName}")
 //    private String bucketName;
 //
@@ -58,7 +60,8 @@ public class UpDownloadService {
 
         // Make an HTTP POST request to the Flask app's /process_video endpoint
         RestTemplate restTemplate = new RestTemplate();
-        String flaskAppUrl = "http://localhost:5000/process_video";
+
+
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(flaskAppUrl, requestEntity, String.class);
 
         // Retrieve the response from the Flask app
