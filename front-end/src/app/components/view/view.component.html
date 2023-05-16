@@ -3,20 +3,30 @@
   <div class="container h-100">
     <div class="row h-100 justify-content-center align-content-center">
         <div class="col-lg-8">
+            <div>
+                <video [src]="videoUrl" controls></video>
+                <a [href]="videoUrl" download="video.mp4">Download</a>
+
+              </div>
+              <!-- <div *ngIf="videoUrl">
                 <video
                     muted=""
                     autoplay=""
                     loop=""
-                    src="https://storage.googleapis.com/cms-storage-bucket/029113ae2cbbcf9493fe.mp4"
+                    [src]="videoUrl"
                     type="video/mp4"
                     width="100%"
                     controls
                 >
-                    <img
-                    src="https://storage.googleapis.com/cms-storage-bucket/a667e994fc2f3e85de36.png"
-                    alt="Fast"
-                    />
+
                 </video>
+            </div>
+            <video controls>
+                <source [src]="videoUrl" type="video/mp4">
+            </video>
+            <a [href]="videoUrl" [download]="videoUrl">
+                {{ videoUrl }}
+            </a> -->
         </div>
     </div>
 </div>

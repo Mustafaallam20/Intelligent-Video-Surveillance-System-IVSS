@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8000:9000"
+    restart: always
+#############################################################
+  minio:
+    image: minio/minio:latest
+    command: server --console-address ":9001" /data
+    environment:
+      - MINIO_REGION_NAME=eg
+      - MINIO_ROOT_USER=minio-access-key
+      - MINIO_ROOT_PASSWORD=minio-secret-key
+      - MINIO_S3_ACL=private
+      - MINIO_CONSOLE_UI=true
+      - TZ=Africa/Cairo
+    volumes:
+      - ./containers/minio:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    restart: always
+#############################################################
+  mysql_db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_password
+      - TZ=Africa/Cairo
+    volumes:
+      - ./containers/mysql:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    restart: always
+#############################################################
+  adminer_db:
+    image: adminer:latest
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql_db
+      ADMINER_DESIGN: galkaev
+    depends_on:
+      - mysql_db
+    ports:
+      - "8086:8080"
+    restart: always
+
+

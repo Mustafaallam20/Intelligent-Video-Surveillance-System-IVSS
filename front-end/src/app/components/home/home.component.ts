@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgForm } from '@angular/forms';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 
 
 @Component({
@@ -9,18 +12,26 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+<<<<<<< Updated upstream
 
   userName?:string ;
 
   constructor(private authService:AuthService, private router:Router) {
 
+=======
+  selectedFile: File | undefined;
+  // @ViewChild('fileUploadForm') fileUploaadForm!: NgForm;
+  constructor(private authService:AuthService, private router:Router, private fileUploadService: FileUploadService) {
+    
+    
+>>>>>>> Stashed changes
     if (this.authService.checkAuth()) {
-
+      
       this.router.navigate(['/', 'login']);
-
+      
     }
   }
-
+  
   ngOnInit(): void {
 
     this.userName!=this.authService.getUserName();
@@ -33,6 +44,14 @@ export class HomeComponent implements OnInit {
     console.log(this.authService.getAuth())
   }
 
-
-
+  onFileSelected(event: any){
+    this.selectedFile = event.target.files[0];
+  }
+  onSubmit(){
+    if (! this.selectedFile) return;
+    this.fileUploadService.uploadFile(this.selectedFile).subscribe(response => {
+      console.log(response)
+    })
+  }
 }
+
