@@ -1,7 +1,13 @@
 package com.IVSS.backend.controller;
 
-import java.util.Collections;
-
+import com.IVSS.backend.dao.RoleDAO;
+import com.IVSS.backend.dao.UserDAO;
+import com.IVSS.backend.model.AuthResponse;
+import com.IVSS.backend.model.User;
+import com.IVSS.backend.security.jwt.JwtTokenUtil;
+import com.IVSS.backend.security.models.CustomUserDetailsImpl;
+import login_signupDTO.LoginDto;
+import login_signupDTO.SignUpDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+<<<<<<< Updated upstream
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +33,9 @@ import com.IVSS.backend.service.UserDetailsService;
 
 import login_signupDTO.LoginDto;
 import login_signupDTO.SignUpDto;
+=======
+import org.springframework.web.bind.annotation.*;
+>>>>>>> Stashed changes
 
 @RestController
 @RequestMapping("/api/auth")
@@ -61,7 +71,14 @@ public class AuthController {
 			m = (UserDetails) authentication.getPrincipal();
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		} catch (Exception e) {
+<<<<<<< Updated upstream
 			return new AuthResponse(loginDto.getUsernameOrEmail(), "", "", "Fail", "");
+=======
+			System.out.println(e);
+			System.out.println(loginDto.getUsernameOrEmail());
+			System.out.println(loginDto.getPassword());
+			return new AuthResponse("fail", loginDto.getUsernameOrEmail(), "", "");
+>>>>>>> Stashed changes
 		}
 		final String jwt = jwtTokenUtil.generateToken(m);
 		User user = userDetailsService.getUserByEmail(m.getUsername());
@@ -88,8 +105,8 @@ public class AuthController {
 			return new AuthResponse(user.getEmail(), user.getUsername(),user.getName(),"Dublicated Email", null);
 		}
 
-		Role roles = roleDAO.findByName("ROLE_ADMIN").get();
-		user.setRoles(Collections.singleton(roles));
+//		Role roles = roleDAO.findByName("ROLE_ADMIN").get();
+//		user.setRoles(Collections.singleton(roles));
 
 		userDAO.save(user);
 		

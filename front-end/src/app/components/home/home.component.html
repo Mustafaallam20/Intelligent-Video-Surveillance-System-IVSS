@@ -4,21 +4,22 @@
 
 <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
-      <div class=" col-md-5">
+      <form (ngSubmit)="onSubmit()" class=" col-md-5">
             <div class="text-center">
                   <h1 class="font-color fw-bolder color">Search For Detection</h1>
             </div>
 
             <div class="Upload">
-              <input class="color btn btn-dark rounded-5  " type="file" name="File" id="file" accept="video/*">
+              <input (change)="onFileSelected($event)" class="color btn btn-dark rounded-5  " type="file" name="File" id="file" accept="video/*">
             </div>
 
             <div class="view">
-              <button class="btn btn-dark">
-                <a class="color" routerLink="/view">View video</a>
+              <button class="btn btn-dark" type="submit">
+                Upload
+                <!-- <a class="color" routerLink="/view">View video</a> -->
               </button>
             </div>
-      </div>
+      </form>
   </div>
 </div>
 

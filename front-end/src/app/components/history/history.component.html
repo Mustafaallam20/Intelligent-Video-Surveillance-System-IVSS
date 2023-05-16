@@ -12,18 +12,22 @@
     <th colspan="2">Options</th>
   </thead>
   <tbody class="align-middle">
-    <tr *ngFor="let data of vidHistory" id="{{data.id}}">
-      <td class="fw-bold">{{ data.type }}</td>
-      <div *ngIf="data.isNew; then thenBlock else elseBlock"></div>
+    <tr *ngFor="let data of videos" id="{{data.id}}">
+      <td class="fw-bold">{{ data.detectionType }}</td>
+      <div *ngIf="!data.watched; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock><td class="fw-bold bg-warning hover-table-warning">New</td></ng-template>
         <ng-template #elseBlock><td class="fw-bold">Viewed</td></ng-template>
-      <td>{{ data.date }}</td>
+      <td>{{ data.uploadDate }}</td>
       <td class="fw-bold">
-        <button class="btn btn-primary" (click)="view($event)">Watch</button>
+        <button class="btn btn-primary" (click)="onView($event)">Watch</button>
       </td>
       <td class="fw-bold">
-        <button class="btn btn-danger" (click)="delete($event)">Delete</button>
+        <button class="btn btn-danger" (click)="onDelete($event)">Delete</button>
       </td>
+      <!-- <td class="fw-bold">
+        <button class="btn btn-danger" (click)="onDownload($event)">Download</button>
+      </td> -->
+
     </tr>
   </tbody>
 </table>

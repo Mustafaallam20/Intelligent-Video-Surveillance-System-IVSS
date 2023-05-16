@@ -7,6 +7,8 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { ViewComponent } from './components/view/view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -30,6 +32,7 @@ import { HistoryComponent } from './components/history/history.component';
     ToastModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
 
 

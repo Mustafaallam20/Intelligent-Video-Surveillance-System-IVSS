@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Video } from 'src/app/models/video';
 import { AuthService } from 'src/app/services/auth.service';
 import { VideoserviceService } from 'src/app/services/videoservice.service';
+import { HistoryService } from 'src/app/services/history.service';
+
 
 
 @Component({
@@ -11,10 +14,9 @@ import { VideoserviceService } from 'src/app/services/videoservice.service';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  vidHistory:Video[]=[];
+  videos: any = [];
 
-  constructor(_videoService:VideoserviceService,private authService:AuthService,private router:Router) {
-    this.vidHistory = _videoService.history;
+  constructor(private historyService:HistoryService,private authService:AuthService,private router:Router) {
 
     if (this.authService.checkAuth()) {
 
@@ -24,18 +26,41 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.historyService.getAllVideos().subscribe(response => {
+      console.log(response);
+      for (let key in response.data) {
+        // response.data[key].uploadDate = response.data[key].uploadDate.toLocaleStr
+        this.historyService.getVideoMetadata((response.data[key]).toString()).subscribe( response => {
+          this.videos.push(response)
+          console.log(response)
+        }
+      )}
+    })
   }
 
-  delete(e:any):void {
-    this.vidHistory = this.vidHistory.filter((item)=>item.id!=e.target.parentElement.parentElement.id)
-    // send to server to delete vid from history
+  // getVideoMetadata(e:any):void {
+  //   this.historyService.getVideoMetadata(e.id).subscribe(response => {
+  //     console.log(response)
+  //   })
+  // }
+  onDelete(e:any):void {
+    this.historyService.delete(e.target.parentElement.parentElement.id).subscribe( response => {
+      console.log(response)
+      this.videos = this.videos.filter((item: any)=>item.id!=e.target.parentElement.parentElement.id)
+    })
   }
 
-  view(e:any):void {
-    let vidIndex = this.vidHistory.findIndex((item)=>item.id==e.target.parentElement.parentElement.id)
-    this.vidHistory[vidIndex].isNew=false
-      // send to server to delete vid from history
-  }
+  onView(e:any):void {
+    console.log(e.target.parentElement.parentElement.id)
+    this.historyService.view(e.target.parentElement.parentElement.id).subscribe( response => {
+      console.log(response)
+      let vidIndex = this.videos.findIndex((item: any)=>item.id==e.target.parentElement.parentElement.id)
+      console.log(vidIndex)
+      this.videos[vidIndex].watched=true
 
+      this.router.navigate(['/view'], { queryParams: { 'videoId': this.videos[vidIndex].id } });
+
+    })
+  }
+  
 }

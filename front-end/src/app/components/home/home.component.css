@@ -30,3 +30,16 @@ h1 {
   top: 62%;
 }
 
+.progress{  
+  margin-top: 10px;
+  height:24px;
+  background-color: black;
+}
+.progressIN{
+  height:24px;
+  width:20%;
+  background-color: red;
+
+
+}
+
