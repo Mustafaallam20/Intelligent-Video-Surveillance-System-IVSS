@@ -40,6 +40,72 @@ public class Video {
     private Boolean watched = false;
     @Column(name = "deleted", nullable = false)
     private Boolean deleted = false;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public List<String> getDetection_types() {
+		return detection_types;
+	}
+	public void setDetection_types(List<String> detection_types) {
+		this.detection_types = detection_types;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public LocalDateTime getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(LocalDateTime uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+	public Duration getVideoLen() {
+		return videoLen;
+	}
+	public void setVideoLen(Duration videoLen) {
+		this.videoLen = videoLen;
+	}
+	public String getResolution() {
+		return resolution;
+	}
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+	public Boolean getProcessed() {
+		return processed;
+	}
+	public void setProcessed(Boolean processed) {
+		this.processed = processed;
+	}
+	public Boolean getWatched() {
+		return watched;
+	}
+	public void setWatched(Boolean watched) {
+		this.watched = watched;
+	}
+	public Boolean getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
 
 
 }
