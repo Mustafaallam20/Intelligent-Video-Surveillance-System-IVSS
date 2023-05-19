@@ -26,8 +26,21 @@ public class Video {
     private String label;
     @Column(name = "`detection_types`")
     private List<String> detection_types;
-    @Column(name = "`file_path`", nullable = false)
-    private String filePath;
+    @Column(name = "`raw_file_path`", nullable = false)
+    private String rawFilePath;
+	@Column(name = "`processed_file_path`")
+	private String processedFilePath;
+
+	@ElementCollection
+	@CollectionTable(name = "fight_img_paths", joinColumns = @JoinColumn(name = "fight_id"))
+	@Column(name = "`fight_img_path`")
+	private List <String> fightImgPath;
+
+
+	@ElementCollection
+	@CollectionTable(name = "face_img_path", joinColumns = @JoinColumn(name = "face_id"))
+	@Column(name = "`face_img_path`")//can cause error
+	private List <String> faceImgPath;
     @Column(name = "`upload_date`", nullable = false)
     private LocalDateTime uploadDate = LocalDateTime.now();
     @Column(name = "`video_length`")
@@ -64,12 +77,7 @@ public class Video {
 	public void setDetection_types(List<String> detection_types) {
 		this.detection_types = detection_types;
 	}
-	public String getFilePath() {
-		return filePath;
-	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
+
 	public LocalDateTime getUploadDate() {
 		return uploadDate;
 	}
@@ -105,6 +113,40 @@ public class Video {
 	}
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
+	}
+
+
+
+	public String getRawFilePath() {
+		return rawFilePath;
+	}
+
+	public void setRawFilePath(String rawFilePath) {
+		this.rawFilePath = rawFilePath;
+	}
+
+	public String getProcessedFilePath() {
+		return processedFilePath;
+	}
+
+	public void setProcessedFilePath(String processedFilePath) {
+		this.processedFilePath = processedFilePath;
+	}
+
+	public List<String> getFightImgPath() {return fightImgPath;}
+
+	public void setFightImgPath(List<String> fightImgPath) {
+		if(fightImgPath.isEmpty())return;
+		this.fightImgPath = fightImgPath;
+	}
+
+	public List<String> getFaceImgPath() {
+		return faceImgPath;
+	}
+
+	public void setFaceImgPath(List<String> faceImgPath) {
+		if(faceImgPath.isEmpty())return;
+		this.faceImgPath = faceImgPath;
 	}
 
 

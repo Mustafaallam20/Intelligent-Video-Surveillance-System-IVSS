@@ -4,27 +4,47 @@ import com.IVSS.backend.model.User;
 import com.IVSS.backend.model.Video;
 import com.IVSS.backend.repositories.UserRepository;
 import com.IVSS.backend.repositories.VideoRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class VideoService {
+
+    @Value("${deepURL}")
+    private String deepAppUrl;
+
+    @Value("${updownload_path}")
+    private String uploadDirectory;
 
     private final VideoRepository videoRepository;
     private final UserRepository userRepository;
 
 //    private String baseDir = "./videos/";
+
+    public String getBaseDir(){
+        return System.getProperty("user.dir");
+    }
 
 
     public VideoService(VideoRepository videoRepository, UserRepository userRepository) {
@@ -44,7 +64,8 @@ public class VideoService {
         video.setUser(owner);
 //        video.setVideoLen(getVideoDuration(filePath));
 //        video.setResolution(getVideoResolution(filePath));
-        video.setFilePath(fileName);
+        video.setRawFilePath(fileName);
+        System.out.println("RawFilePath");
         videoRepository.save(video);
         System.out.println("test");
         System.out.println(video.getId());
@@ -103,7 +124,7 @@ public class VideoService {
     public InputStreamResource downloadVideo(Long videoId) throws IOException {
         // Get the video file path from the database
         Video video = videoRepository.findById(videoId).orElseThrow(NoSuchElementException::new);
-        String filePath = video.getFilePath();
+        String filePath = video.getRawFilePath();
 
         // Return an InputStreamResource for the video file
         File file = new File(filePath);
@@ -140,4 +161,112 @@ public class VideoService {
 //        FFmpegProbeResult probeResult = ffprobe.probe(filePath);
 //        return probeResult.getStreams().get(0).width + "x" + probeResult.getStreams().get(0).height;
 //    }
+
+
+    public boolean sendToDeep(String vidPath, Long vidId) throws IOException {
+        Video videoObj = videoRepository.findById(vidId).get();
+        // Prepare the HTTP headers and entity
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.set("X-model", "fight");//edit fight to general
+        System.out.println("q1: "+ vidPath);
+        File videoFile = new File(getBaseDir() + uploadDirectory + vidPath);
+        System.out.println("q2");
+
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        System.out.println("q3");
+        body.add("video", new FileSystemResource(videoFile));
+        System.out.println("q4");
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+        System.out.println("q5");
+
+        // Make an HTTP POST request to the Flask app's /process_video endpoint
+        RestTemplate restTemplate = new RestTemplate();
+        System.out.println("q6");
+
+        try{
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(deepAppUrl, requestEntity, String.class);
+            System.out.println("q7");
+            // Retrieve the response from the Flask app
+            String response = responseEntity.getBody();
+            System.out.println("q8");
+            ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println("q9");
+            JsonNode rootNode = objectMapper.readTree(response);
+            System.out.println("q10");
+// Access the JSON data using the JsonNode API
+//            String state = rootNode.get("state").asText();
+            String video = rootNode.get("video").asText();
+            System.out.println("q11");
+
+            // Access the JSON array using the JsonNode API
+            JsonNode imagesNode = rootNode.get("fight_images");
+            System.out.println("q12");
+            if (imagesNode.isArray()) {
+                System.out.println("q13");
+                List <String> imgPaths = new ArrayList<>();;//can cause error if null
+                System.out.println("q14");
+                for (JsonNode imageNode : imagesNode) {
+                    System.out.println("q15");
+                    String data = imageNode.get("data").asText();
+                    System.out.println("q15+");
+//                String name = imageNode.get("name").asText();
+                    byte[] decodedImg = Base64.getDecoder().decode(data);
+                    System.out.println("q16");
+                    String imgName = imageNode.get("name") + "---" + UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
+                    System.out.println("q17");
+                    try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + imgName)) {
+                        outputStream.write(decodedImg);
+                        //add img to db //edit path
+                        imgPaths.add(imgName);
+                    } catch (IOException e) {//handel exception
+                        System.out.println("q18: "+ e);
+                        return false;
+//                        throw new RuntimeException(e);
+                    }
+                }
+                videoObj.setFightImgPath(imgPaths);
+            }
+
+            imagesNode = rootNode.get("face_images");
+            if (imagesNode.isArray()) {
+                List <String> imgPaths = new ArrayList<>();;//can cause error if null
+                for (JsonNode imageNode : imagesNode) {
+                    String data = imageNode.get("data").asText();
+//                String name = imageNode.get("name").asText();
+                    byte[] decodedImg = Base64.getDecoder().decode(data);
+                    String imgName = imageNode.get("name") +"---"+ UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
+                    try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + imgName)) {
+                        outputStream.write(decodedImg);
+                        //add img to db //edit path
+                        imgPaths.add(imgName);
+                    } catch (IOException e) {//handel exception
+                        return false;
+//                        throw new RuntimeException(e);
+                    }
+                }
+                videoObj.setFaceImgPath(imgPaths);
+            }
+
+            byte[] decodedVideo = Base64.getDecoder().decode(video);
+            String vidName = UUID.randomUUID().toString() + ".mp4";
+            // Write the decoded video bytes to a file
+            try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + vidName)) {
+                outputStream.write(decodedVideo);
+                videoObj.setProcessedFilePath(vidName);
+
+            } catch (IOException e) {//handel exception
+                System.out.println("q: "+ e);
+                return false;
+//                throw new RuntimeException(e);
+            }
+        }
+        catch (Exception e){
+            System.out.println("qq: "+ e);
+            return false;
+        }
+        videoRepository.save(videoObj);
+        return true;
+    }
 }

@@ -28,17 +28,12 @@ export class ViewComponent implements OnInit {
       console.log(this.videoId)
       if (this.videoId != -1){
         console.log((params['videoId']));
-        // this.viewService.watchVideo(this.videoId.toString()).subscribe(response =>{
-        //   const videoBlob = new Blob([response], { type: 'video/mp4' });
-        //   this.videoUrl = URL.createObjectURL(videoBlob);
-        // })
-        this.viewService.watchVideo(this.videoId.toString()).subscribe(blob => {
+        this.viewService.watchVideo(this.videoId.toString()).subscribe(
+          blob => {
           const url = URL.createObjectURL(blob);
           this.videoUrl = url;
-        });
-        // this.viewService.getAuthenticatedVideoStream(this.videoId.toString()).subscribe(response => {
-        //   this.videoUrl = URL.createObjectURL(response);
-        // });
+          }
+        );
       }
     })
 

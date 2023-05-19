@@ -27,10 +27,13 @@ export class ViewService {
   //   return this.http.post(this.apiUrl + vidId, {}, options);
   // }
   watchVideo(vidId: string): Observable<Blob> {
-    return this.apiService.post('/watch/' + vidId, {}, [{ key: 'responseType', value: 'blob' }]).pipe(
+    return this.apiService.post('/api/videos/watch/' + vidId, {}, [{ key: 'responseType', value: 'blob' }]).pipe(
       map(response => response.body)
     );;
   }
+  // watchVideo(vidId: string) {
+  //   return this.apiService.post('/api/videos/watch/' + vidId);
+  // }
 
 
 

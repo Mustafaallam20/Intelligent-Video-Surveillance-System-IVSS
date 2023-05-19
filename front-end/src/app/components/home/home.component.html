@@ -14,10 +14,14 @@
             </div>
 
             <div class="view">
-              <button class="btn btn-dark" type="submit">
-                Upload
-                <!-- <a class="color" routerLink="/view">View video</a> -->
+              <button [disabled]="loading" class="btn btn-dark" type="submit">
+                <span>{{ loading ? 'Loading...' : 'Upload' }}</span>
+                <span *ngIf="loading" class="spinner"></span>
               </button>
+              <div class="spinner-grow text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+
             </div>
       </form>
   </div>

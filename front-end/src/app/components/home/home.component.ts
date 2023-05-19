@@ -14,6 +14,8 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 export class HomeComponent implements OnInit {
 
   userName?:string ;
+  loading = false;
+
 
   selectedFile: File | undefined;
   // @ViewChild('fileUploadForm') fileUploaadForm!: NgForm;
@@ -44,9 +46,14 @@ export class HomeComponent implements OnInit {
   }
   onSubmit(){
     if (! this.selectedFile) return;
+    this.loading = true;
     this.fileUploadService.uploadFile(this.selectedFile).subscribe(response => {
+      this.loading = false;
       console.log(response)
+      this.router.navigate(['/', 'view']);
     })
   }
+
+  
 }
 
