@@ -15,6 +15,8 @@ import { HistoryService } from 'src/app/services/history.service';
 })
 export class HistoryComponent implements OnInit {
   videos: any = [];
+  deleteFlag:boolean =false;
+  deleteVideoId:any;
 
   constructor(private historyService:HistoryService,private authService:AuthService,private router:Router) {
 
@@ -43,10 +45,19 @@ export class HistoryComponent implements OnInit {
   //     console.log(response)
   //   })
   // }
+
   onDelete(e:any):void {
-    this.historyService.delete(e.target.parentElement.parentElement.id).subscribe( response => {
-      console.log(response)
-      this.videos = this.videos.filter((item: any)=>item.id!=e.target.parentElement.parentElement.id)
+      this.deleteVideoId = e.target.parentElement.parentElement.id;
+      this.deleteFlag=true;
+  }
+  cancelDelete(e:any):void {
+    e.target.parentElement.parentElement.id;
+    this.deleteFlag=false;
+}
+  confirmDelete():void {
+      this.historyService.delete(this.deleteVideoId).subscribe( response => {
+      this.videos = this.videos.filter((item: any)=>item.id!=this.deleteVideoId)
+      this.deleteFlag=false;
     })
   }
 

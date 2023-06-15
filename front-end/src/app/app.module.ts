@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { HistoryComponent } from './components/history/history.component';
+import { NavbarBottomComponent } from './components/shared/navbar-bottom/navbar-bottom.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,9 @@ import { HistoryComponent } from './components/history/history.component';
     SignupComponent,
     NavbarComponent,
     ViewComponent,
-    HistoryComponent
+    HistoryComponent,
+    NavbarBottomComponent,
+    
 
   ],
   imports: [

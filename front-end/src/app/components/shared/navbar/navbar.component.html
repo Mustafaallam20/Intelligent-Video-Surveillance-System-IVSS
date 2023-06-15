@@ -1,128 +1,47 @@
-<nav
-  class="d-flex fixed-top justify-content-between align-items-center p-2 bg-dark opacity-60"
->
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <a routerLink="/home" class="flex items-center">
+      <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" /> -->
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IVSS</span>
+  </a>
+  <div class="flex md:order-2">
+    
 
 
-  <!--Logo and List on left-->
-  <div>
-    <h3 class="mb-0"><a class="colr bold fw-bold" href="#">IVSS</a></h3>
+      <a *ngIf="!isLogedIn" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      href="http://127.0.0.1:8080/index.html">
+        Docs<i class="fa-duotone fa-books"></i>
+      </a>
+      <a *ngIf="!isLogedIn" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      href="https://github.com/Mustafaallam20/Intelligent-Video-Surveillance-System-IVSS">
+        <i class="fab mx-2 fa-github"></i>
+      </a>
 
+    
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <span routerLink="/login" *ngIf="!showSignUp && !isLogedIn">Login</span> 
+        <span routerLink="/signup" *ngIf="showSignUp && !isLogedIn">Signup</span> 
+        <span (click)="logOut()" *ngIf="isLogedIn">Logout</span>
+      </button>
   </div>
-  <div *ngIf="isLogedIn;">
-
-    <h5 class="mb-0"><a class="colr bold fw-bold" href="#">Hello, {{userName}}</a></h5>
-    </div>
-  <div class="d-flex mx-3"*ngIf="isLogedIn">
-
-    <ul
-      class="list-unstyled align-items-center ms-4 mb-0 d-flex justify-content-around "
-    >
+  <div *ngIf="isLogedIn" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       <li>
-        <a routerLink="/home" routerLinkActive="myactive" class="mx-2 colr"
-          >Home</a
-        >
-        <!--*ngIf="isLogin"-->
+        <a routerLink="/home" 
+        routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ">Home</a>
       </li>
       <li>
-        <a routerLink="/view" routerLinkActive="myactive" class="mx-2 colr"
-          >View</a
-        >
-        <!--*ngIf="isLogin"-->
+        <a routerLink="/view" 
+           routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+           class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ">Watch</a>
       </li>
       <li>
-        <a routerLink="/history" routerLinkActive="myactive" class="mx-2 colr"
-          >History</a
-        >
-        <!--*ngIf="isLogin"-->
+        <a routerLink="/history" 
+        routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ">History</a>
       </li>
     </ul>
   </div>
-
-  <!--Social media and list on right-->
-  <div class="d-flex mx-3">
-    <div class="social media colr">
-      <a
-        class="colr mx-2"
-        href="http://127.0.0.1:8080/index.html"
-        >
-         Docs<i class="fa-duotone fa-books"></i>
-      </a>
-      <a
-        class="colr mx-2"
-        href="https://github.com/Mustafaallam20/Intelligent-Video-Surveillance-System-IVSS"
-        >
-         <i class="fab mx-2 fa-github"></i>
-      </a>
-
-
-      <!-- <i class="fab mx-2 fa-duontown fa-file"></i> -->
-    </div>
-
-    <ul class="list-unstyled mb-0 d-flex justify-content-around">
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link p-0 dropdown-toggle" routerLink="/settings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Settings
-        </a>
-        <ul class="dropdown-menu bg-dark">
-          <li><a class="dropdown-item" routerLink="settings/password">Password</a></li>
-          <li><a class="dropdown-item" routerLink="settings/log">Log</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" routerLink="#">Something else here</a></li>
-        </ul>
-      </li> -->
-      <li class="mx-2">
-        <div *ngIf="isLogedIn; then thenBlock; else elseBlock"></div>
-        <ng-template #thenBlock>
-         <a class="colr" (click)="logOut()" routerLink="/">Log Out</a>
-        </ng-template>
-        <ng-template #elseBlock>
-
-
-        </ng-template>
-      </li>
-    </ul>
   </div>
 </nav>
-
-<!-- <nav class="d-flex p-2 align-items-center " >
-  <h3 class="mb-0"><a href = "#">IVSS</a></h3>
-
-  <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">
-
-    <li>
-      <a routerLink="/home">Home</a>
-    </li>
-
-    <li>
-      <a routerLink="/history ">Home</a>
-    </li>
-
-    <li>
-      <a routerLink="/view">Home</a>
-    </li>
-
-    <li>
-      <a routerLink="/login">Home</a>
-    </li>
-  </ul>
-<div class="social-media">
-  <i class="fab fa-github mx-2"></i>
-
-
-</div>
-  <ul class="list-unstyled mb-0 bg-danger d-flex justify-content-around">
-
-    <li>
-      <a routerLink="/home">Login</a>
-    </li>
-
-    <li>
-      <a routerLink="/history ">Signup</a>
-    </li>
-
-    <li>
-      <a routerLink="/history ">Logout</a>
-    </li>
-
-  </ul>
-</nav> -->

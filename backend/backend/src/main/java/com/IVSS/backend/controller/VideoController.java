@@ -176,13 +176,15 @@ public class VideoController {
         }
     }
 //    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/watch/{videoId}")
+    @GetMapping("/watch/{videoId}")
     public ResponseEntity<Resource> downloadVideo(@PathVariable Long videoId) throws IOException {
         Long userId = getUserId();
         try {
             Video video = videoService.getVideo(videoId, userId);// err if videoId is string
+            System.out.println(video.getRawFilePath());
 
             return updownloadServices.downloadFile(video.getProcessedFilePath());
+//            return updownloadServices.downloadFile(video.getProcessedFilePath());
 
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
@@ -237,6 +239,8 @@ public class VideoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+
 
 
 //    @GetMapping("/{videoId}/download")

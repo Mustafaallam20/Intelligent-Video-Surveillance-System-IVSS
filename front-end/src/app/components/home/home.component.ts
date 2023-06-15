@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { NgForm } from '@angular/forms';
 import { FileUploadService } from 'src/app/services/file-upload.service';
-
+import { ApiService } from './../../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -12,48 +10,52 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  userName?:string ;
-  loading = false;
-
-
+  userName?: string;
+  uploading: boolean = false;
+  uploadPresentage: number = 0;
+  msg: string = '';
   selectedFile: File | undefined;
-  // @ViewChild('fileUploadForm') fileUploaadForm!: NgForm;
-  constructor(private authService:AuthService, private router:Router, private fileUploadService: FileUploadService) {
-    
-    
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fileUploadService: FileUploadService,
+    private apiService: ApiService
+  ) {
     if (this.authService.checkAuth()) {
-      
       this.router.navigate(['/', 'login']);
-      
     }
   }
-  
-  ngOnInit(): void {
 
-    this.userName!=this.authService.getUserName();
-    console.log(this.authService.getUserName())
-   /* this.authService.test().subscribe(
-      (result:any) => {
-        console.log(result);
-      }
-    );*/
-    console.log(this.authService.getAuth())
+  ngOnInit(): void {
+    this.userName = this.authService.getUserName();
   }
 
-  onFileSelected(event: any){
+  onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-  onSubmit(){
-    if (! this.selectedFile) return;
-    this.loading = true;
-    this.fileUploadService.uploadFile(this.selectedFile).subscribe(response => {
-      this.loading = false;
-      console.log(response)
-      this.router.navigate(['/', 'view']);
-    })
+
+  onSubmit() {
+    if (!this.selectedFile) return;
+    this.uploading = true;
+    this.apiService.uploadFile(this.selectedFile).subscribe(
+      (event: any) => {
+        console.log(event.type)
+        if (event.type === 1) {
+          // Progress event
+          this.uploadPresentage = Math.round((event.loaded / event.total) * 100);
+        } else if (event.type === 4) {
+          // Response event
+          this.uploading = false;
+          this.router.navigate(['/', 'view']);
+        }
+      },
+      (error: any) => {
+        console.log('Upload error:', error);
+        this.uploading = false;
+        // Handle the error, e.g., display an error message
+        this.msg = 'An error occurred during file upload. Please try again.';
+      }
+    );
   }
-
-  
 }
-

@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 // import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from './../../services/api.service';
+import { HttpClient, HttpHeaders ,HttpEvent, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
+
+
 
 
 import { ViewService } from 'src/app/services/view.service';
@@ -17,31 +23,70 @@ import { Observable } from 'rxjs';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  videoUrl: any;
+  videoUrl: SafeUrl | string = '';
   videoId: number = -1;
   videoLink: string = '';
-  constructor(private viewService: ViewService, private authService: AuthService, private activatedRoute: ActivatedRoute) {  }
+  isLoaded:boolean=false;
+  constructor(private viewService: ViewService,
+     private authService: AuthService, 
+     private activatedRoute: ActivatedRoute,
+     private apiService: ApiService,
+     private httpClient: HttpClient, 
+     private sanitizer: DomSanitizer
+     ) {  }
+  // imgList = {
+  //   "img1": "https://placehold.co/120x120",
+  //   "img2": "https://placehold.co/120x120",
+  //   "img3": "https://placehold.co/120x120"};
   ngOnInit() {
-    console.log(this.authService.getAuth())
     this.activatedRoute.queryParams.subscribe((params) => {
       this.videoId = params['videoId'];
-      console.log(this.videoId)
-      if (this.videoId != -1){
-        console.log((params['videoId']));
-        this.viewService.watchVideo(this.videoId.toString()).subscribe(
-          blob => {
-          const url = URL.createObjectURL(blob);
-          this.videoUrl = url;
-          }
-        );
+  
+      if (this.videoId != -1) {
+        this.viewVideo("http://localhost:8081/api/videos/watch/3");
       }
-    })
+    });
+  }
 
-    
+  download(){
+    this.apiService.downloadFile("http://localhost:8081/api/videos/watch/3");
+  }
+
+
+  viewVideo(fileUrl: string): void {
+    let headers: HttpHeaders = new HttpHeaders();
+    if (localStorage.getItem('token') != null) {
+      headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
+      console.log("Bearer "+localStorage.getItem('token')!)
+    }
+    this.httpClient.get(fileUrl, { headers, responseType: 'blob' })
+    .subscribe(response => {
+        console.log('testx')
+        this.playVideo(response);
+        this.isLoaded=true;
+      }, error => {
+        console.error('Error downloading the file:', error);
+      });  
+  }
+
+  playVideo(response: any): void {
+    console.log('testx1')
+    const blob = new Blob([response], { type: response.type });
+    console.log('testx2')
+    this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+
+    // this.videoUrl = URL.createObjectURL(blob);
+    console.log('testx3')
   }
 
 
   
+  
+    
+}
+
 
   
-}
+
+  
+
