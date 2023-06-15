@@ -27,6 +27,8 @@ export class ViewComponent implements OnInit {
   videoId: number = -1;
   videoLink: string = '';
   isLoaded:boolean=false;
+  showMsg:boolean=false;
+  msg:string="";
   constructor(private viewService: ViewService,
      private authService: AuthService, 
      private activatedRoute: ActivatedRoute,
@@ -43,13 +45,13 @@ export class ViewComponent implements OnInit {
       this.videoId = params['videoId'];
   
       if (this.videoId != -1) {
-        this.viewVideo("http://localhost:8081/api/videos/watch/3");
+        this.viewVideo("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
       }
     });
   }
 
   download(){
-    this.apiService.downloadFile("http://localhost:8081/api/videos/watch/3");
+    this.apiService.downloadFile("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
   }
 
 
@@ -57,15 +59,15 @@ export class ViewComponent implements OnInit {
     let headers: HttpHeaders = new HttpHeaders();
     if (localStorage.getItem('token') != null) {
       headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
-      console.log("Bearer "+localStorage.getItem('token')!)
     }
     this.httpClient.get(fileUrl, { headers, responseType: 'blob' })
     .subscribe(response => {
-        console.log('testx')
         this.playVideo(response);
         this.isLoaded=true;
       }, error => {
         console.error('Error downloading the file:', error);
+        this.showMsg=true;
+        this.msg=error.message;
       });  
   }
 

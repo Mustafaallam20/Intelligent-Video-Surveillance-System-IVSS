@@ -2,10 +2,10 @@
 
 
 
-<div id="informational-banner" tabindex="-1" class="left-0 z-50 flex flex-col justify-between w-full p-4 border-b border-gray-200 md:flex-row bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+<div *ngIf="showMsg" id="informational-banner" tabindex="-1" class="left-0 z-50 flex flex-col justify-between w-full p-4 border-b border-gray-200 md:flex-row bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <div class="mb-4 md:mb-0 md:mr-4">
         <h2 class="mb-1 text-base font-semibold text-gray-900 dark:text-white">Something go wrong</h2>
-        <p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">You can try later</p>
+        <p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">{{msg}}</p>
     </div>
     <div class="flex items-center flex-shrink-0">
         <a href="#" class="inline-flex items-center px-3 py-2 mr-3 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path></svg> Learn more</a>
@@ -46,6 +46,7 @@
 
 <div class="bg-gray-800 relative m-3 md:m-1 drop-shadow-xl">
     <div id="gallery" class="bg-gray-800 relative w-full p-2 md:p-1">
+
         <div>
             <ul class="flex flex-row overflow-x-auto" ><!--*ngIf="!isLoaded"-->
                 <li class="m-1 shrink-0 snap-center"  *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
@@ -58,6 +59,7 @@
                 </li>
             </ul>
         </div>
+
         <div class="flex flex-row justify-between">
             <button type="button" class="rotate-180 text-white bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-700 dark:hover:bg-gray-900 dark:focus:ring-blue-800">
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>

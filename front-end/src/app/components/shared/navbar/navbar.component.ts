@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   constructor(private authService : AuthService, private router: Router) { 
     if (this.authService.checkAuth()) {
-      // this.router.navigate(['/', 'login']);
+      this.router.navigate(['/', 'login']);
     }
   }
   isLogedIn = !this.authService.checkAuth();
