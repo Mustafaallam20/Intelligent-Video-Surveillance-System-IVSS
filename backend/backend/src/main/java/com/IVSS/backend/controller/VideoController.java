@@ -183,7 +183,7 @@ public class VideoController {
             Video video = videoService.getVideo(videoId, userId);// err if videoId is string
             System.out.println(video.getRawFilePath());
 
-            return updownloadServices.downloadFile(video.getProcessedFilePath());
+            return updownloadServices.downloadFile(video.getRawFilePath());
 //            return updownloadServices.downloadFile(video.getProcessedFilePath());
 
         } catch (NoSuchElementException e) {

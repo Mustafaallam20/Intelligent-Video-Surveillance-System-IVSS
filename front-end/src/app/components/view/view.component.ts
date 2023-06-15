@@ -29,6 +29,10 @@ export class ViewComponent implements OnInit {
   isLoaded:boolean=false;
   showMsg:boolean=false;
   msg:string="";
+  msgBtnTxt1:string="";
+  msgBtnTxt2:string="";
+  msgBtnLink1:string="";
+  msgBtnLink2:string="";
   constructor(private viewService: ViewService,
      private authService: AuthService, 
      private activatedRoute: ActivatedRoute,
@@ -41,13 +45,30 @@ export class ViewComponent implements OnInit {
   //   "img2": "https://placehold.co/120x120",
   //   "img3": "https://placehold.co/120x120"};
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.videoId = params['videoId'];
-  
-      if (this.videoId != -1) {
-        this.viewVideo("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
-      }
-    });
+    if (this.videoId == undefined){
+      this.showMsg=true;
+      this.msg="No video file selected to view, Select file or upload a new one."
+      this.msgBtnTxt1="Select from uploaded";
+      this.msgBtnTxt2="Upload a new video";
+      this.msgBtnLink1="/history";
+      this.msgBtnLink2="/home";
+    }else{
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.showMsg=false;
+        this.videoId = params['videoId'];
+        if (this.videoId != -1) {
+          this.viewVideo("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
+        }else{
+          this.showMsg=true;
+          this.msg="Video not found."
+          this.msgBtnTxt1="Select from uploaded";
+          this.msgBtnTxt2="Upload a new video";
+          this.msgBtnLink1="/history";
+          this.msgBtnLink2="/home";
+        }
+      });
+    }
+
   }
 
   download(){
@@ -67,7 +88,11 @@ export class ViewComponent implements OnInit {
       }, error => {
         console.error('Error downloading the file:', error);
         this.showMsg=true;
-        this.msg=error.message;
+        this.msg="Faild to view video, please try leter."
+        this.msgBtnTxt1="Try again.";
+        this.msgBtnTxt2="Upload a new video";
+        this.msgBtnLink1="/";
+        this.msgBtnLink2="/home";
       });  
   }
 
@@ -81,6 +106,9 @@ export class ViewComponent implements OnInit {
     console.log('testx3')
   }
 
+  closeTost():void{
+    this.showMsg= false;
+  }
 
   
   

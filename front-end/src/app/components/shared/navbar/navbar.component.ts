@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   constructor(private authService : AuthService, private router: Router) { 
     if (this.authService.checkAuth()) {
+      if (this.router.url == '/signup') return;
       this.router.navigate(['/', 'login']);
     }
   }
@@ -28,4 +29,5 @@ export class NavbarComponent implements OnInit {
     console.log("loooooogout")
     this.authService.logOut();
   }
+  
 }
