@@ -8,10 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService : AuthService, private router: Router) { }
+  constructor(private authService : AuthService, private router: Router) { 
+    if (this.authService.checkAuth()) {
+      // this.router.navigate(['/', 'login']);
+    }
+  }
   isLogedIn = !this.authService.checkAuth();
   userName:string =this.authService.getUserName();
   showSignUp = this.router.url=="/login"
+
   ngOnInit(): void {
     console.log(this.router.url)
     this.userName!=this.authService.getUserName();

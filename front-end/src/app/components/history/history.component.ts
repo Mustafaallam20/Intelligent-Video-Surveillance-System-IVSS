@@ -20,11 +20,11 @@ export class HistoryComponent implements OnInit {
 
   constructor(private historyService:HistoryService,private authService:AuthService,private router:Router) {
 
-    if (this.authService.checkAuth()) {
+    // if (this.authService.checkAuth()) {
 
-      this.router.navigate(['/', 'login']);
+    //   this.router.navigate(['/', 'login']);
 
-    }
+    // }
   }
 
   ngOnInit(): void {

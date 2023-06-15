@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
     private fileUploadService: FileUploadService,
     private apiService: ApiService
   ) {
-    if (this.authService.checkAuth()) {
-      this.router.navigate(['/', 'login']);
-    }
+    // if (this.authService.checkAuth()) {
+    //   this.router.navigate(['/', 'login']);
+    // }
   }
 
   ngOnInit(): void {
