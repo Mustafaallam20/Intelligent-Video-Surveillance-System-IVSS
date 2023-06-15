@@ -17,6 +17,8 @@ export class SignupComponent implements OnInit {
 
 
   isSubmitted = false;
+  ToastFlag = false;
+  ToastMsg:string="";
 
   registerForm : FormGroup = new FormGroup({
 
@@ -30,27 +32,25 @@ export class SignupComponent implements OnInit {
     this.isSubmitted = true;
     if(this.registerForm.valid)
     {
-
       var user:User ={name:this.name.value,username:this.username.value, email:this.email.value,password:this.password.value}
-      this.authService.signup(user).subscribe((response: any) => {
+      let result = this.authService.signup(user).subscribe((response: any) => {
         console.log("response"+response);
 
         if(response.status == "Success"){
-
-
+           this.loginSubmit()
            this.router.navigate(['/', 'login']);
         }
         else{
-          this.toastService.error(response.status);
-
+          this.isSubmitted = false;
+          this.ToastFlag = true;
+          this.ToastMsg = response.status;
         }
-
-
       });
     }
     else{
       this.isSubmitted = false;
-      this.toastService.error("error");
+      this.ToastFlag = true;
+      this.ToastMsg = "Invalid email or password." 
 
     }
 
@@ -69,9 +69,35 @@ export class SignupComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
+  closeTost():void{
+    this.ToastFlag= false;
+  }
+
   ngOnInit() {
 
   }
+
+
+  loginSubmit(){
+      var user:User ={usernameOrEmail:this.email.value,password:this.password.value}
+      this.authService.login(user).subscribe(
+        (result:any) => {
+          if(result.status =="Success" ){
+            this.authService.setAuth(result.token);
+            this.authService.setUserName(result.userName)
+             this.router.navigate(['/', 'home']);
+          }
+          else{
+            this.ToastFlag= true;
+            this.ToastMsg="Wrong email or password." 
+          }
+        }
+      );
+
+    }
+
+
+
 
 
 
