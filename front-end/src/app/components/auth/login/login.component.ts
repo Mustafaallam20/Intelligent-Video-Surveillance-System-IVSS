@@ -17,26 +17,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   constructor(private toastService: ToastService , private authService : AuthService, private router:Router ) { }
-  isSubmitted = false;
-  loginForm : FormGroup = new FormGroup({
+    isSubmitted = false;
+    loginForm : FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
   })
 
   loginSubmit(loginForm:FormGroup){
-
-    console.log("hello");
     this.isSubmitted = true;
     if (this.loginForm.valid)
     {
-      console.log(this.email);
-
       var user:User ={usernameOrEmail:this.email.value,password:this.password.value}
-      //const user=loginForm.value;
-      console.log(user)
       this.authService.login(user).subscribe(
         (result:any) => {
-          console.log(result);
           if(result.status =="Success" ){
 
             this.authService.setAuth(result.token);
@@ -56,6 +49,7 @@ export class LoginComponent implements OnInit {
 
     }
     else{
+      this.isSubmitted = false;
       this.toastService.error("Please add All Fields");
       console.log("hey");
     }

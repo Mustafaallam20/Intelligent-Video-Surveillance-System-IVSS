@@ -49,6 +49,7 @@ export class SignupComponent implements OnInit {
       });
     }
     else{
+      this.isSubmitted = false;
       this.toastService.error("error");
 
     }
