@@ -283,9 +283,11 @@ public class VideoService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         headers.set("X-model", model);
+        headers.set("X-id", vidId.toString());
         File videoFile = new File(getBaseDir() + uploadDirectory + vidPath);
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("video", new FileSystemResource(videoFile));
+//        body.add("id", vidId);
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
         RestTemplate restTemplate = new RestTemplate();
         try{
@@ -302,7 +304,7 @@ public class VideoService {
 
     public JsonNode getProcessedVideo(Long vidId) throws IOException {
         ObjectNode res = JsonNodeFactory.instance.objectNode();
-        Video videoObj = videoRepository.findById(vidId).get();
+//        Video videoObj = videoRepository.findById(vidId).get();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
@@ -320,6 +322,7 @@ public class VideoService {
             String response = responseEntity.getBody();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response);
+            Video videoObj = videoRepository.findById(rootNode.get("id").asLong()).get();
 // Access the JSON data using the JsonNode API
 //            String state = rootNode.get("state").asText();
             res.put("status", rootNode.get("status"));
@@ -355,20 +358,11 @@ public class VideoService {
             System.out.println("q12");
             if (imagesNode.isArray()) {
                 System.out.println("q13");
-                List<String> imgPaths1 = new ArrayList<>();
-                ;//can cause error if null
-                List<String> imgPaths2 = new ArrayList<>();
-                ;//can cause error if null
-                List<String> imgPaths3 = new ArrayList<>();
-                ;//can cause error if null
-                List<String> imgPaths4 = new ArrayList<>();
-                ;//can cause error if null
-                List<String> imgPaths5 = new ArrayList<>();
-                ;//can cause error if null
-                List<String> imgPaths6 = new ArrayList<>();
-                ;//can cause error if null
-                List<String> imgPaths7 = new ArrayList<>();
-                ;//can cause error if null
+                List<String> fall = new ArrayList<>();
+                List<String> fight = new ArrayList<>();
+                List<String> face = new ArrayList<>(); //can cause error if null
+                List<String> crash = new ArrayList<>();
+
 
                 System.out.println("q14");
                 for (JsonNode imageNode : imagesNode) {
@@ -380,26 +374,17 @@ public class VideoService {
                         outputStream.write(decodedImg);
                         //add img to db //edit path
                         switch (detectType) {
-                            case "type1":
-                                imgPaths1.add(imgName);
+                            case "fall":
+                                fall.add(imgName);
                                 break;
-                            case "type2":
-                                imgPaths2.add(imgName);
+                            case "fight":
+                                fight.add(imgName);
                                 break;
-                            case "type3":
-                                imgPaths3.add(imgName);
+                            case "face":
+                                face.add(imgName);
                                 break;
-                            case "type4":
-                                imgPaths4.add(imgName);
-                                break;
-                            case "type5":
-                                imgPaths5.add(imgName);
-                                break;
-                            case "type6":
-                                imgPaths6.add(imgName);
-                                break;
-                            case "type7":
-                                imgPaths7.add(imgName);
+                            case "crash":
+                                crash.add(imgName);
                                 break;
                         }
 
@@ -409,17 +394,14 @@ public class VideoService {
 //                        throw new RuntimeException(e);
                     }
                 }
-                videoObj.setFightImgPath(imgPaths1);
-                videoObj.setFightImgPath(imgPaths2);
-                videoObj.setFightImgPath(imgPaths3);
-                videoObj.setFightImgPath(imgPaths4);
-                videoObj.setFightImgPath(imgPaths5);
-                videoObj.setFightImgPath(imgPaths6);
-                videoObj.setFightImgPath(imgPaths7);
+                videoObj.setFallImgPath(fall);
+                videoObj.setFightImgPath(fight);
+                videoObj.setFaceImgPath(face);
+                videoObj.setCrashImgPath(crash);
             }
         }
         catch (Exception e) {
-            res.put("error", e.getMessage());/////////////
+            res.put("error", e.toString());/////////////
             return res;
         }
         return res;

@@ -119,7 +119,7 @@ public class VideoController {
         try {
             String fileName = updownloadServices.uploadFile(file);
             Long vidId = videoService.uploadVideo(fileName, id);//save vid
-            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, "fight");
+            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, "fall");
             data.put("status", "video send to deep learning models successfully");
             data.put("msg", deepRes);//can cause error
             data.put("videoId", vidId);//can cause error
@@ -232,6 +232,25 @@ public class VideoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+//
+//    @GetMapping("/images/{videoId}/{imgPath}")
+//    public ResponseEntity<Resource> getImgs(@PathVariable Long videoId) throws IOException {
+//        Long userId = getUserId();
+//        try {
+//            Video video = videoService.getVideo(videoId, userId);// err if videoId is string
+//            System.out.println(video.getRawFilePath());
+//
+//            return updownloadServices.downloadFile(video.getRawFilePath());
+////            return updownloadServices.downloadFile(video.getProcessedFilePath());
+//
+//        } catch (NoSuchElementException e) {
+//            return ResponseEntity.notFound().build();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
 //    @CrossOrigin(origins = "http://localhost:4200")
 //    @PostMapping("/watch/{videoId}")

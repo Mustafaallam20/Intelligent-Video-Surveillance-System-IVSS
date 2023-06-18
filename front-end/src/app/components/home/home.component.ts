@@ -12,9 +12,11 @@ import { ApiService } from './../../services/api.service';
 export class HomeComponent implements OnInit {
   userName?: string;
   uploading: boolean = false;
+  processing = false;
   uploadPresentage: number = 0;
   msg: string = '';
   selectedFile: File | undefined;
+  // processingPresentage:number=0;
 
   constructor(
     private authService: AuthService,
@@ -25,6 +27,24 @@ export class HomeComponent implements OnInit {
     // if (this.authService.checkAuth()) {
     //   this.router.navigate(['/', 'login']);
     // }
+  }
+
+  getPercent(): any{
+    this.apiService.post("/api/videos/status/0").subscribe(res=>{
+      this.processing = true;
+      if (res.status == "processing") {
+        this.uploadPresentage = Math.round(res.percent);
+      } else if (res.status == "failed") {
+         console.log(res)
+      } else if (res.status == "finished") {
+        this.uploadPresentage = Math.round(res.percent);
+        this.router.navigate(['/', 'view']);
+      }
+      console.log(this.uploadPresentage)
+      if(this.uploadPresentage<=100){        
+        setTimeout(() => this.getPercent(), 5000);
+    }
+    })
   }
 
   ngOnInit(): void {
@@ -47,21 +67,22 @@ export class HomeComponent implements OnInit {
           this.uploadPresentage = Math.round((event.loaded / event.total) * 100);
           if(this.uploadPresentage==100){// cam cause error
             this.uploading = false;
-            this.router.navigate(['/', 'view']);
+            this.uploadPresentage = 0.01;
+            this.processing = true;
+            let res = this.getPercent()
           }
 
         } else if (event.type === 4) {
           // Response event
           this.uploading = false;
-          this.router.navigate(['/', 'view']);
-          
-          
+          this.uploadPresentage = 0.01;
+          this.processing = true;
+          let res = this.getPercent();
         }
       },
       (error: any) => {
         console.log('Upload error:', error);
         this.uploading = false;
-        // Handle the error, e.g., display an error message
         this.msg = 'An error occurred during file upload. Please try again.';
       }
     );

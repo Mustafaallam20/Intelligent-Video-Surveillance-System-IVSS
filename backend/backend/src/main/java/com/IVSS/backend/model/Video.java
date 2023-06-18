@@ -41,6 +41,17 @@ public class Video {
 	@CollectionTable(name = "face_img_path", joinColumns = @JoinColumn(name = "face_id"))
 	@Column(name = "`face_img_path`")//can cause error
 	private List <String> faceImgPath;
+
+	@ElementCollection
+	@CollectionTable(name = "fall_img_path", joinColumns = @JoinColumn(name = "fall_id"))
+	@Column(name = "`fall_img_path`")//can cause error
+	private List <String> fallImgPath;
+
+	@ElementCollection
+	@CollectionTable(name = "crash_img_path", joinColumns = @JoinColumn(name = "crash_id"))
+	@Column(name = "`crash_img_path`")//can cause error
+	private List <String> crashImgPath;
+
     @Column(name = "`upload_date`", nullable = false)
     private LocalDateTime uploadDate = LocalDateTime.now();
     @Column(name = "`video_length`")

@@ -47,29 +47,22 @@ export class ViewComponent implements OnInit {
   //   "img3": "https://placehold.co/120x120"};
 
   getPercent(): any{
-    return this.apiService.processStatus(0).subscribe(
-      (res: any) => {
-        // console.log(res)
-        // if (res.status == "processing") {
-        //   this.processingPresentage = res.percent;
-        //   // console.log(this.processingPresentage)
-        // } else if (res.status == "failed") {
-        //   // console.log(res)
-        // } else if (res.status == "finished") {
-        //   // console.log(res)
-        // }
-        // console.log(this.processingPresentage)
-        // if(this.processingPresentage<100)
-        // setTimeout(() => {
-        //   this.getPercent()
-        // }, 15000);
-
-      },
-      (error: any) => {
-        console.log('Upload error:', error);
-        this.msg = 'An error occurred during file upload. Please try again.';
+    this.apiService.post("/api/videos/status/0").subscribe(res=>{
+      console.log(res)
+      if (res.status == "processing") {
+        this.processingPresentage = res.percent;
+        console.log(this.processingPresentage)
+      } else if (res.status == "failed") {
+         console.log(res)
+      } else if (res.status == "finished") {
+        console.log(res)
       }
-    )
+      console.log(this.processingPresentage)
+      if(this.processingPresentage<100)
+      setTimeout(() => {
+        this.getPercent()
+      }, 5000);
+    })
   }
   
 
@@ -83,10 +76,9 @@ export class ViewComponent implements OnInit {
       this.msgBtnTxt2="Upload a new video";
       this.msgBtnLink1="/history";
       this.msgBtnLink2="/home";
-      this.processingPresentage = 0;
-      let res = this.getPercent()
-      console.log(res)
-      console.log("done...")
+      // this.processingPresentage = 0;
+      // let res = this.getPercent()
+
           
     }else{
       this.activatedRoute.queryParams.subscribe((params) => {
