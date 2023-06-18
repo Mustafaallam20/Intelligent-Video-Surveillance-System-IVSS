@@ -42,12 +42,20 @@ export class HomeComponent implements OnInit {
       (event: any) => {
         console.log(event.type)
         if (event.type === 1) {
+          console.log(event)
           // Progress event
           this.uploadPresentage = Math.round((event.loaded / event.total) * 100);
+          if(this.uploadPresentage==100){// cam cause error
+            this.uploading = false;
+            this.router.navigate(['/', 'view']);
+          }
+
         } else if (event.type === 4) {
           // Response event
           this.uploading = false;
           this.router.navigate(['/', 'view']);
+          
+          
         }
       },
       (error: any) => {

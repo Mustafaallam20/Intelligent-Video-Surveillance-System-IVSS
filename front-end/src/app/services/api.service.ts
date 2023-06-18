@@ -59,6 +59,24 @@ export class ApiService {
       headers,
       reportProgress: true
     });
+    let res = this.httpClient.request(req);
+    console.log(res)
+    return res
+  }
+
+
+  processStatus(id: number): Observable<HttpEvent<any>> {
+    // const formData = new FormData();
+    // formData.append('file', file);
+    let headers: HttpHeaders = new HttpHeaders();
+    if (localStorage.getItem('token') != null) {
+      headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
+      console.log("Bearer "+localStorage.getItem('token')!)
+    }
+    const req = new HttpRequest('POST', 'http://localhost:8081/api/videos/status/' + id.toString() , {
+      headers,
+      // reportProgress: true
+    });
 
     return this.httpClient.request(req);
   }

@@ -8,6 +8,7 @@ import com.IVSS.backend.service.MinioService;
 import com.IVSS.backend.service.UpDownloadService;
 import com.IVSS.backend.service.UserService;
 import com.IVSS.backend.service.VideoService;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,47 +69,85 @@ public class VideoController {
         return response;
     }
 
+//    @PostMapping("/upload")
+//    public ResponseEntity<Object> uploadVideo(@RequestParam("file") MultipartFile file) {
+//        Long id =  getUserId();
+//        ObjectNode data = JsonNodeFactory.instance.objectNode();
+//        try {
+////            String fileName = minioService.uploadFile(file);
+//            String fileName = updownloadServices.uploadFile(file);
+//            System.out.println("Filename > " + fileName);
+//            Long vidId = videoService.uploadVideo(fileName, id);//save vid
+//            System.out.println("vidId > " + vidId);
+//            boolean sentDeep = videoService.sendToDeep(fileName, vidId);
+//            data.put("video_raw", vidId);//can cause error
+//            if(sentDeep){
+//                Video vid = videoRepository.findById(vidId).orElseThrow(NoSuchElementException::new);
+//                data.put("video_process_state", "finished");
+//                data.put("video_process", vid.getProcessedFilePath());//edit dont return file path
+//                if(vid.getFightImgPath() != null){
+//                    ObjectNode fight = JsonNodeFactory.instance.objectNode();
+//                    for(int i = 0; i< vid.getFightImgPath().size(); i++)
+//                        fight.put("fight_"+i, vid.getFightImgPath().get(i));
+//                    data.put("fight_images", fight);
+//                }else data.put("fight_images", JsonNodeFactory.instance.objectNode());
+//
+//                if(vid.getFightImgPath() != null) {
+//                    ObjectNode face = JsonNodeFactory.instance.objectNode();
+//                    for (int i = 0; i < vid.getFaceImgPath().size(); i++)
+//                        face.put("face_" + i, vid.getFaceImgPath().get(i));
+//                    data.put("face_images", face);
+//                }else data.put("face_images", JsonNodeFactory.instance.objectNode());
+//            }
+//            else{
+//                data.put("video_process_state", "not finished");
+//            }
+//            ObjectNode response = jsonRes("Upload successful", data);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//            ObjectNode response = jsonRes("Upload failed", data);///test err
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+//        }
+//    }
+
+
     @PostMapping("/upload")
     public ResponseEntity<Object> uploadVideo(@RequestParam("file") MultipartFile file) {
         Long id =  getUserId();
         ObjectNode data = JsonNodeFactory.instance.objectNode();
         try {
-//            String fileName = minioService.uploadFile(file);
             String fileName = updownloadServices.uploadFile(file);
-            System.out.println("Filename > " + fileName);
             Long vidId = videoService.uploadVideo(fileName, id);//save vid
-            System.out.println("vidId > " + vidId);
-            boolean sentDeep = videoService.sendToDeep(fileName, vidId);
-            data.put("video_raw", vidId);//can cause error
-            if(sentDeep){
-                Video vid = videoRepository.findById(vidId).orElseThrow(NoSuchElementException::new);
-                data.put("video_process_state", "finished");
-                data.put("video_process", vid.getProcessedFilePath());//edit dont return file path
-                if(vid.getFightImgPath() != null){
-                    ObjectNode fight = JsonNodeFactory.instance.objectNode();
-                    for(int i = 0; i< vid.getFightImgPath().size(); i++)
-                        fight.put("fight_"+i, vid.getFightImgPath().get(i));
-                    data.put("fight_images", fight);
-                }else data.put("fight_images", JsonNodeFactory.instance.objectNode());
-
-                if(vid.getFightImgPath() != null) {
-                    ObjectNode face = JsonNodeFactory.instance.objectNode();
-                    for (int i = 0; i < vid.getFaceImgPath().size(); i++)
-                        face.put("face_" + i, vid.getFaceImgPath().get(i));
-                    data.put("face_images", face);
-                }else data.put("face_images", JsonNodeFactory.instance.objectNode());
-            }
-            else{
-                data.put("video_process_state", "not finished");
-            }
+            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, "fight");
+            data.put("status", "video send to deep learning models successfully");
+            data.put("msg", deepRes);//can cause error
+            data.put("videoId", vidId);//can cause error
             ObjectNode response = jsonRes("Upload successful", data);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
-            System.out.println(e);
+            data.put("msg", e.getMessage());//can cause error
+            data.put("status", "video send to deep learning models successfully");
             ObjectNode response = jsonRes("Upload failed", data);///test err
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
+    }//getProcessedVideo
+
+    @PostMapping("/status/{videoId}")
+    public ResponseEntity<Object> getUploadedVideoSatatus(@PathVariable Long videoId) {
+        Long id =  getUserId();
+        ObjectNode data = JsonNodeFactory.instance.objectNode();
+        try {
+            JsonNode response = videoService.getProcessedVideo(videoId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+            ObjectNode response = jsonRes("failed", data);///test err
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
+
+
+
     @PostMapping("/all")
     public ResponseEntity<ObjectNode> getAllVideos() {
         Long userId =  getUserId();

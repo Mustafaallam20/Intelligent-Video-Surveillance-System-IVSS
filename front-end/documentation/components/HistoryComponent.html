@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">front-end documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,32 +35,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   HistoryComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -74,14 +79,15 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -97,6 +103,8 @@
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>app-history</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -121,7 +129,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -134,7 +142,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#vidHistory" >vidHistory</a>
+                                <a href="#deleteFlag" >deleteFlag</a>
+                            </li>
+                            <li>
+                                <a href="#deleteVideoId" >deleteVideoId</a>
+                            </li>
+                            <li>
+                                <a href="#videos" >videos</a>
                             </li>
                         </ul>
                     </td>
@@ -149,13 +163,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#delete" >delete</a>
+                                <a href="#cancelDelete" >cancelDelete</a>
+                            </li>
+                            <li>
+                                <a href="#confirmDelete" >confirmDelete</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#view" >view</a>
+                                <a href="#onDelete" >onDelete</a>
+                            </li>
+                            <li>
+                                <a href="#onView" >onView</a>
                             </li>
                         </ul>
                     </td>
@@ -169,18 +189,18 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(_videoService: <a href="../injectables/VideoserviceService.html" target="_self">VideoserviceService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(historyService: <a href="../injectables/HistoryService.html" target="_self">HistoryService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/history/history.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/history/history.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -198,10 +218,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>_videoService</td>
+                                                        <td>historyService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/VideoserviceService.html" target="_self" >VideoserviceService</a></code>
+                                                                        <code><a href="../injectables/HistoryService.html" target="_self" >HistoryService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -225,7 +245,7 @@
                                                         <td>router</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -246,7 +266,7 @@
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -255,24 +275,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="delete"></a>
+                    <a name="cancelDelete"></a>
                     <span class="name">
-                        <span ><b>delete</b></span>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>cancelDelete</b></span>
+                        <a href="#cancelDelete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>delete(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>cancelDelete(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/components/history/history.component.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/components/history/history.component.ts:53</a></div>
                 </td>
             </tr>
 
@@ -315,6 +335,43 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmDelete"></a>
+                    <span class="name">
+                        <span ><b>confirmDelete</b></span>
+                        <a href="#confirmDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmDelete()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/components/history/history.component.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -340,8 +397,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/components/history/history.component.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/components/history/history.component.ts:30</a></div>
                 </td>
             </tr>
 
@@ -361,24 +418,93 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="view"></a>
+                    <a name="onDelete"></a>
                     <span class="name">
-                        <span ><b>view</b></span>
-                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>onDelete</b></span>
+                        <a href="#onDelete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>view(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>onDelete(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/components/history/history.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/components/history/history.component.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onView"></a>
+                    <span class="name">
+                        <span ><b>onView</b></span>
+                        <a href="#onView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onView(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/components/history/history.component.ts:64</a></div>
                 </td>
             </tr>
 
@@ -427,7 +553,7 @@
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -436,16 +562,73 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="vidHistory"></a>
+                    <a name="deleteFlag"></a>
                     <span class="name">
-                        <span ><b>vidHistory</b></span>
-                        <a href="#vidHistory"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deleteFlag</b></span>
+                        <a href="#deleteFlag"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Video.html" target="_self" >Video[]</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/history/history.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteVideoId"></a>
+                    <span class="name">
+                        <span ><b>deleteVideoId</b></span>
+                        <a href="#deleteVideoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/history/history.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="videos"></a>
+                    <span class="name">
+                        <span ><b>videos</b></span>
+                        <a href="#videos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </td>
                 </tr>
@@ -456,7 +639,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/history/history.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/history/history.component.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -468,12 +651,15 @@
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+// import { Router } from &#x27;@angular/router&#x27;;
+import { Router, NavigationExtras } from &#x27;@angular/router&#x27;;
 import { Video } from &#x27;src/app/models/video&#x27;;
 import { AuthService } from &#x27;src/app/services/auth.service&#x27;;
 import { VideoserviceService } from &#x27;src/app/services/videoservice.service&#x27;;
+import { HistoryService } from &#x27;src/app/services/history.service&#x27;;
+
 
 
 @Component({
@@ -482,71 +668,261 @@ import { VideoserviceService } from &#x27;src/app/services/videoservice.service&
   styleUrls: [&#x27;./history.component.css&#x27;]
 })
 export class HistoryComponent implements OnInit {
-  vidHistory:Video[]&#x3D;[];
+  videos: any &#x3D; [];
+  deleteFlag:boolean &#x3D;false;
+  deleteVideoId:any;
 
-  constructor(_videoService:VideoserviceService,private authService:AuthService,private router:Router) {
-    this.vidHistory &#x3D; _videoService.history;
+  constructor(private historyService:HistoryService,private authService:AuthService,private router:Router) {
 
-    if (this.authService.checkAuth()) {
+    // if (this.authService.checkAuth()) {
 
-      this.router.navigate([&#x27;/&#x27;, &#x27;login&#x27;]);
+    //   this.router.navigate([&#x27;/&#x27;, &#x27;login&#x27;]);
 
-    }
+    // }
   }
 
   ngOnInit(): void {
-
+    this.historyService.getAllVideos().subscribe(response &#x3D;&gt; {
+      console.log(response);
+      for (let key in response.data) {
+        // response.data[key].uploadDate &#x3D; response.data[key].uploadDate.toLocaleStr
+        this.historyService.getVideoMetadata((response.data[key]).toString()).subscribe( response &#x3D;&gt; {
+          this.videos.push(response)
+          console.log(response)
+        }
+      )}
+    })
   }
 
-  delete(e:any):void {
-    this.vidHistory &#x3D; this.vidHistory.filter((item)&#x3D;&gt;item.id!&#x3D;e.target.parentElement.parentElement.id)
-    // send to server to delete vid from history
+  // getVideoMetadata(e:any):void {
+  //   this.historyService.getVideoMetadata(e.id).subscribe(response &#x3D;&gt; {
+  //     console.log(response)
+  //   })
+  // }
+
+  onDelete(e:any):void {
+      this.deleteVideoId &#x3D; e.target.parentElement.parentElement.id;
+      this.deleteFlag&#x3D;true;
+  }
+  cancelDelete(e:any):void {
+    e.target.parentElement.parentElement.id;
+    this.deleteFlag&#x3D;false;
+}
+  confirmDelete():void {
+      this.historyService.delete(this.deleteVideoId).subscribe( response &#x3D;&gt; {
+      this.videos &#x3D; this.videos.filter((item: any)&#x3D;&gt;item.id!&#x3D;this.deleteVideoId)
+      this.deleteFlag&#x3D;false;
+    })
   }
 
-  view(e:any):void {
-    let vidIndex &#x3D; this.vidHistory.findIndex((item)&#x3D;&gt;item.id&#x3D;&#x3D;e.target.parentElement.parentElement.id)
-    this.vidHistory[vidIndex].isNew&#x3D;false
-      // send to server to delete vid from history
-  }
+  onView(e:any):void {
+    console.log(e.target.parentElement.parentElement.id)
+    this.historyService.view(e.target.parentElement.parentElement.id).subscribe( response &#x3D;&gt; {
+      console.log(response)
+      let vidIndex &#x3D; this.videos.findIndex((item: any)&#x3D;&gt;item.id&#x3D;&#x3D;e.target.parentElement.parentElement.id)
+      console.log(vidIndex)
+      this.videos[vidIndex].watched&#x3D;true
 
+      this.router.navigate([&#x27;/view&#x27;], { queryParams: { &#x27;videoId&#x27;: this.videos[vidIndex].id } });
+
+    })
+  }
+  
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
+
+
 
 &lt;h1 class&#x3D;&quot;text-center fw-bold text-white&quot;&gt;History Page&lt;/h1&gt;
 
-&lt;table
-  class&#x3D;&quot;text-center text-white mx-auto w-100 table table-dark&quot;
-&gt;
-  &lt;thead class&#x3D;&quot;py-4&quot;&gt;
-    &lt;th&gt;Detection type&lt;/th&gt;
-    &lt;th&gt;Status&lt;/th&gt;
-    &lt;th&gt;Date&lt;/th&gt;
-    &lt;th colspan&#x3D;&quot;2&quot;&gt;Options&lt;/th&gt;
-  &lt;/thead&gt;
-  &lt;tbody class&#x3D;&quot;align-middle&quot;&gt;
-    &lt;tr *ngFor&#x3D;&quot;let data of vidHistory&quot; id&#x3D;&quot;{{data.id}}&quot;&gt;
-      &lt;td class&#x3D;&quot;fw-bold&quot;&gt;{{ data.type }}&lt;/td&gt;
-      &lt;div *ngIf&#x3D;&quot;data.isNew; then thenBlock else elseBlock&quot;&gt;&lt;/div&gt;
-        &lt;ng-template #thenBlock&gt;&lt;td class&#x3D;&quot;fw-bold bg-warning hover-table-warning&quot;&gt;New&lt;/td&gt;&lt;/ng-template&gt;
-        &lt;ng-template #elseBlock&gt;&lt;td class&#x3D;&quot;fw-bold&quot;&gt;Viewed&lt;/td&gt;&lt;/ng-template&gt;
-      &lt;td&gt;{{ data.date }}&lt;/td&gt;
-      &lt;td class&#x3D;&quot;fw-bold&quot;&gt;
-        &lt;button class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;view($event)&quot;&gt;Watch&lt;/button&gt;
-      &lt;/td&gt;
-      &lt;td class&#x3D;&quot;fw-bold&quot;&gt;
-        &lt;button class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;delete($event)&quot;&gt;Delete&lt;/button&gt;
-      &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+
+&lt;div *ngIf&#x3D;&quot;deleteFlag&quot; class&#x3D;&quot;fixed z-50 w-screen h-screen flex justify-center&quot;&gt;
+  &lt;div id&#x3D;&quot;popup-modal&quot; tabindex&#x3D;&quot;-1&quot; class&#x3D;&quot;justify-self-center overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full&quot;&gt;
+    &lt;div class&#x3D;&quot;relative w-full max-w-md max-h-full&quot;&gt;
+        &lt;div class&#x3D;&quot;relative bg-white rounded-lg shadow dark:bg-gray-700&quot;&gt;
+            &lt;button (click)&#x3D;&quot;cancelDelete($event)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white&quot; data-modal-hide&#x3D;&quot;popup-modal&quot;&gt;
+                &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;w-5 h-5&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                &lt;span class&#x3D;&quot;sr-only&quot;&gt;Close modal&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class&#x3D;&quot;p-6 text-center&quot;&gt;
+                &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                &lt;h3 class&#x3D;&quot;mb-5 text-lg font-normal text-gray-500 dark:text-gray-400&quot;&gt;Are you sure you want to delete this Video?&lt;/h3&gt;
+                &lt;button (click)&#x3D;&quot;confirmDelete()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2&quot;&gt;
+                    Yes, I&#x27;m sure
+                &lt;/button&gt;
+                &lt;button (click)&#x3D;&quot;cancelDelete($event)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600&quot;&gt;No, cancel&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class&#x3D;&quot;relative overflow-x-auto shadow-md sm:rounded-lg m-5&quot;&gt;
+  &lt;div class&#x3D;&quot;flex items-center justify-between pb-4&quot;&gt;
+      &lt;div&gt;
+          &lt;button id&#x3D;&quot;dropdownRadioButton&quot; data-dropdown-toggle&#x3D;&quot;dropdownRadio&quot; class&#x3D;&quot;inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700&quot; type&#x3D;&quot;button&quot;&gt;
+              &lt;svg class&#x3D;&quot;w-4 h-4 mr-2 text-gray-400&quot; aria-hidden&#x3D;&quot;true&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+              Last 30 days
+              &lt;svg class&#x3D;&quot;w-3 h-3 ml-2&quot; aria-hidden&#x3D;&quot;true&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M19 9l-7 7-7-7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+          &lt;/button&gt;
+          &lt;!-- Dropdown menu --&gt;
+          &lt;div id&#x3D;&quot;dropdownRadio&quot; class&#x3D;&quot;z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600&quot; data-popper-reference-hidden&#x3D;&quot;&quot; data-popper-escaped&#x3D;&quot;&quot; data-popper-placement&#x3D;&quot;top&quot; style&#x3D;&quot;position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);&quot;&gt;
+              &lt;ul class&#x3D;&quot;p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200&quot; aria-labelledby&#x3D;&quot;dropdownRadioButton&quot;&gt;
+                  &lt;li&gt;
+                      &lt;div class&#x3D;&quot;flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600&quot;&gt;
+                          &lt;input id&#x3D;&quot;filter-radio-example-1&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;filter-radio&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                          &lt;label for&#x3D;&quot;filter-radio-example-1&quot; class&#x3D;&quot;w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300&quot;&gt;Last day&lt;/label&gt;
+                      &lt;/div&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                      &lt;div class&#x3D;&quot;flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600&quot;&gt;
+                          &lt;input checked&#x3D;&quot;&quot; id&#x3D;&quot;filter-radio-example-2&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;filter-radio&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                          &lt;label for&#x3D;&quot;filter-radio-example-2&quot; class&#x3D;&quot;w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300&quot;&gt;Last 7 days&lt;/label&gt;
+                      &lt;/div&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                      &lt;div class&#x3D;&quot;flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600&quot;&gt;
+                          &lt;input id&#x3D;&quot;filter-radio-example-3&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;filter-radio&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                          &lt;label for&#x3D;&quot;filter-radio-example-3&quot; class&#x3D;&quot;w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300&quot;&gt;Last 30 days&lt;/label&gt;
+                      &lt;/div&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                      &lt;div class&#x3D;&quot;flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600&quot;&gt;
+                          &lt;input id&#x3D;&quot;filter-radio-example-4&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;filter-radio&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                          &lt;label for&#x3D;&quot;filter-radio-example-4&quot; class&#x3D;&quot;w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300&quot;&gt;Last month&lt;/label&gt;
+                      &lt;/div&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                      &lt;div class&#x3D;&quot;flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600&quot;&gt;
+                          &lt;input id&#x3D;&quot;filter-radio-example-5&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;&quot; name&#x3D;&quot;filter-radio&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                          &lt;label for&#x3D;&quot;filter-radio-example-5&quot; class&#x3D;&quot;w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300&quot;&gt;Last year&lt;/label&gt;
+                      &lt;/div&gt;
+                  &lt;/li&gt;
+              &lt;/ul&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;label for&#x3D;&quot;table-search&quot; class&#x3D;&quot;sr-only&quot;&gt;Search&lt;/label&gt;
+      &lt;div class&#x3D;&quot;relative&quot;&gt;
+          &lt;div class&#x3D;&quot;absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none&quot;&gt;
+              &lt;svg class&#x3D;&quot;w-5 h-5 text-gray-500 dark:text-gray-400&quot; aria-hidden&#x3D;&quot;true&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;table-search&quot; class&#x3D;&quot;block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&quot; placeholder&#x3D;&quot;Search for items&quot;&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+
+
+  
+  &lt;table class&#x3D;&quot;w-full text-sm text-left text-gray-500 dark:text-gray-400&quot;&gt;
+      &lt;thead class&#x3D;&quot;text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400&quot;&gt;
+          &lt;tr&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;p-4&quot;&gt;
+                  &lt;div class&#x3D;&quot;flex items-center&quot;&gt;
+                      &lt;input id&#x3D;&quot;checkbox-all-search&quot; type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                      &lt;label for&#x3D;&quot;checkbox-all-search&quot; class&#x3D;&quot;sr-only&quot;&gt;checkbox&lt;/label&gt;
+                  &lt;/div&gt;
+              &lt;/th&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;px-6 py-3&quot;&gt;Title&lt;/th&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;px-6 py-3&quot;&gt;Detection Type&lt;/th&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;px-6 py-3&quot;&gt;Status&lt;/th&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;px-6 py-3&quot;&gt;Date&lt;/th&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;px-6 py-3&quot;&gt;Action&lt;/th&gt;
+          &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let data of videos&quot; id&#x3D;&quot;{{data.id}}&quot; class&#x3D;&quot;bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600&quot;&gt;
+              &lt;td class&#x3D;&quot;w-4 p-4&quot;&gt;
+                  &lt;div class&#x3D;&quot;flex items-center&quot;&gt;
+                      &lt;input id&#x3D;&quot;checkbox-table-search-1&quot; type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600&quot;&gt;
+                      &lt;label for&#x3D;&quot;checkbox-table-search-1&quot; class&#x3D;&quot;sr-only&quot;&gt;checkbox&lt;/label&gt;
+                  &lt;/div&gt;
+              &lt;/td&gt;
+              &lt;th scope&#x3D;&quot;row&quot; class&#x3D;&quot;px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white&quot;&gt;
+                  &lt;!-- Apple MacBook Pro 17&quot; --&gt;
+              &lt;/th&gt;
+              &lt;td class&#x3D;&quot;px-6 py-4&quot;&gt;
+                {{ data.detectionType }}
+                &lt;span class&#x3D;&quot;bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300&quot;&gt;Face&lt;/span&gt;
+                &lt;span class&#x3D;&quot;bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300&quot;&gt;Fight&lt;/span&gt;
+                &lt;!-- &lt;span class&#x3D;&quot;bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300&quot;&gt;Yellow&lt;/span&gt;
+                &lt;span class&#x3D;&quot;bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300&quot;&gt;Indigo&lt;/span&gt;
+                &lt;span class&#x3D;&quot;bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300&quot;&gt;Purple&lt;/span&gt;
+                &lt;span class&#x3D;&quot;bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300&quot;&gt;Pink&lt;/span&gt;                 --&gt;
+              &lt;/td&gt;
+              &lt;td class&#x3D;&quot;px-6 py-4&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;!data.watched; then thenBlock else elseBlock&quot;&gt;&lt;/div&gt;
+                &lt;ng-template #thenBlock&gt;&lt;td class&#x3D;&quot;fw-bold bg-warning hover-table-warning&quot;&gt;
+                  &lt;span class&#x3D;&quot;bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300&quot;&gt;New&lt;/span&gt;
+                &lt;/td&gt;&lt;/ng-template&gt;
+                &lt;ng-template #elseBlock&gt;&lt;td class&#x3D;&quot;fw-bold&quot;&gt;
+                  &lt;span class&#x3D;&quot;bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300&quot;&gt;Watched&lt;/span&gt;
+                &lt;/td&gt;&lt;/ng-template&gt;
+              &lt;/td&gt;
+              &lt;td class&#x3D;&quot;px-6 py-4&quot;&gt;
+                &lt;span class&#x3D;&quot;bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-400 border border-gray-500&quot;&gt;
+                  &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;w-3 h-3 mr-1&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                  3 days ago
+                &lt;/span&gt;
+                &lt;span class&#x3D;&quot;bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400&quot;&gt;
+                  &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;w-3 h-3 mr-1&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                  {{ data.uploadDate }}
+                &lt;/span&gt;
+              &lt;/td&gt;
+              &lt;td class&#x3D;&quot;px-6 py-4&quot;&gt;
+                &lt;button (click)&#x3D;&quot;onView($event)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800&quot;&gt;View&lt;/button&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800&quot;&gt;Download&lt;/button&gt;
+                &lt;button (click)&#x3D;&quot;onDelete($event)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900&quot;&gt;Delete&lt;/button&gt;
+              &lt;/td&gt;
+          &lt;/tr&gt;
+      &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;!-- 
+&lt;div class&#x3D;&quot;flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400&quot; role&#x3D;&quot;alert&quot;&gt;
+  &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;flex-shrink-0 inline w-5 h-5 mr-3&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+  &lt;span class&#x3D;&quot;sr-only&quot;&gt;Info&lt;/span&gt;
+  &lt;div&gt;
+    &lt;span class&#x3D;&quot;font-medium&quot;&gt;Danger alert!&lt;/span&gt; Change a few things up and try submitting again.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400&quot; role&#x3D;&quot;alert&quot;&gt;
+  &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;flex-shrink-0 inline w-5 h-5 mr-3&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+  &lt;span class&#x3D;&quot;sr-only&quot;&gt;Info&lt;/span&gt;
+  &lt;div&gt;
+    &lt;span class&#x3D;&quot;font-medium&quot;&gt;Success alert!&lt;/span&gt; Change a few things up and try submitting again.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;flex p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300&quot; role&#x3D;&quot;alert&quot;&gt;
+  &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;flex-shrink-0 inline w-5 h-5 mr-3&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+  &lt;span class&#x3D;&quot;sr-only&quot;&gt;Info&lt;/span&gt;
+  &lt;div&gt;
+    &lt;span class&#x3D;&quot;font-medium&quot;&gt;Warning alert!&lt;/span&gt; Change a few things up and try submitting again.
+  &lt;/div&gt;
+&lt;/div&gt; --&gt;
+
+
+
+
+
+
+
+
+
+
+&lt;app-navbar-bottom&gt;&lt;/app-navbar-bottom&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./history.component.css</code>
                 </p>
@@ -565,7 +941,7 @@ export class HistoryComponent implements OnInit {
 }</code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -590,8 +966,8 @@ export class HistoryComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><h1 class="text-center fw-bold text-white">History Page</h1><table  class="text-center text-white mx-auto w-100 table table-dark">  <thead class="py-4">    <th>Detection type</th>    <th>Status</th>    <th>Date</th>    <th colspan="2">Options</th>  </thead>  <tbody class="align-middle">    <tr *ngFor="let data of vidHistory" id="{{data.id}}">      <td class="fw-bold">{{ data.type }}</td>      <div *ngIf="data.isNew; then thenBlock else elseBlock"></div>        <ng-template #thenBlock><td class="fw-bold bg-warning hover-table-warning">New</td></ng-template>        <ng-template #elseBlock><td class="fw-bold">Viewed</td></ng-template>      <td>{{ data.date }}</td>      <td class="fw-bold">        <button class="btn btn-primary" (click)="view($event)">Watch</button>      </td>      <td class="fw-bold">        <button class="btn btn-danger" (click)="delete($event)">Delete</button>      </td>    </tr>  </tbody></table></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><h1 class="text-center fw-bold text-white">History Page</h1><div *ngIf="deleteFlag" class="fixed z-50 w-screen h-screen flex justify-center">  <div id="popup-modal" tabindex="-1" class="justify-self-center overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">    <div class="relative w-full max-w-md max-h-full">        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">            <button (click)="cancelDelete($event)" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="popup-modal">                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>                <span class="sr-only">Close modal</span>            </button>            <div class="p-6 text-center">                <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this Video?</h3>                <button (click)="confirmDelete()" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">                    Yes, I\'m sure                </button>                <button (click)="cancelDelete($event)" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>            </div>        </div>    </div></div></div><div class="relative overflow-x-auto shadow-md sm:rounded-lg m-5">  <div class="flex items-center justify-between pb-4">      <div>          <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">              <svg class="w-4 h-4 mr-2 text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>              Last 30 days              <svg class="w-3 h-3 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>          </button>          <!-- Dropdown menu -->          <div id="dropdownRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">              <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">                  <li>                      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">                          <input id="filter-radio-example-1" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                          <label for="filter-radio-example-1" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last day</label>                      </div>                  </li>                  <li>                      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">                          <input checked="" id="filter-radio-example-2" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                          <label for="filter-radio-example-2" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last 7 days</label>                      </div>                  </li>                  <li>                      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">                          <input id="filter-radio-example-3" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                          <label for="filter-radio-example-3" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last 30 days</label>                      </div>                  </li>                  <li>                      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">                          <input id="filter-radio-example-4" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                          <label for="filter-radio-example-4" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last month</label>                      </div>                  </li>                  <li>                      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">                          <input id="filter-radio-example-5" type="radio" value="" name="filter-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                          <label for="filter-radio-example-5" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Last year</label>                      </div>                  </li>              </ul>          </div>      </div>      <label for="table-search" class="sr-only">Search</label>      <div class="relative">          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>          </div>          <input type="text" id="table-search" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">      </div>  </div>    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">          <tr>              <th scope="col" class="p-4">                  <div class="flex items-center">                      <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                      <label for="checkbox-all-search" class="sr-only">checkbox</label>                  </div>              </th>              <th scope="col" class="px-6 py-3">Title</th>              <th scope="col" class="px-6 py-3">Detection Type</th>              <th scope="col" class="px-6 py-3">Status</th>              <th scope="col" class="px-6 py-3">Date</th>              <th scope="col" class="px-6 py-3">Action</th>          </tr>      </thead>      <tbody>          <tr *ngFor="let data of videos" id="{{data.id}}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">              <td class="w-4 p-4">                  <div class="flex items-center">                      <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">                      <label for="checkbox-table-search-1" class="sr-only">checkbox</label>                  </div>              </td>              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">                  <!-- Apple MacBook Pro 17" -->              </th>              <td class="px-6 py-4">                {{ data.detectionType }}                <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Face</span>                <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Fight</span>                <!-- <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Yellow</span>                <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">Indigo</span>                <span class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Purple</span>                <span class="bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">Pink</span>                 -->              </td>              <td class="px-6 py-4">                <div *ngIf="!data.watched; then thenBlock else elseBlock"></div>                <ng-template #thenBlock><td class="fw-bold bg-warning hover-table-warning">                  <span class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">New</span>                </td></ng-template>                <ng-template #elseBlock><td class="fw-bold">                  <span class="bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Watched</span>                </td></ng-template>              </td>              <td class="px-6 py-4">                <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-400 border border-gray-500">                  <svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>                  3 days ago                </span>                <span class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">                  <svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>                  {{ data.uploadDate }}                </span>              </td>              <td class="px-6 py-4">                <button (click)="onView($event)" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">View</button>                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Download</button>                <button (click)="onDelete($event)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>              </td>          </tr>      </tbody>  </table></div><!-- <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">  <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>  <span class="sr-only">Info</span>  <div>    <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.  </div></div><div class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">  <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>  <span class="sr-only">Info</span>  <div>    <span class="font-medium">Success alert!</span> Change a few things up and try submitting again.  </div></div><div class="flex p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">  <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>  <span class="sr-only">Info</span>  <div>    <span class="font-medium">Warning alert!</span> Change a few things up and try submitting again.  </div></div> --><app-navbar-bottom></app-navbar-bottom></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarBottomComponent', 'selector': 'app-navbar-bottom'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HistoryComponent'};
 </script>

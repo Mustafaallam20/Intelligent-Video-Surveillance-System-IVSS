@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">front-end documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +39,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >ApiService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ApiService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -65,7 +71,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -94,8 +100,21 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#downloadFile" >downloadFile</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#post" >post</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#saveFile" >saveFile</a>
+                            </li>
+                            <li>
+                                <a href="#uploadFile" >uploadFile</a>
+                            </li>
+                            <li>
+                                <a href="#watchVideo" >watchVideo</a>
                             </li>
                         </ul>
                     </td>
@@ -109,18 +128,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(httpClient: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+<code>constructor(httpClient: HttpClient, sanitizer: DomSanitizer)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/api.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/api.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -141,7 +160,19 @@
                                                         <td>httpClient</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sanitizer</td>
+                                                  
+                                                        <td>
+                                                                    <code>DomSanitizer</code>
                                                         </td>
                                                   
                                                     <td>
@@ -158,11 +189,80 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadFile"></a>
+                    <span class="name">
+                        <span ><b>downloadFile</b></span>
+                        <a href="#downloadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadFile(fileUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/services/api.service.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fileUrl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -178,15 +278,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>post(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, httpHeaders?: [literal type])</code>
+                    <code>post(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, httpHeaders?: Array<literal type>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/services/api.service.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/services/api.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -239,7 +339,7 @@
                                 <tr>
                                     <td>httpHeaders</td>
                                     <td>
-                                            <code>[literal type]</code>
+                                            <code>Array&lt;literal type&gt;</code>
                                     </td>
 
                                     <td>
@@ -266,8 +366,217 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveFile"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>saveFile</b></span>
+                        <a href="#saveFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveFile(response: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/services/api.service.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>response</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uploadFile"></a>
+                    <span class="name">
+                        <span ><b>uploadFile</b></span>
+                        <a href="#uploadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>uploadFile(file: File)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/services/api.service.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file</td>
+                                    <td>
+                                            <code>File</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;HttpEvent&lt;any&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="watchVideo"></a>
+                    <span class="name">
+                        <span ><b>watchVideo</b></span>
+                        <a href="#watchVideo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>watchVideo(videoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/services/api.service.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>videoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;SafeResourceUrl&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -297,7 +606,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/api.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/api.service.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -309,19 +618,24 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpHeaders ,HttpEvent, HttpRequest, HttpResponse, HttpEventType} from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
+import { filter, map } from &#x27;rxjs/operators&#x27;;
+import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
+
+
+
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class ApiService {
   private baseUrl &#x3D; &quot;http://localhost:8081&quot;;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) { }
 
-  public post(path: string, body: any &#x3D; {}, httpHeaders?: [{ key: any, value: any }]): Observable&lt;any&gt; {
+  public post(path: string, body: any &#x3D; {}, httpHeaders?: Array&lt;{ key: any, value: any }&gt;): Observable&lt;any&gt; {
 
     let headers: HttpHeaders &#x3D; new HttpHeaders();
     if (httpHeaders) {
@@ -338,6 +652,102 @@ export class ApiService {
     return this.httpClient
       .post(this.baseUrl + path, body,{headers})
   }
+
+
+  // public uploadFile(path: string, file: {}): Observable&lt;any&gt; {
+  //   let headers: HttpHeaders &#x3D; new HttpHeaders();
+  //   if (localStorage.getItem(&#x27;token&#x27;) !&#x3D; null) {
+  //     headers &#x3D; headers.set(&quot;Authorization&quot;,&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!);
+  //     console.log(&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!)
+  //   }
+  //   headers &#x3D; headers.set(&#x27;Access-Control-Allow-Origin&#x27;,this.baseUrl);
+  //   return this.httpClient.post(this.baseUrl + path, file, {
+  //     headers,
+  //     params: new HttpParams(),
+  //     reportProgress: true,
+  //   })
+  // }
+
+  uploadFile(file: File): Observable&lt;HttpEvent&lt;any&gt;&gt; {
+    const formData &#x3D; new FormData();
+    formData.append(&#x27;file&#x27;, file);
+    let headers: HttpHeaders &#x3D; new HttpHeaders();
+    if (localStorage.getItem(&#x27;token&#x27;) !&#x3D; null) {
+      headers &#x3D; headers.set(&quot;Authorization&quot;,&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!);
+      console.log(&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!)
+    }
+    const req &#x3D; new HttpRequest(&#x27;POST&#x27;, &#x27;http://localhost:8081/api/videos/upload&#x27;, formData, {
+      headers,
+      reportProgress: true
+    });
+
+    return this.httpClient.request(req);
+  }
+  // watchVideo(videoId:string): Observable&lt;HttpEvent&lt;any&gt;&gt; {
+
+  //   let headers: HttpHeaders &#x3D; new HttpHeaders();
+  //   if (localStorage.getItem(&#x27;token&#x27;) !&#x3D; null) {
+  //     headers &#x3D; headers.set(&quot;Authorization&quot;,&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!);
+  //     console.log(&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!)
+  //   }
+  //   const req &#x3D; new HttpRequest(&#x27;POST&#x27;, &#x27;http://localhost:8081/api/videos/watch/&#x27; + videoId, {
+  //     headers,
+  //   });
+
+  //   return this.httpClient.request(req);
+  // }
+
+  watchVideo(videoId: number): Observable&lt;SafeResourceUrl&gt; {
+    const headers &#x3D; new HttpHeaders({
+      &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + localStorage.getItem(&#x27;token&#x27;)
+    });
+
+    return this.httpClient.get(&#x27;http://localhost:8081/api/videos/watch/&#x27; + videoId, {
+      headers,
+      responseType: &#x27;blob&#x27;,
+      observe: &#x27;events&#x27;
+    }).pipe(
+      filter((event: HttpEvent&lt;any&gt;) &#x3D;&gt; event.type &#x3D;&#x3D;&#x3D; HttpEventType.Response),
+      map((event: HttpEvent&lt;any&gt;) &#x3D;&gt; {
+        const response &#x3D; event as HttpResponse&lt;Blob&gt;;
+        const blob &#x3D; response.body;
+        if (blob !&#x3D;&#x3D; null &amp;&amp; blob !&#x3D;&#x3D; undefined) {
+          const url &#x3D; URL.createObjectURL(blob);
+          return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        } else {
+          throw new Error(&#x27;Video response body is null or undefined&#x27;);
+        }
+      })
+    );
+  }
+
+
+  downloadFile(fileUrl: string): void {
+    let headers: HttpHeaders &#x3D; new HttpHeaders();
+    if (localStorage.getItem(&#x27;token&#x27;) !&#x3D; null) {
+      headers &#x3D; headers.set(&quot;Authorization&quot;,&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!);
+      console.log(&quot;Bearer &quot;+localStorage.getItem(&#x27;token&#x27;)!)
+    }
+    this.httpClient.get(fileUrl, { headers, responseType: &#x27;blob&#x27; })
+      .subscribe(response &#x3D;&gt; {
+        this.saveFile(response);
+      }, error &#x3D;&gt; {
+        console.error(&#x27;Error downloading the file:&#x27;, error);
+      });
+  }
+  private saveFile(response: any): void {
+    const blob &#x3D; new Blob([response], { type: response.type });
+
+    const downloadLink &#x3D; document.createElement(&#x27;a&#x27;);
+    downloadLink.href &#x3D; URL.createObjectURL(blob);
+    downloadLink.download &#x3D; &#x27;file-name.mp4&#x27;; // Replace with desired file name
+    downloadLink.click();
+    URL.revokeObjectURL(downloadLink.href);
+    downloadLink.remove();
+  }
+
+
+
 }
 </code></pre>
     </div>

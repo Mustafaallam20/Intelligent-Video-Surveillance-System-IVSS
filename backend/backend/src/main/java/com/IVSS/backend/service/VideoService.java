@@ -6,6 +6,8 @@ import com.IVSS.backend.repositories.UserRepository;
 import com.IVSS.backend.repositories.VideoRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
@@ -268,5 +270,158 @@ public class VideoService {
         }
         videoRepository.save(videoObj);
         return true;
+    }
+
+
+
+
+
+
+
+    public String UploadVideoToDeep(String vidPath, Long vidId, String model) throws IOException {
+        Video videoObj = videoRepository.findById(vidId).get();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.set("X-model", model);
+        File videoFile = new File(getBaseDir() + uploadDirectory + vidPath);
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("video", new FileSystemResource(videoFile));
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        try{
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(deepAppUrl+"/input", requestEntity, String.class);
+            String response = responseEntity.getBody();
+            int statusCode = responseEntity.getStatusCodeValue();
+            return response;
+        }
+        catch (Exception e){
+            return e.getMessage();
+        }
+
+    }
+
+    public JsonNode getProcessedVideo(Long vidId) throws IOException {
+        ObjectNode res = JsonNodeFactory.instance.objectNode();
+        Video videoObj = videoRepository.findById(vidId).get();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+//        body.add("video", new FileSystemResource(videoFile));
+//        body.add("id", videoObj.getId());
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+        // Make an HTTP POST request to the Flask app's /process_video endpoint
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(deepAppUrl + "/response", requestEntity, String.class);
+            // Retrieve the response from the Flask app
+            String response = responseEntity.getBody();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode rootNode = objectMapper.readTree(response);
+// Access the JSON data using the JsonNode API
+//            String state = rootNode.get("state").asText();
+            res.put("status", rootNode.get("status"));
+            res.put("percent", rootNode.get("percent"));
+            res.put("trigger", rootNode.get("trigger"));
+            res.put("msg", rootNode.get("msg"));
+
+            String status = rootNode.get("status").asText();
+            if (status == "processing" && status=="failed") {
+                System.out.println(res);
+                return res;
+            }
+            System.out.println("q11");
+//            if (status == "finished") {
+//                return res;
+//            }
+
+
+            JsonNode data = rootNode.get("data");
+            String video = data.get("video").asText();
+            byte[] decodedVideo = Base64.getDecoder().decode(video);
+            String vidName = UUID.randomUUID().toString() + ".mp4";//not mp4
+            try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + vidName)) {
+                outputStream.write(decodedVideo);
+                videoObj.setProcessedFilePath(vidName);
+            } catch (IOException e) {//handel exception
+                res.put("error", e.getMessage());/////////////
+            }
+            System.out.println("q11");
+
+            // Access the JSON array using the JsonNode API
+            JsonNode imagesNode = data.get("images");
+            System.out.println("q12");
+            if (imagesNode.isArray()) {
+                System.out.println("q13");
+                List<String> imgPaths1 = new ArrayList<>();
+                ;//can cause error if null
+                List<String> imgPaths2 = new ArrayList<>();
+                ;//can cause error if null
+                List<String> imgPaths3 = new ArrayList<>();
+                ;//can cause error if null
+                List<String> imgPaths4 = new ArrayList<>();
+                ;//can cause error if null
+                List<String> imgPaths5 = new ArrayList<>();
+                ;//can cause error if null
+                List<String> imgPaths6 = new ArrayList<>();
+                ;//can cause error if null
+                List<String> imgPaths7 = new ArrayList<>();
+                ;//can cause error if null
+
+                System.out.println("q14");
+                for (JsonNode imageNode : imagesNode) {
+                    String imgName = imageNode.get("name") + "---" + UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
+                    String detectType = imageNode.get("type").asText();
+                    String img = imageNode.get("data").asText();
+                    byte[] decodedImg = Base64.getDecoder().decode(img);
+                    try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + imgName)) {
+                        outputStream.write(decodedImg);
+                        //add img to db //edit path
+                        switch (detectType) {
+                            case "type1":
+                                imgPaths1.add(imgName);
+                                break;
+                            case "type2":
+                                imgPaths2.add(imgName);
+                                break;
+                            case "type3":
+                                imgPaths3.add(imgName);
+                                break;
+                            case "type4":
+                                imgPaths4.add(imgName);
+                                break;
+                            case "type5":
+                                imgPaths5.add(imgName);
+                                break;
+                            case "type6":
+                                imgPaths6.add(imgName);
+                                break;
+                            case "type7":
+                                imgPaths7.add(imgName);
+                                break;
+                        }
+
+                    } catch (IOException e) {//handel exception
+                        res.put("error", e.getMessage());/////////////
+                        return res;
+//                        throw new RuntimeException(e);
+                    }
+                }
+                videoObj.setFightImgPath(imgPaths1);
+                videoObj.setFightImgPath(imgPaths2);
+                videoObj.setFightImgPath(imgPaths3);
+                videoObj.setFightImgPath(imgPaths4);
+                videoObj.setFightImgPath(imgPaths5);
+                videoObj.setFightImgPath(imgPaths6);
+                videoObj.setFightImgPath(imgPaths7);
+            }
+        }
+        catch (Exception e) {
+            res.put("error", e.getMessage());/////////////
+            return res;
+        }
+        return res;
     }
 }

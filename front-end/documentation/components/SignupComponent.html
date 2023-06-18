@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">front-end documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,32 +35,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   SignupComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -74,14 +79,15 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -97,6 +103,8 @@
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>app-signup</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -121,7 +129,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -139,6 +147,12 @@
                             <li>
                                 <a href="#registerForm" >registerForm</a>
                             </li>
+                            <li>
+                                <a href="#ToastFlag" >ToastFlag</a>
+                            </li>
+                            <li>
+                                <a href="#ToastMsg" >ToastMsg</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -151,6 +165,12 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#closeTost" >closeTost</a>
+                            </li>
+                            <li>
+                                <a href="#loginSubmit" >loginSubmit</a>
+                            </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
@@ -192,13 +212,13 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(toastService: <a href="../injectables/ToastService.html" target="_self">ToastService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(toastService: <a href="../injectables/ToastService.html" target="_self">ToastService</a>, formBuilder: FormBuilder, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
@@ -236,7 +256,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>FormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -260,7 +280,7 @@
                                                         <td>router</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -281,11 +301,85 @@
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeTost"></a>
+                    <span class="name">
+                        <span ><b>closeTost</b></span>
+                        <a href="#closeTost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeTost()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loginSubmit"></a>
+                    <span class="name">
+                        <span ><b>loginSubmit</b></span>
+                        <a href="#loginSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loginSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -306,8 +400,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:76</a></div>
                 </td>
             </tr>
 
@@ -336,15 +430,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>submitRegister(registerForm: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>)</code>
+<code>submitRegister(registerForm: FormGroup)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/components/auth/signup/signup.component.ts:31</a></div>
                 </td>
             </tr>
 
@@ -367,7 +461,7 @@
                                 <tr>
                                     <td>registerForm</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                            <code>FormGroup</code>
                                     </td>
 
                                     <td>
@@ -393,7 +487,7 @@
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -436,7 +530,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>FormGroup</code>
 
                     </td>
                 </tr>
@@ -447,8 +541,64 @@
     name: new FormControl(null, [Validators.required, Validators.pattern(&#x27;[a-zA-Z ]*&#x27;),Validators.minLength(3)]),
     username: new FormControl(null,[Validators.required, Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
-    password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+    password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
   })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ToastFlag"></a>
+                    <span class="name">
+                        <span ><b>ToastFlag</b></span>
+                        <a href="#ToastFlag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ToastMsg"></a>
+                    <span class="name">
+                        <span ><b>ToastMsg</b></span>
+                        <a href="#ToastMsg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
                     </td>
                 </tr>
                     <tr>
@@ -462,7 +612,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -482,7 +632,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:59</a></div>
                                 </td>
                             </tr>
 
@@ -504,7 +654,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:62</a></div>
                                 </td>
                             </tr>
 
@@ -526,7 +676,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:65</a></div>
                                 </td>
                             </tr>
 
@@ -548,7 +698,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/auth/signup/signup.component.ts:68</a></div>
                                 </td>
                             </tr>
 
@@ -558,7 +708,7 @@
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { FormGroup , FormControl } from &#x27;@angular/forms&#x27;;
 import {ToastService} from &#x27;../../../services/toast.service&#x27;
@@ -578,39 +728,40 @@ export class SignupComponent implements OnInit {
 
 
   isSubmitted &#x3D; false;
+  ToastFlag &#x3D; false;
+  ToastMsg:string&#x3D;&quot;&quot;;
 
   registerForm : FormGroup &#x3D; new FormGroup({
 
     name: new FormControl(null, [Validators.required, Validators.pattern(&#x27;[a-zA-Z ]*&#x27;),Validators.minLength(3)]),
     username: new FormControl(null,[Validators.required, Validators.minLength(3)]),
     email: new FormControl(null,[Validators.required,Validators.email]),
-    password: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+    password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
   })
 
   submitRegister(registerForm:FormGroup){
     this.isSubmitted &#x3D; true;
     if(this.registerForm.valid)
     {
-
       var user:User &#x3D;{name:this.name.value,username:this.username.value, email:this.email.value,password:this.password.value}
-      this.authService.signup(user).subscribe((response: any) &#x3D;&gt; {
+      let result &#x3D; this.authService.signup(user).subscribe((response: any) &#x3D;&gt; {
         console.log(&quot;response&quot;+response);
 
         if(response.status &#x3D;&#x3D; &quot;Success&quot;){
-
-
+           this.loginSubmit()
            this.router.navigate([&#x27;/&#x27;, &#x27;login&#x27;]);
         }
         else{
-          this.toastService.error(response.status);
-
+          this.isSubmitted &#x3D; false;
+          this.ToastFlag &#x3D; true;
+          this.ToastMsg &#x3D; response.status;
         }
-
-
       });
     }
     else{
-      this.toastService.error(&quot;error&quot;);
+      this.isSubmitted &#x3D; false;
+      this.ToastFlag &#x3D; true;
+      this.ToastMsg &#x3D; &quot;Invalid email or password.&quot; 
 
     }
 
@@ -629,9 +780,35 @@ export class SignupComponent implements OnInit {
     return this.registerForm.get(&#x27;password&#x27;);
   }
 
+  closeTost():void{
+    this.ToastFlag&#x3D; false;
+  }
+
   ngOnInit() {
 
   }
+
+
+  loginSubmit(){
+      var user:User &#x3D;{usernameOrEmail:this.email.value,password:this.password.value}
+      this.authService.login(user).subscribe(
+        (result:any) &#x3D;&gt; {
+          if(result.status &#x3D;&#x3D;&quot;Success&quot; ){
+            this.authService.setAuth(result.token);
+            this.authService.setUserName(result.userName)
+             this.router.navigate([&#x27;/&#x27;, &#x27;home&#x27;]);
+          }
+          else{
+            this.ToastFlag&#x3D; true;
+            this.ToastMsg&#x3D;&quot;Wrong email or password.&quot; 
+          }
+        }
+      );
+
+    }
+
+
+
 
 
 
@@ -642,8 +819,11 @@ export class SignupComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;vh-100&quot;&gt;
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
+
+
+&lt;!-- &lt;div class&#x3D;&quot;vh-100&quot;&gt;
   &lt;app-navbar&gt;&lt;/app-navbar&gt;
   &lt;div class&#x3D;&quot;container h-100&quot;&gt;
     &lt;div class&#x3D;&quot;row h-100 justify-content-center align-content-center&quot;&gt;
@@ -776,11 +956,82 @@ export class SignupComponent implements OnInit {
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
+&lt;/div&gt; --&gt;
+
+
+&lt;div *ngIf&#x3D;&quot;ToastFlag&quot; class&#x3D;&quot;flex justify-center my-5&quot;&gt;
+  &lt;div id&#x3D;&quot;toast-danger&quot; class&#x3D;&quot;flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800&quot; role&#x3D;&quot;alert&quot;&gt;
+    &lt;div class&#x3D;&quot;inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200&quot;&gt;
+        &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;w-5 h-5&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+        &lt;span class&#x3D;&quot;sr-only&quot;&gt;Error icon&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;ml-3 text-sm font-normal&quot;&gt;&lt;span class&#x3D;&quot;block&quot;&gt;Faild to signup.&lt;/span&gt;{{ToastMsg}}&lt;/div&gt;
+    &lt;button (click)&#x3D;&quot;closeTost()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700&quot; data-dismiss-target&#x3D;&quot;#toast-danger&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+        &lt;span class&#x3D;&quot;sr-only&quot;&gt;Close&lt;/span&gt;
+        &lt;svg aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;w-5 h-5&quot; fill&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 20 20&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z&quot; clip-rule&#x3D;&quot;evenodd&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
-</code></pre>
+
+
+
+
+
+&lt;form (ngSubmit)&#x3D;&quot;submitRegister(registerForm)&quot; [formGroup]&#x3D;&quot;registerForm&quot; class&#x3D;&quot;md:my-10 mx-auto md:w-1/2 lg:w-2/5&quot;&gt;
+
+  &lt;div class&#x3D;&quot;mb-1&quot;&gt;
+      &lt;label for&#x3D;&quot;name&quot; class&#x3D;&quot;block  text-sm font-medium text-gray-900 dark:text-white&quot;&gt;Full Name&lt;/label&gt;
+      &lt;input formControlName&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot; id&#x3D;&quot;name&quot; class&#x3D;&quot;bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&quot; placeholder&#x3D;&quot;john doe&quot; required&gt;
+      &lt;div *ngIf&#x3D;&quot; name.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || name.touched) &quot; class&#x3D;&quot; text-sm text-red-600 dark:text-red-500&quot;&gt;Name Is Empty&lt;/div&gt;
+  &lt;/div&gt; 
+  &lt;div class&#x3D;&quot;mb-1&quot;&gt;
+    &lt;label for&#x3D;&quot;username&quot; class&#x3D;&quot;block  text-sm font-medium text-gray-900 dark:text-white&quot;&gt;Username&lt;/label&gt;
+    &lt;input formControlName&#x3D;&quot;username&quot; type&#x3D;&quot;text&quot; id&#x3D;&quot;username&quot; class&#x3D;&quot;bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&quot; placeholder&#x3D;&quot;john_doe&quot; required&gt;
+    &lt;div *ngIf&#x3D;&quot; username.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || username.touched) &quot; class&#x3D;&quot; text-sm text-red-600 dark:text-red-500&quot;&gt;Username Is Empty&lt;/div&gt;
+&lt;/div&gt; 
+&lt;div class&#x3D;&quot;mb-1&quot;&gt;
+  &lt;label for&#x3D;&quot;email&quot; class&#x3D;&quot;block  text-sm font-medium text-gray-900 dark:text-white&quot;&gt;Email address&lt;/label&gt;
+  &lt;input formControlName&#x3D;&quot;email&quot; type&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; class&#x3D;&quot;bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&quot; placeholder&#x3D;&quot;john.doe@company.com&quot; required&gt;
+  &lt;div class&#x3D;&quot; text-sm text-red-600 dark:text-red-500&quot;&gt;
+    &lt;span *ngIf&#x3D;&quot; email.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || email.touched) &quot;&gt;Email Is Empty.&lt;/span&gt;
+    &lt;span *ngIf&#x3D;&quot; email.errors?.[&#x27;email&#x27;] &amp;&amp; (isSubmitted || email.touched) &quot;&gt;Email is not valid.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+&lt;div class&#x3D;&quot;mb-1&quot;&gt;
+  &lt;label for&#x3D;&quot;password&quot; class&#x3D;&quot;block  text-sm font-medium text-gray-900 dark:text-white&quot;&gt;Password&lt;/label&gt;
+  &lt;input formControlName&#x3D;&quot;password&quot; type&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; class&#x3D;&quot;bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&quot; placeholder&#x3D;&quot;•••••••••&quot; required&gt;
+  &lt;div class&#x3D;&quot; text-sm text-red-600 dark:text-red-500&quot;&gt;
+    &lt;span *ngIf&#x3D;&quot; password.errors?.[&#x27;required&#x27;] &amp;&amp; (isSubmitted || password.touched) &quot;&gt;Password is empty.&lt;/span&gt;
+    &lt;span *ngIf&#x3D;&quot; password.errors?.[&#x27;minlength&#x27;] &amp;&amp; (isSubmitted || password.touched) &quot;&gt;Password is Too Short&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+  &lt;!-- &lt;div class&#x3D;&quot;mb-1&quot;&gt;
+      &lt;label for&#x3D;&quot;password1&quot; class&#x3D;&quot;block  text-sm font-medium text-gray-900 dark:text-white&quot;&gt;Re-Password&lt;/label&gt;
+      &lt;input formControlName&#x3D;&quot;password&quot; type&#x3D;&quot;password&quot; id&#x3D;&quot;password1&quot; class&#x3D;&quot;bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&quot; placeholder&#x3D;&quot;•••••••••&quot; required&gt;
+      &lt;div class&#x3D;&quot; text-sm text-red-600 dark:text-red-500&quot;&gt;Password didn&#x27;t matched&lt;/div&gt;
+  &lt;/div&gt;  --&gt;
+  &lt;!-- &lt;div class&#x3D;&quot;flex items-start mb-1&quot;&gt;
+    &lt;div class&#x3D;&quot;flex items-center h-5&quot;&gt;
+    &lt;input id&#x3D;&quot;remember&quot; type&#x3D;&quot;checkbox&quot; value&#x3D;&quot;&quot; class&#x3D;&quot;w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800&quot; required&gt;
+    &lt;/div&gt;
+    &lt;label for&#x3D;&quot;remember&quot; class&#x3D;&quot;ml-2 text-sm font-medium text-gray-900 dark:text-gray-300&quot;&gt;I agree with the &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;text-blue-600 hover:underline dark:text-blue-500&quot;&gt;terms and conditions&lt;/a&gt;.&lt;/label&gt;
+  &lt;/div&gt; --&gt;
+  &lt;button *ngIf&#x3D;&quot;!isSubmitted&quot; type&#x3D;&quot;submit&quot; class&#x3D;&quot;text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800&quot;&gt;Sign Up&lt;/button&gt;
+  &lt;button *ngIf&#x3D;&quot;isSubmitted&quot; disabled type&#x3D;&quot;button&quot; class&#x3D;&quot;w-full my-2 flex justify-center mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center&quot;&gt;
+    &lt;svg aria-hidden&#x3D;&quot;true&quot; role&#x3D;&quot;status&quot; class&#x3D;&quot;inline w-4 h-4 mr-3 text-white animate-spin&quot; viewBox&#x3D;&quot;0 0 100 101&quot; fill&#x3D;&quot;none&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
+    &lt;path d&#x3D;&quot;M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z&quot; fill&#x3D;&quot;#E5E7EB&quot;/&gt;
+    &lt;path d&#x3D;&quot;M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z&quot; fill&#x3D;&quot;currentColor&quot;/&gt;
+    &lt;/svg&gt;
+    Loading...
+  &lt;/button&gt;
+&lt;/form&gt;
+&lt;p style&#x3D;&quot;justify-content: center; color:white&quot;&gt;
+  You have an account ?
+  &lt;a routerLink&#x3D;&quot;/signup&quot; class&#x3D;&quot;bg-blue-600 px-1&quot;&gt;Login&lt;/a&gt;
+&lt;/p&gt;</code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./signup.component.css</code>
                 </p>
@@ -877,7 +1128,7 @@ p {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -902,8 +1153,8 @@ p {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="vh-100">  <app-navbar></app-navbar>  <div class="container h-100">    <div class="row h-100 justify-content-center align-content-center">      <div class="col-lg-7">        <div class="card shadow">          <div class="card-body">            <div class="text-center">              <h4 class="font-color fw-bolder">Welcome to IVSS System</h4>            </div>          <form            (ngSubmit)="submitRegister(registerForm)"            [formGroup]="registerForm"          >            <div class="form-group ">              <div                class="font-color"                *ngIf=" name.errors?.[\'required\'] && (isSubmitted || name.touched) "              >                First Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                  email.errors && (isSubmitted || name.touched),                  \'is-valid\': name.touched && !name.errors                }"                type="text"                placeholder="Name"                formControlName="name"                class="form-control signup-input"                id="first_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" username.errors?.[\'required\'] && (isSubmitted || username.touched) "              >                Last Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                  username.errors && (isSubmitted || username.touched),                  \'is-valid\': username.touched && !username.errors                }"                type="text"                placeholder="Username"                formControlName="username"                class="form-control signup-input"                id="last_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) "              >                Email is empty.              </div>              <div                class="font-color"                *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) "              >                Email is not valid.              </div>              <input                [ngClass]="{                  \'is-invalid\': email.errors && (isSubmitted || email.touched),                  \'is-valid\': email.touched && !email.errors                }"                type="email"                placeholder="Email"                formControlName="email"                class="form-control signup-input"                id="email"              />              <span class="fa fa-envelope icon" aria-hidden="true"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) "              >                Password is empty.              </div>              <div                class="font-color"                *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) "              >                Password is Too Short              </div>              <input                [ngClass]="{                  \'is-invalid\':                    password.errors && (isSubmitted || password.touched),                  \'is-valid\': password.touched && !password.errors                }"                type="password"                placeholder="Password"                formControlName="password"                class="form-control signup-input"                id="password"              />              <span class="fa fa-lock icon"></span>            </div>            <div class="form-group button">              <button class="btn btn-primary form-control">SignUp</button>              <div>                <p style="justify-content: center">                  You already have an account ?                  <a routerLink="/login" style="color: blue"> Log in</a>                </p>              </div>              </div>            </form>          </div>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><!-- <div class="vh-100">  <app-navbar></app-navbar>  <div class="container h-100">    <div class="row h-100 justify-content-center align-content-center">      <div class="col-lg-7">        <div class="card shadow">          <div class="card-body">            <div class="text-center">              <h4 class="font-color fw-bolder">Welcome to IVSS System</h4>            </div>          <form            (ngSubmit)="submitRegister(registerForm)"            [formGroup]="registerForm"          >            <div class="form-group ">              <div                class="font-color"                *ngIf=" name.errors?.[\'required\'] && (isSubmitted || name.touched) "              >                First Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                  email.errors && (isSubmitted || name.touched),                  \'is-valid\': name.touched && !name.errors                }"                type="text"                placeholder="Name"                formControlName="name"                class="form-control signup-input"                id="first_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" username.errors?.[\'required\'] && (isSubmitted || username.touched) "              >                Last Name is empty.              </div>              <input                [ngClass]="{                  \'is-invalid\':                  username.errors && (isSubmitted || username.touched),                  \'is-valid\': username.touched && !username.errors                }"                type="text"                placeholder="Username"                formControlName="username"                class="form-control signup-input"                id="last_name"              />              <span class="fa fa-user icon"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) "              >                Email is empty.              </div>              <div                class="font-color"                *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) "              >                Email is not valid.              </div>              <input                [ngClass]="{                  \'is-invalid\': email.errors && (isSubmitted || email.touched),                  \'is-valid\': email.touched && !email.errors                }"                type="email"                placeholder="Email"                formControlName="email"                class="form-control signup-input"                id="email"              />              <span class="fa fa-envelope icon" aria-hidden="true"></span>            </div>            <div class="form-group ">              <div                class="font-color"                *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) "              >                Password is empty.              </div>              <div                class="font-color"                *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) "              >                Password is Too Short              </div>              <input                [ngClass]="{                  \'is-invalid\':                    password.errors && (isSubmitted || password.touched),                  \'is-valid\': password.touched && !password.errors                }"                type="password"                placeholder="Password"                formControlName="password"                class="form-control signup-input"                id="password"              />              <span class="fa fa-lock icon"></span>            </div>            <div class="form-group button">              <button class="btn btn-primary form-control">SignUp</button>              <div>                <p style="justify-content: center">                  You already have an account ?                  <a routerLink="/login" style="color: blue"> Log in</a>                </p>              </div>              </div>            </form>          </div>        </div>      </div>    </div>  </div></div> --><div *ngIf="ToastFlag" class="flex justify-center my-5">  <div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>        <span class="sr-only">Error icon</span>    </div>    <div class="ml-3 text-sm font-normal"><span class="block">Faild to signup.</span>{{ToastMsg}}</div>    <button (click)="closeTost()" type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger" aria-label="Close">        <span class="sr-only">Close</span>        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>    </button>  </div></div><form (ngSubmit)="submitRegister(registerForm)" [formGroup]="registerForm" class="md:my-10 mx-auto md:w-1/2 lg:w-2/5">  <div class="mb-1">      <label for="name" class="block  text-sm font-medium text-gray-900 dark:text-white">Full Name</label>      <input formControlName="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john doe" required>      <div *ngIf=" name.errors?.[\'required\'] && (isSubmitted || name.touched) " class=" text-sm text-red-600 dark:text-red-500">Name Is Empty</div>  </div>   <div class="mb-1">    <label for="username" class="block  text-sm font-medium text-gray-900 dark:text-white">Username</label>    <input formControlName="username" type="text" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john_doe" required>    <div *ngIf=" username.errors?.[\'required\'] && (isSubmitted || username.touched) " class=" text-sm text-red-600 dark:text-red-500">Username Is Empty</div></div> <div class="mb-1">  <label for="email" class="block  text-sm font-medium text-gray-900 dark:text-white">Email address</label>  <input formControlName="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required>  <div class=" text-sm text-red-600 dark:text-red-500">    <span *ngIf=" email.errors?.[\'required\'] && (isSubmitted || email.touched) ">Email Is Empty.</span>    <span *ngIf=" email.errors?.[\'email\'] && (isSubmitted || email.touched) ">Email is not valid.</span>  </div></div> <div class="mb-1">  <label for="password" class="block  text-sm font-medium text-gray-900 dark:text-white">Password</label>  <input formControlName="password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>  <div class=" text-sm text-red-600 dark:text-red-500">    <span *ngIf=" password.errors?.[\'required\'] && (isSubmitted || password.touched) ">Password is empty.</span>    <span *ngIf=" password.errors?.[\'minlength\'] && (isSubmitted || password.touched) ">Password is Too Short</span>  </div></div>   <!-- <div class="mb-1">      <label for="password1" class="block  text-sm font-medium text-gray-900 dark:text-white">Re-Password</label>      <input formControlName="password" type="password" id="password1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>      <div class=" text-sm text-red-600 dark:text-red-500">Password didn\'t matched</div>  </div>  -->  <!-- <div class="flex items-start mb-1">    <div class="flex items-center h-5">    <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>    </div>    <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>  </div> -->  <button *ngIf="!isSubmitted" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>  <button *ngIf="isSubmitted" disabled type="button" class="w-full my-2 flex justify-center mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">    <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>    </svg>    Loading...  </button></form><p style="justify-content: center; color:white">  You have an account ?  <a routerLink="/signup" class="bg-blue-600 px-1">Login</a></p></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarBottomComponent', 'selector': 'app-navbar-bottom'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ViewComponent', 'selector': 'app-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignupComponent'};
 </script>
