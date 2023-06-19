@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from './../../services/api.service';
 import { HttpClient, HttpHeaders ,HttpEvent, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { HistoryService } from 'src/app/services/history.service';
 
 
 
@@ -39,37 +40,38 @@ export class ViewComponent implements OnInit {
      private activatedRoute: ActivatedRoute,
      private apiService: ApiService,
      private httpClient: HttpClient, 
-     private sanitizer: DomSanitizer
+     private sanitizer: DomSanitizer,
+     private historyService:HistoryService
      ) {  }
   // imgList = {
   //   "img1": "https://placehold.co/120x120",
   //   "img2": "https://placehold.co/120x120",
   //   "img3": "https://placehold.co/120x120"};
 
-  getPercent(): any{
-    this.apiService.post("/api/videos/status/0").subscribe(res=>{
-      console.log(res)
-      if (res.status == "processing") {
-        this.processingPresentage = res.percent;
-        console.log(this.processingPresentage)
-      } else if (res.status == "failed") {
-         console.log(res)
-      } else if (res.status == "finished") {
-        console.log(res)
-      }
-      console.log(this.processingPresentage)
-      if(this.processingPresentage<100)
-      setTimeout(() => {
-        this.getPercent()
-      }, 5000);
-    })
-  }
+  // getPercent(): any{
+  //   this.apiService.post("/api/videos/status/0").subscribe(res=>{
+  //     console.log(res)
+  //     if (res.status == "processing") {
+  //       this.processingPresentage = res.percent;
+  //       console.log(this.processingPresentage)
+  //     } else if (res.status == "failed") {
+  //        console.log(res)
+  //     } else if (res.status == "finished") {
+  //       console.log(res)
+  //     }
+  //     console.log(this.processingPresentage)
+  //     if(this.processingPresentage<100)
+  //     setTimeout(() => {
+  //       this.getPercent()
+  //     }, 5000);
+  //   })
+  // }
   
 
 
   ngOnInit() {
-    // if (this.videoId == undefined){
-    if (1){
+    if (this.videoId == undefined){
+    // if (1){
       this.showMsg=true;
       this.msg="No video file selected to view, Select file or upload a new one."
       this.msgBtnTxt1="Select from uploaded";
@@ -86,6 +88,8 @@ export class ViewComponent implements OnInit {
         this.videoId = params['videoId'];
         if (this.videoId != -1) {
           this.viewVideo("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
+          this.getImgs(this.videoId)
+          
         }else{
           this.showMsg=true;
           this.msg="Video not found."
@@ -129,6 +133,8 @@ export class ViewComponent implements OnInit {
     const blob = new Blob([response], { type: response.type });
     console.log('testx2')
     this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+    // this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:video/mp4;base64,' + URL.createObjectURL(blob));
+
 
     // this.videoUrl = URL.createObjectURL(blob);
     console.log('testx3')
@@ -137,6 +143,40 @@ export class ViewComponent implements OnInit {
   closeTost():void{
     this.showMsg= false;
   }
+
+  // getImage() {
+  //   const imagePath = 'path-to-your-image';
+  //   this.imageService.getImage(imagePath).subscribe(
+  //     (response) => {
+  //       const reader = new FileReader();
+  //       reader.onloadend = () => {
+  //         this.imageSource = reader.result as string;
+  //       };
+  //       reader.readAsDataURL(response);
+  //     },
+  //     (error) => {
+  //       console.error('Failed to load image:', error);
+  //     }
+  //   );
+  // }
+
+  getImgs(id:any):void {
+    this.historyService.getVideoMetadata(id.toString()).subscribe( response => {
+      console.log(response)
+      this.getImg(response.fallImgPath[0])
+    }
+  )
+  }
+
+  getImg(img:any):void {
+    this.viewVideo("http://localhost:8081/api/videos/getImg/"+img);
+    // this.historyService.getVideoMetadata(id.toString()).subscribe( response => {
+    //   console.log(response)
+    //   console.log(response)
+    // }
+  // )
+  }
+
 
   
   

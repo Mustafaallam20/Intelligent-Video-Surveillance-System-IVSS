@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
     // }
   }
 
-  getPercent(): any{
-    this.apiService.post("/api/videos/status/0").subscribe(res=>{
+  getPercent(id: string): any{    
+    this.apiService.post("/api/videos/status/"+id).subscribe(res=>{
       this.processing = true;
       if (res.status == "processing") {
         this.uploadPresentage = Math.round(res.percent);
@@ -38,11 +38,15 @@ export class HomeComponent implements OnInit {
          console.log(res)
       } else if (res.status == "finished") {
         this.uploadPresentage = Math.round(res.percent);
-        this.router.navigate(['/', 'view']);
+        // let path = '/view/' + id
+        // const encodedId = encodeURIComponent(id.toString());
+        console.log('/', 'view', '/', id, typeof(id))
+        this.router.navigate(['/view'], { queryParams: { 'videoId': id } });
+
       }
       console.log(this.uploadPresentage)
-      if(this.uploadPresentage<=100){        
-        setTimeout(() => this.getPercent(), 5000);
+      if(this.uploadPresentage<100){        
+        setTimeout(() => this.getPercent(id), 5000);
     }
     })
   }
@@ -58,26 +62,28 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     if (!this.selectedFile) return;
     this.uploading = true;
-    this.apiService.uploadFile(this.selectedFile).subscribe(
+    let res = this.apiService.uploadFile(this.selectedFile).subscribe(
       (event: any) => {
-        console.log(event.type)
+        // console.log(event.type)
         if (event.type === 1) {
-          console.log(event)
+          // console.log(event)
           // Progress event
           this.uploadPresentage = Math.round((event.loaded / event.total) * 100);
           if(this.uploadPresentage==100){// cam cause error
             this.uploading = false;
-            this.uploadPresentage = 0.01;
+            this.uploadPresentage = 0;
             this.processing = true;
-            let res = this.getPercent()
+            // let res = this.getPercent(event.body.data.id)
           }
 
         } else if (event.type === 4) {
+        // console.log(event.body.data)
+
           // Response event
-          this.uploading = false;
-          this.uploadPresentage = 0.01;
-          this.processing = true;
-          let res = this.getPercent();
+          // this.uploading = false;
+          // this.uploadPresentage = 0.05;
+          // this.processing = true;
+          this.getPercent(Math.round(event.body.data.videoId).toString());
         }
       },
       (error: any) => {

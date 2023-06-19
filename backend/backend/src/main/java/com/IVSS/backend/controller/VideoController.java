@@ -119,7 +119,8 @@ public class VideoController {
         try {
             String fileName = updownloadServices.uploadFile(file);
             Long vidId = videoService.uploadVideo(fileName, id);//save vid
-            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, "fall");
+
+            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, "crash");
             data.put("status", "video send to deep learning models successfully");
             data.put("msg", deepRes);//can cause error
             data.put("videoId", vidId);//can cause error
@@ -220,9 +221,37 @@ public class VideoController {
         Long userId = getUserId();
         try {
             Video video = videoService.getVideo(videoId, userId);// err if videoId is string
-            System.out.println(video.getRawFilePath());
+            System.out.println(video.getProcessedFilePath());
+            //de2d7c49-2e4d-4be5-8e89-b13f872ef670-fall_2.mp4
+            return updownloadServices.downloadFile("out.mp4");
+//            return updownloadServices.downloadFile("de2d7c49-2e4d-4be5-8e89-b13f872ef670-fall_2.mp4");
+//            return updownloadServices.downloadFile("2aa6df66-9a3f-4e31-aa76-5470531e013d.mp4");
+//            return updownloadServices.downloadFile(video.getRawFilePath());
+//            return updownloadServices.downloadFile(video.getProcessedFilePath());
 
-            return updownloadServices.downloadFile(video.getRawFilePath());
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+
+//    @GetMapping("/getImg/{videoId}/{imgPath}")
+    @GetMapping("/getImg/{imgPath}")
+    public ResponseEntity<Resource> getImgs(@PathVariable String imgPath) throws IOException {
+//        public ResponseEntity<Resource> getImgs(@PathVariable Long videoId, @PathVariable String imgPath) throws IOException {
+        Long userId = getUserId();
+        try {
+//            Video video = videoService.getVideo(videoId, userId);// err if videoId is string
+//            System.out.println(video.getProcessedFilePath());
+            //de2d7c49-2e4d-4be5-8e89-b13f872ef670-fall_2.mp4
+            return updownloadServices.downloadFile(imgPath);
+//            return updownloadServices.downloadFile("de2d7c49-2e4d-4be5-8e89-b13f872ef670-fall_2.mp4");
+//            return updownloadServices.downloadFile("2aa6df66-9a3f-4e31-aa76-5470531e013d.mp4");
+//            return updownloadServices.downloadFile(video.getRawFilePath());
 //            return updownloadServices.downloadFile(video.getProcessedFilePath());
 
         } catch (NoSuchElementException e) {

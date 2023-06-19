@@ -65,21 +65,21 @@ export class ApiService {
   }
 
 
-  processStatus(id: number): Observable<HttpEvent<any>> {
-    // const formData = new FormData();
-    // formData.append('file', file);
-    let headers: HttpHeaders = new HttpHeaders();
-    if (localStorage.getItem('token') != null) {
-      headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
-      console.log("Bearer "+localStorage.getItem('token')!)
-    }
-    const req = new HttpRequest('POST', 'http://localhost:8081/api/videos/status/' + id.toString() , {
-      headers,
-      // reportProgress: true
-    });
+  // processStatus(id: number): Observable<HttpEvent<any>> {
+  //   // const formData = new FormData();
+  //   // formData.append('file', file);
+  //   let headers: HttpHeaders = new HttpHeaders();
+  //   if (localStorage.getItem('token') != null) {
+  //     headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
+  //     console.log("Bearer "+localStorage.getItem('token')!)
+  //   }
+  //   const req = new HttpRequest('POST', 'http://localhost:8081/api/videos/status/' + id.toString() , {
+  //     headers,
+  //     // reportProgress: true
+  //   });
 
-    return this.httpClient.request(req);
-  }
+  //   return this.httpClient.request(req);
+  // }
   // watchVideo(videoId:string): Observable<HttpEvent<any>> {
 
   //   let headers: HttpHeaders = new HttpHeaders();

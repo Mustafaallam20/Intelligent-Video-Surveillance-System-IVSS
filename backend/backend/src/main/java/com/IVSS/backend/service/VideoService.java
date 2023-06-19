@@ -59,18 +59,18 @@ public class VideoService {
     }
 
     public Long uploadVideo(String fileName, Long ownerId) throws IOException {
-        System.out.println("parameter filename, id > " + fileName + ", "+ ownerId.toString());
+//        System.out.println("parameter filename, id > " + fileName + ", "+ ownerId.toString());
         User owner =  userRepository.findById(ownerId).orElseThrow(NoSuchElementException::new);
-        System.out.println("user name > " + owner.getName());
+//        System.out.println("user name > " + owner.getName());
         Video video = new Video();
         video.setUser(owner);
 //        video.setVideoLen(getVideoDuration(filePath));
 //        video.setResolution(getVideoResolution(filePath));
         video.setRawFilePath(fileName);
-        System.out.println("RawFilePath");
+//        System.out.println("RawFilePath");
         videoRepository.save(video);
-        System.out.println("test");
-        System.out.println(video.getId());
+//        System.out.println("test");
+//        System.out.println(video.getId());
         return video.getId();
         //try
     }
@@ -331,73 +331,90 @@ public class VideoService {
             res.put("msg", rootNode.get("msg"));
 
             String status = rootNode.get("status").asText();
-            if (status == "processing" && status=="failed") {
+            System.out.println("112: " + status);
+            if (status.equals("processing") || status.equals("failed")) {
+                System.out.println("113: " + status == "processing" || status=="failed");
+
                 System.out.println(res);
                 return res;
             }
-            System.out.println("q11");
+            System.out.println("q11: " + status + status.equals("finished"));
 //            if (status == "finished") {
 //                return res;
 //            }
 
+            if (status.equals("finished")) {
+                JsonNode data = rootNode.get("data");
+                System.out.println("p170");
+                String video = data.get("video").asText();
+                System.out.println("p171");
+                byte[] decodedVideo = Base64.getDecoder().decode(video);
+                System.out.println("p172");
+                String vidName = UUID.randomUUID().toString() + ".mp4";//not mp4
+                System.out.println("p173:" + vidName);
+                try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + vidName)) {
+                    outputStream.write(decodedVideo);
+                    System.out.println("p174");
+                    System.out.println("setProcessedFilePath"+vidName);
+                    videoObj.setProcessedFilePath(vidName);
+                    System.out.println("setProcessedFilePath"+vidName);
 
-            JsonNode data = rootNode.get("data");
-            String video = data.get("video").asText();
-            byte[] decodedVideo = Base64.getDecoder().decode(video);
-            String vidName = UUID.randomUUID().toString() + ".mp4";//not mp4
-            try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + vidName)) {
-                outputStream.write(decodedVideo);
-                videoObj.setProcessedFilePath(vidName);
-            } catch (IOException e) {//handel exception
-                res.put("error", e.getMessage());/////////////
-            }
-            System.out.println("q11");
-
-            // Access the JSON array using the JsonNode API
-            JsonNode imagesNode = data.get("images");
-            System.out.println("q12");
-            if (imagesNode.isArray()) {
-                System.out.println("q13");
-                List<String> fall = new ArrayList<>();
-                List<String> fight = new ArrayList<>();
-                List<String> face = new ArrayList<>(); //can cause error if null
-                List<String> crash = new ArrayList<>();
-
-
-                System.out.println("q14");
-                for (JsonNode imageNode : imagesNode) {
-                    String imgName = imageNode.get("name") + "---" + UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
-                    String detectType = imageNode.get("type").asText();
-                    String img = imageNode.get("data").asText();
-                    byte[] decodedImg = Base64.getDecoder().decode(img);
-                    try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + imgName)) {
-                        outputStream.write(decodedImg);
-                        //add img to db //edit path
-                        switch (detectType) {
-                            case "fall":
-                                fall.add(imgName);
-                                break;
-                            case "fight":
-                                fight.add(imgName);
-                                break;
-                            case "face":
-                                face.add(imgName);
-                                break;
-                            case "crash":
-                                crash.add(imgName);
-                                break;
-                        }
-
-                    } catch (IOException e) {//handel exception
-                        res.put("error", e.getMessage());/////////////
-                        return res;
-//                        throw new RuntimeException(e);
-                    }
+                } catch (IOException e) {//handel exception
+                    System.out.println("p175: " + e.getMessage());
+                    System.out.println("p175: " + e.toString());
+                    res.put("error", e.getMessage());/////////////
                 }
-                videoObj.setFallImgPath(fall);
-                videoObj.setFightImgPath(fight);
-                videoObj.setFaceImgPath(face);
-                videoObj.setCrashImgPath(crash);
+                System.out.println("q11");
+                System.out.println("setProcessedFilePath has been set");
+
+
+                // Access the JSON array using the JsonNode API
+                JsonNode imagesNode = data.get("images");
+                System.out.println("q12");
+                if (imagesNode.isArray()) {
+                    System.out.println("q13");
+                    List<String> fall = new ArrayList<>();
+                    List<String> fight = new ArrayList<>();
+                    List<String> face = new ArrayList<>(); //can cause error if null
+                    List<String> crash = new ArrayList<>();
+
+
+                    System.out.println("q14");
+                    for (JsonNode imageNode : imagesNode) {
+                        String imgName = imageNode.get("name") + "---" + UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
+                        String detectType = imageNode.get("type").asText();
+                        String img = imageNode.get("data").asText();
+                        byte[] decodedImg = Base64.getDecoder().decode(img);
+                        try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + imgName)) {
+                            outputStream.write(decodedImg);
+                            //add img to db //edit path
+                            switch (detectType) {
+                                case "fall":
+                                    fall.add(imgName);
+                                    break;
+                                case "fight":
+                                    fight.add(imgName);
+                                    break;
+                                case "face":
+                                    face.add(imgName);
+                                    break;
+                                case "crash":
+                                    crash.add(imgName);
+                                    break;
+                            }
+
+                        } catch (IOException e) {//handel exception
+                            res.put("error", e.getMessage());/////////////
+                            return res;
+    //                        throw new RuntimeException(e);
+                        }
+                    }
+                    videoObj.setFallImgPath(fall);
+                    videoObj.setFightImgPath(fight);
+                    videoObj.setFaceImgPath(face);
+                    videoObj.setCrashImgPath(crash);
+                }
+                videoRepository.save(videoObj);
             }
         }
         catch (Exception e) {
