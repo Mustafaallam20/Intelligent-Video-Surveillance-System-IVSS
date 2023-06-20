@@ -26,6 +26,8 @@ public class Video {
     private String label;
     @Column(name = "`detection_types`")
     private List<String> detection_types;
+	@Column(name = "`title`", nullable = false)
+	private String title;
     @Column(name = "`raw_file_path`", nullable = false)
     private String rawFilePath;
 	@Column(name = "`processed_file_path`")

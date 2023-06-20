@@ -119,7 +119,7 @@ export class ApiService {
   }
 
 
-  downloadFile(fileUrl: string): void {
+  downloadFile(fileUrl: string, type:string): void {
     let headers: HttpHeaders = new HttpHeaders();
     if (localStorage.getItem('token') != null) {
       headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
@@ -127,17 +127,20 @@ export class ApiService {
     }
     this.httpClient.get(fileUrl, { headers, responseType: 'blob' })
       .subscribe(response => {
-        this.saveFile(response);
+        this.saveFile(response, type);
       }, error => {
         console.error('Error downloading the file:', error);
       });
   }
-  private saveFile(response: any): void {
+  private saveFile(response: any, type:string): void {
     const blob = new Blob([response], { type: response.type });
 
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = 'file-name.mp4'; // Replace with desired file name
+    if(type=='video')
+      downloadLink.download = 'output-video.mp4'; // Replace with desired file name
+    if(type=='image')
+      downloadLink.download = 'output-image.jpg'; // Replace with desired file name
     downloadLink.click();
     URL.revokeObjectURL(downloadLink.href);
     downloadLink.remove();

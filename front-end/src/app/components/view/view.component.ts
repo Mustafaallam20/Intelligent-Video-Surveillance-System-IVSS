@@ -24,17 +24,31 @@ import { Observable } from 'rxjs';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  videoUrl: SafeUrl | string = '';
+  mainURL: SafeUrl | string = '';
+  mainIndex: number = 0;
   videoId: number = -1;
   videoLink: string = '';
-  isLoaded:boolean=false;
+  isVidLoaded:boolean=false;
+  isImgLoaded:boolean=false;
   showMsg:boolean=false;
   msg:string="";
   msgBtnTxt1:string="";
   msgBtnTxt2:string="";
   msgBtnLink1:string="";
   msgBtnLink2:string="";
+  imgsURL:any=[];
+  imgsURLPlan:any=[];
   processingPresentage:number=0;
+
+  options = [
+    { value: 'all', label: 'All Detection Types' },
+    { value: 'car', label: 'Car Cresh Detection' },
+    { value: 'fall', label: 'Fall Detection' },
+    { value: 'face', label: 'Face Recognation' }
+  ];
+  
+  selectedOption: string = "all";
+
   constructor(private viewService: ViewService,
      private authService: AuthService, 
      private activatedRoute: ActivatedRoute,
@@ -87,9 +101,10 @@ export class ViewComponent implements OnInit {
         this.showMsg=false;
         this.videoId = params['videoId'];
         if (this.videoId != -1) {
+          console.log("170: "+this.videoId)
           this.viewVideo("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
-          this.getImgs(this.videoId)
-          
+          this.getImages(this.videoId)
+          console.log(this.videoId)
         }else{
           this.showMsg=true;
           this.msg="Video not found."
@@ -104,8 +119,24 @@ export class ViewComponent implements OnInit {
   }
 
   download(){
-    this.apiService.downloadFile("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
+    this.apiService.downloadFile("http://localhost:8081/api/videos/watch/"+this.videoId.toString(), 'video');
   }
+
+  downloadImg(){
+    if(this.mainIndex!=0){
+      this.apiService.downloadFile(this.imgsURLPlan[this.mainIndex], 'image');
+    }
+  }
+
+  downloadAllImgs(){
+    this.imgsURLPlan.forEach((element:any)=>{
+      if(this.mainIndex!=0){
+        this.apiService.downloadFile(element, 'image');
+      }
+    })
+
+  }
+
 
 
   viewVideo(fileUrl: string): void {
@@ -116,7 +147,7 @@ export class ViewComponent implements OnInit {
     this.httpClient.get(fileUrl, { headers, responseType: 'blob' })
     .subscribe(response => {
         this.playVideo(response);
-        this.isLoaded=true;
+        this.isVidLoaded=true;
       }, error => {
         console.error('Error downloading the file:', error);
         this.showMsg=true;
@@ -132,11 +163,13 @@ export class ViewComponent implements OnInit {
     console.log('testx1')
     const blob = new Blob([response], { type: response.type });
     console.log('testx2')
-    this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-    // this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:video/mp4;base64,' + URL.createObjectURL(blob));
+    this.mainURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+    this.imgsURL.push(this.mainURL)
+    this.imgsURLPlan.push(this.mainURL)
+    // this.mainURL = this.sanitizer.bypassSecurityTrustResourceUrl('data:video/mp4;base64,' + URL.createObjectURL(blob));
 
 
-    // this.videoUrl = URL.createObjectURL(blob);
+    // this.mainURL = URL.createObjectURL(blob);
     console.log('testx3')
   }
 
@@ -160,22 +193,101 @@ export class ViewComponent implements OnInit {
   //   );
   // }
 
-  getImgs(id:any):void {
+  getImages(id:any):void {
+    while(this.imgsURL.length>1){
+      this.imgsURL.pop();
+      this.imgsURLPlan.pop();
+    }
     this.historyService.getVideoMetadata(id.toString()).subscribe( response => {
+      console.log("172: "+this.videoId)
       console.log(response)
-      this.getImg(response.fallImgPath[0])
+      console.log(response)
+      if(this.selectedOption=='fall' || this.selectedOption=='all')
+        response.fallImgPath.forEach((img: string) => {
+          this.getImage("http://localhost:8081/api/videos/getImg/" + img)
+        });
+      if(this.selectedOption=='face' || this.selectedOption=='all')
+        response.fightImgPath.forEach((img: string) => {
+          this.getImage("http://localhost:8081/api/videos/getImg/" + img)
+        });
+        if(this.selectedOption=='face' || this.selectedOption=='all')
+        response.faceImgPath.forEach((img: string) => {
+          this.getImage("http://localhost:8081/api/videos/getImg/" + img)
+        });
+      if(this.selectedOption=='car' || this.selectedOption=='all')
+        response.crashImgPath.forEach((img: string) => {
+          this.getImage("http://localhost:8081/api/videos/getImg/" + img)
+        });
+      console.log("173: "+this.imgsURL)
     }
   )
   }
 
-  getImg(img:any):void {
-    this.viewVideo("http://localhost:8081/api/videos/getImg/"+img);
-    // this.historyService.getVideoMetadata(id.toString()).subscribe( response => {
-    //   console.log(response)
-    //   console.log(response)
-    // }
-  // )
+
+  getImage(fileUrl: string): void {
+    console.log("174: "+fileUrl);
+    let headers: HttpHeaders = new HttpHeaders();
+    if (localStorage.getItem('token') != null) {
+      headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
+    }
+    this.httpClient.get(fileUrl, { headers, responseType: 'blob' })
+    .subscribe(response => {
+        const blob = new Blob([response], { type: response.type });
+        this.imgsURL.push(this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob)))
+        this.imgsURLPlan.push(fileUrl);
+        console.log("176: "+this.imgsURL, typeof(this.imgsURL));
+        this.isVidLoaded=true;
+      }, error => {
+        console.error('Error downloading the file:', error);
+        this.showMsg=true;
+        this.msg="Faild to view video, please try leter."
+        this.msgBtnTxt1="Try again.";
+        this.msgBtnTxt2="Upload a new video";
+        this.msgBtnLink1="/";
+        this.msgBtnLink2="/home";
+      });  
   }
+
+  view(index: number) {
+    this.mainIndex=index;
+    this.mainURL=this.imgsURL[index]
+    this.isImgLoaded = true;
+    this.isVidLoaded = false;
+    if(index.toString()=='0'){
+      this.isImgLoaded = false;
+      this.isVidLoaded = true;
+    }
+}
+
+left() {
+  if(this.mainIndex<this.imgsURL.length-1){
+    this.mainIndex+=1
+    this.mainURL=this.imgsURL[this.mainIndex]
+    this.isImgLoaded = true;
+    this.isVidLoaded = false;
+    if(this.mainIndex==0){
+      this.isImgLoaded = false;
+      this.isVidLoaded = true;
+    }
+  }
+}
+
+right() {
+  if(this.mainIndex>0){
+    this.mainIndex-=1
+    this.mainURL=this.imgsURL[this.mainIndex]
+    this.isImgLoaded = true;
+    this.isVidLoaded = false;
+    if(this.mainIndex==0){
+      this.isImgLoaded = false;
+      this.isVidLoaded = true;
+    }
+  }
+}
+
+updateURLs(){
+  this.getImages(this.videoId);
+}
 
 
   

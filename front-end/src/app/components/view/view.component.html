@@ -44,11 +44,17 @@
 
 
 
+<label for="countries" class="mx-auto mt-3 lg:mx-5 block mb-2 text-sm font-medium text-gray-900 dark:text-white w-1/2 md:w-1/3">Select Detection Type</label>
+<select (change)="updateURLs()" [(ngModel)]="selectedOption" id="countries" class="mx-auto lg:mx-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>
+
 <div class="bg-gray-800 relative m-3 md:m-1 drop-shadow-xl">
     <div id="gallery" class="bg-gray-800 relative w-full p-2 md:p-1">
 
-        <div>
-            <ul class="flex flex-row overflow-x-auto" ><!--*ngIf="!isLoaded"-->
+        <!--*ngIf="!isLoaded"-->
+        <div *ngIF="!imgsURL">
+            <ul class="flex flex-row overflow-x-auto" >
                 <li class="m-1 shrink-0 snap-center"  *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
                     <div role="status" class="mx-auto h-28 w-32  border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
                         <div class="flex items-center justify-center h-full bg-gray-300 rounded dark:bg-gray-700">
@@ -60,16 +66,38 @@
             </ul>
         </div>
 
+
+        <div>
+            <ul class="flex flex-row overflow-x-auto" >
+                <li class="m-1 shrink-0 snap-center" (click)="view(0)">
+                    <div role="status" class="flex flex-col justify-center mx-auto h-28 w-32 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
+                        <video [src]="imgsURL[0]"></video>
+                    </div>
+                </li>
+
+                <ng-container class="m-1 shrink-0 snap-center" *ngFor="let imgURL of imgsURL; let i = index">
+                    <li class="m-1 shrink-0 snap-center " (click)="view(i)" *ngIf="i !== 0">
+                      <div role="status" class="flex flex-col justify-center mx-auto h-28 w-32 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
+                        <img [src]="imgURL">
+                      </div>
+                    </li>
+                  </ng-container>
+                  
+                
+            </ul>
+        </div>
+        
+
         <div class="flex flex-row justify-between">
-            <button type="button" class="rotate-180 text-white bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-700 dark:hover:bg-gray-900 dark:focus:ring-blue-800">
+            <button (click)="right()" type="button" class="rotate-180 text-white bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-700 dark:hover:bg-gray-900 dark:focus:ring-blue-800">
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 <span class="sr-only">Icon description</span>
             </button>
 
             <div class="w-screen container">
-                <!-- <img class="w-screen md:w-1/3  mx-auto" src="https://placehold.co/120x120"/> -->
-                <video *ngIf="isLoaded" class="w-screen md:w-2/3 mx-auto" [src]="videoUrl" type="video/mp4" controls width="50%"></video>
-                <div *ngIf="!isLoaded" role="status" class="mx-auto flex items-center justify-center h-80 max-w-lg bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700">
+                <img *ngIf="isImgLoaded" class="w-screen md:w-1/3  mx-auto" [src]="mainURL"/>
+                <video *ngIf="isVidLoaded" class="w-screen md:w-2/3 mx-auto" [src]="mainURL" type="video/mp4" controls width="50%"></video>
+                <div *ngIf="!isVidLoaded && !isImgLoaded" role="status" class="mx-auto flex items-center justify-center h-80 max-w-lg bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700">
                     <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 384 512"><path d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/></svg>
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -83,7 +111,7 @@
 
             </div>
 
-            <button type="button" class="text-white bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center ml-2 dark:bg-gray-700 dark:hover:bg-gray-900 dark:focus:ring-blue-800">
+            <button (click)="left()" type="button" class="text-white bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center ml-2 dark:bg-gray-700 dark:hover:bg-gray-900 dark:focus:ring-blue-800">
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 <span class="sr-only">Icon description</span>
             </button>
@@ -93,18 +121,22 @@
 
 
 
-<div class="inline-flex rounded-md shadow-sm" role="group">
-    <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-      <svg aria-hidden="true" class="w-4 h-4 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-      Profile
-    </button>
+<div class="w-2/3 flex rounded-md shadow-sm" role="group">
     <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
       <svg aria-hidden="true" class="w-4 h-4 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path></svg>
       Settings
     </button>
     <button   (click)="download()" type="download" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+        <svg aria-hidden="true" class="w-4 h-4 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd"></path></svg>
+        Download Video
+    </button>
+    <button   (click)="downloadImg()" type="download" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+        <svg aria-hidden="true" class="w-4 h-4 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd"></path></svg>
+        Download Image
+    </button>
+    <button   (click)="downloadAllImgs()" type="download" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
       <svg aria-hidden="true" class="w-4 h-4 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd"></path></svg>
-      Downloads
+      Download All Images
     </button>
   </div>
   

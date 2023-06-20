@@ -58,7 +58,7 @@ public class VideoService {
         return videos;
     }
 
-    public Long uploadVideo(String fileName, Long ownerId) throws IOException {
+    public Long uploadVideo(String fileName, Long ownerId, String originalFilename) throws IOException {
 //        System.out.println("parameter filename, id > " + fileName + ", "+ ownerId.toString());
         User owner =  userRepository.findById(ownerId).orElseThrow(NoSuchElementException::new);
 //        System.out.println("user name > " + owner.getName());
@@ -67,6 +67,8 @@ public class VideoService {
 //        video.setVideoLen(getVideoDuration(filePath));
 //        video.setResolution(getVideoResolution(filePath));
         video.setRawFilePath(fileName);
+        video.setTitle(originalFilename);
+
 //        System.out.println("RawFilePath");
         videoRepository.save(video);
 //        System.out.println("test");
@@ -381,7 +383,7 @@ public class VideoService {
 
                     System.out.println("q14");
                     for (JsonNode imageNode : imagesNode) {
-                        String imgName = imageNode.get("name") + "---" + UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
+                        String imgName = imageNode.get("name").asText() + "---" + UUID.randomUUID().toString() + ".jpg";//new File(getBaseDir() + uploadDirectory + vidPath);
                         String detectType = imageNode.get("type").asText();
                         String img = imageNode.get("data").asText();
                         byte[] decodedImg = Base64.getDecoder().decode(img);
