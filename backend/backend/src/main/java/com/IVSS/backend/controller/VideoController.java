@@ -141,6 +141,7 @@ public class VideoController {
         ObjectNode data = JsonNodeFactory.instance.objectNode();
         try {
             JsonNode response = videoService.getProcessedVideo(videoId);
+            System.out.println(response);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
             ObjectNode response = jsonRes("failed", data);///test err
