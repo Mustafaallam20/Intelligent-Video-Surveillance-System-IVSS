@@ -113,14 +113,15 @@ public class VideoController {
 
 
     @PostMapping("/upload")
-    public ResponseEntity<Object> uploadVideo(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Object> uploadVideo(@RequestParam("file") MultipartFile file, @RequestParam("model") String model) {
         Long id =  getUserId();
         ObjectNode data = JsonNodeFactory.instance.objectNode();
         try {
             String fileName = updownloadServices.uploadFile(file);
             Long vidId = videoService.uploadVideo(fileName, id, file.getOriginalFilename());//save vid
 
-            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, "fight");
+            String deepRes = videoService.UploadVideoToDeep(fileName, vidId, model);
+            System.out.println("model"+model);
             data.put("status", "video send to deep learning models successfully");
             data.put("msg", deepRes);//can cause error
             data.put("videoId", vidId);//can cause error
@@ -228,6 +229,30 @@ public class VideoController {
 //            return updownloadServices.downloadFile("2aa6df66-9a3f-4e31-aa76-5470531e013d.mp4");
 //            return updownloadServices.downloadFile(video.getRawFilePath());
             return updownloadServices.downloadFile(video.getProcessedFilePath());
+
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+    @PostMapping("/watchs/{videoId}")
+    public ResponseEntity<ObjectNode> downloadVideoS(@PathVariable Long videoId) throws IOException {
+        Long userId = getUserId();
+        try {
+            Video video = videoService.getVideo(videoId, userId);// err if videoId is string
+            System.out.println(video.getProcessedFilePath());
+            //de2d7c49-2e4d-4be5-8e89-b13f872ef670-fall_2.mp4
+//            return updownloadServices.downloadFile("output.mp4");
+//            return updownloadServices.downloadFile("de2d7c49-2e4d-4be5-8e89-b13f872ef670-fall_2.mp4");
+//            return updownloadServices.downloadFile("2aa6df66-9a3f-4e31-aa76-5470531e013d.mp4");
+//            return updownloadServices.downloadFile(video.getRawFilePath());
+
+            ObjectNode response = jsonRes(video.getProcessedFilePath(), null);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();

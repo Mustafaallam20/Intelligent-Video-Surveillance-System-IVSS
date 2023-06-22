@@ -353,6 +353,12 @@ public class VideoService {
                 byte[] decodedVideo = Base64.getDecoder().decode(video);
                 System.out.println("p172");
                 String vidName = UUID.randomUUID().toString() + ".mp4";//not mp4
+
+                File serverFile2 = new File("/Users/muhammadeid/Documents/GitHub/Intelligent-Video-Surveillance-System-IVSS/front-end/src/assets/videos/" + vidName); // base path
+                try (FileOutputStream fos = new FileOutputStream(serverFile2)) {
+                    fos.write(decodedVideo);
+                }
+
                 System.out.println("p173:" + vidName);
                 try (FileOutputStream outputStream = new FileOutputStream(getBaseDir() + uploadDirectory + vidName)) {
                     outputStream.write(decodedVideo);

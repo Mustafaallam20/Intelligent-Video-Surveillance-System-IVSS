@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 // import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from './../../services/api.service';
 import { HttpClient, HttpHeaders ,HttpEvent, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 import { HistoryService } from 'src/app/services/history.service';
 
 
@@ -24,7 +24,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  mainURL: SafeUrl | string = '';
+  mainURL: SafeResourceUrl = "";
   mainIndex: number = 0;
   videoId: number = -1;
   videoLink: string = '';
@@ -39,6 +39,7 @@ export class ViewComponent implements OnInit {
   imgsURL:any=[];
   imgsURLPlan:any=[];
   processingPresentage:number=0;
+  videoURLHack:string='';
 
   options = [
     { value: 'all', label: 'All Detection Types' },
@@ -104,6 +105,7 @@ export class ViewComponent implements OnInit {
           console.log("170: "+this.videoId)
           this.viewVideo("http://localhost:8081/api/videos/watch/"+this.videoId.toString());
           this.getImages(this.videoId)
+          this.viewVideoS("/api/videos/watchs/"+this.videoId.toString())
           console.log(this.videoId)
         }else{
           this.showMsg=true;
@@ -138,6 +140,22 @@ export class ViewComponent implements OnInit {
   }
 
 
+  viewVideoS(fileUrl: string): void {
+    let headers: HttpHeaders = new HttpHeaders();
+    if (localStorage.getItem('token') != null) {
+      headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
+    }
+    console.log("aaaaa", fileUrl);
+    
+
+    this.apiService.post(fileUrl, {}).subscribe(
+    (response: any) => {
+        this.videoURLHack = "/assets/videos/" + response.status;
+        this.isVidLoaded=true;
+        console.log("aaaa", response ,this.videoURLHack);
+      }) 
+      console.log("aaaa" ,this.videoURLHack);
+  }
 
   viewVideo(fileUrl: string): void {
     let headers: HttpHeaders = new HttpHeaders();
@@ -163,7 +181,7 @@ export class ViewComponent implements OnInit {
     console.log('testx1')
     const blob = new Blob([response], { type: response.type });
     console.log('testx2')
-    this.mainURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+    this.mainURL = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob));
     this.imgsURL.push(this.mainURL)
     this.imgsURLPlan.push(this.mainURL)
     // this.mainURL = this.sanitizer.bypassSecurityTrustResourceUrl('data:video/mp4;base64,' + URL.createObjectURL(blob));
@@ -262,7 +280,7 @@ export class ViewComponent implements OnInit {
 left() {
   if(this.mainIndex<this.imgsURL.length-1){
     this.mainIndex+=1
-    this.mainURL=this.imgsURL[this.mainIndex]
+    this.mainURL=this.sanitizer.bypassSecurityTrustResourceUrl(this.imgsURL[this.mainIndex])
     this.isImgLoaded = true;
     this.isVidLoaded = false;
     if(this.mainIndex==0){
@@ -275,7 +293,7 @@ left() {
 right() {
   if(this.mainIndex>0){
     this.mainIndex-=1
-    this.mainURL=this.imgsURL[this.mainIndex]
+    this.mainURL=this.sanitizer.bypassSecurityTrustResourceUrl(this.imgsURL[this.mainIndex])
     this.isImgLoaded = true;
     this.isVidLoaded = false;
     if(this.mainIndex==0){

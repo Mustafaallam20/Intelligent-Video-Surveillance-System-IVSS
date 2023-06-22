@@ -18,6 +18,15 @@ export class HomeComponent implements OnInit {
   selectedFile: File | undefined;
   // processingPresentage:number=0;
 
+  modelOptions = [
+    { value: 'general', label: 'General Detection' },
+    { value: 'fight_fall_crash', label: 'Fall, Fight & Crash Detection' },
+    { value: 'indoor', label: 'Indoor Detection' },
+    { value: 'indoor_mask', label: 'Indoor & Mask Detection' },
+  ];
+  selectedOption: string = "general";
+
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -62,7 +71,7 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     if (!this.selectedFile) return;
     this.uploading = true;
-    let res = this.apiService.uploadFile(this.selectedFile).subscribe(
+    let res = this.apiService.uploadFile(this.selectedFile, this.selectedOption).subscribe(
       (event: any) => {
         // console.log(event.type)
         if (event.type === 1) {
@@ -92,5 +101,11 @@ export class HomeComponent implements OnInit {
         this.msg = 'An error occurred during file upload. Please try again.';
       }
     );
+  }
+
+
+  updateModel(event:any){
+    console.log((event.target as HTMLSelectElement).value)
+    this.selectedOption = (event.target as HTMLSelectElement).value
   }
 }

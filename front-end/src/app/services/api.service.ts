@@ -47,9 +47,10 @@ export class ApiService {
   //   })
   // }
 
-  uploadFile(file: File): Observable<HttpEvent<any>> {
+  uploadFile(file: File, model:string): Observable<HttpEvent<any>> {
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('model', model);
     let headers: HttpHeaders = new HttpHeaders();
     if (localStorage.getItem('token') != null) {
       headers = headers.set("Authorization","Bearer "+localStorage.getItem('token')!);
@@ -117,6 +118,9 @@ export class ApiService {
       })
     );
   }
+
+
+
 
 
   downloadFile(fileUrl: string, type:string): void {
