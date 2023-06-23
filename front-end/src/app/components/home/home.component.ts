@@ -20,12 +20,14 @@ export class HomeComponent implements OnInit {
 
   modelOptions = [
     { value: 'general', label: 'General Detection' },
+    { value: 'fight_fall_mask', label: 'Fall, Fight & Mask Detection' },
     { value: 'fight_fall_crash', label: 'Fall, Fight & Crash Detection' },
     { value: 'indoor', label: 'Indoor Detection' },
     { value: 'indoor_mask', label: 'Indoor & Mask Detection' },
   ];
   selectedOption: string = "general";
-  num=1
+  num=0
+  numModel=1
 
 
   constructor(
@@ -45,9 +47,11 @@ export class HomeComponent implements OnInit {
       if (res.status == "processing") {
         this.uploadPresentage = Math.round(res.percent);
         console.log(res)
-      } else if (res.status == "failed") {
+      } 
+      if (res.status == "failed") {
          console.log(res)
-      } else if (res.status == "finished") {
+      } 
+      if (res.status == "finished") {
         this.uploadPresentage = Math.round(res.percent);
         console.log(res)
 
@@ -57,17 +61,18 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/view'], { queryParams: { 'videoId': id } });
 
       }
+      if (this.num > this.uploadPresentage){
+        this.numModel=2
+      }
+      this.num = this.uploadPresentage 
       console.log(this.uploadPresentage)
       if(this.uploadPresentage==100){        
         this.num=2;
     }
-    if(res.status == "processing"){        
+    if(res.status != "finished"){        
       setTimeout(() => this.getPercent(id), 5000);
       console.log(res)
   }
-    },(error: any) => {
-      console.log('Upload error:', error);
-      setTimeout(() => this.getPercent(id), 5000);
     })
   }
 
