@@ -112,6 +112,24 @@ public class Video {
 	public Boolean getProcessed() {
 		return processed;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public List<String> getFallImgPath() {
+		return fallImgPath;
+	}
+	public void setFallImgPath(List<String> fallImgPath) {
+		this.fallImgPath = fallImgPath;
+	}
+	public List<String> getCrashImgPath() {
+		return crashImgPath;
+	}
+	public void setCrashImgPath(List<String> crashImgPath) {
+		this.crashImgPath = crashImgPath;
+	}
 	public void setProcessed(Boolean processed) {
 		this.processed = processed;
 	}
